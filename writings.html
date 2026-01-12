@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INHUMAN SYSTEMS - Writings and Transmissions">
+    <title>WRITINGS // INHUMAN SYSTEMS</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Static Cyberpunk Background -->
+    <div class="ai-artifacts"></div>
+    <div class="ai-noise"></div>
+    <div class="scanlines"></div>
+
+    <div class="container">
+        <header>
+            <pre class="ascii-title ascii-small">
+╔═══════════════════════════════════════╗
+║  W R I T I N G S                      ║
+╚═══════════════════════════════════════╝
+            </pre>
+            <p class="tagline">[ transmissions from the process ]</p>
+        </header>
+
+        <nav>
+            <span class="nav-decorator">&gt;&gt;&gt;</span>
+            <a href="index.html">[HOME]</a>
+            <a href="projects.html">[PROJECTS]</a>
+            <a href="writings.html" class="nav-active">[WRITINGS]</a>
+            <a href="index.html#contact">[CONTACT]</a>
+            <span class="nav-decorator">&lt;&lt;&lt;</span>
+        </nav>
+
+        <hr class="divider">
+
+        <main id="writings-container">
+            <!-- Writings will be loaded here dynamically -->
+            <div class="file-list">
+                <p class="dir-header">&gt; loading transmissions...</p>
+                <p class="blink">_</p>
+            </div>
+        </main>
+
+        <hr class="divider">
+
+        <footer>
+            <p class="footer-text">
+                <a href="index.html">&lt;&lt; RETURN TO MAIN TERMINAL</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Load writings from manifest -->
+    <script>
+        (function () {
+            const container = document.getElementById('writings-container');
+
+            fetch('writings/manifest.json')
+                .then(res => res.json())
+                .then(writings => {
+                    if (writings.length === 0) {
+                        container.innerHTML = `
+                            <div class="file-list">
+                                <p class="empty-dir">&gt; ls -la ./writings/</p>
+                                <p class="empty-dir">total 0</p>
+                                <p class="blink">_</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Sort by date, newest first
+                    writings.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                    let html = '';
+                    writings.forEach((writing, index) => {
+                        const tags = writing.tags ? writing.tags.join(', ') : '';
+                        html += `
+                            <article class="writing-entry" data-file="${writing.file}">
+                                <div class="transmission-header">
+                                    <span class="transmission-date">[${writing.date} UTC]</span>
+                                    <span class="transmission-origin">SIGNAL ORIGIN: LOCAL</span>
+                                </div>
+                                <h3 class="writing-title">&gt; ${writing.title}</h3>
+                                <div class="writing-preview" id="preview-${index}">
+                                    <p class="loading-text">[ LOADING TRANSMISSION... ]</p>
+                                </div>
+                                <div class="writing-meta">
+                                    <span class="meta-item">TAGS: ${tags}</span>
+                                    <a href="writings/${writing.file}" class="read-more" target="_blank">[VIEW RAW →]</a>
+                                </div>
+                            </article>
+                            ${index < writings.length - 1 ? '<hr class="divider">' : ''}
+                        `;
+                    });
+
+                    html += `
+                        <hr class="divider">
+                        <section class="archive-notice">
+                            <div class="file-list">
+                                <p class="dir-header">&gt; echo "END OF TRANSMISSIONS"</p>
+                                <p class="empty-dir">[ ${writings.length} SIGNALS LOGGED ]</p>
+                                <p class="blink">_</p>
+                            </div>
+                        </section>
+                    `;
+
+                    container.innerHTML = html;
+
+                    // Load each writing's content
+                    writings.forEach((writing, index) => {
+                        fetch('writings/' + writing.file)
+                            .then(res => res.text())
+                            .then(content => {
+                                const preview = document.getElementById('preview-' + index);
+                                // Show first ~300 chars as preview
+                                const previewText = content.substring(0, 500);
+                                const hasMore = content.length > 500;
+                                preview.innerHTML = `
+                                    <div class="writing-excerpt">
+                                        <p>${previewText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}${hasMore ? '...' : ''}</p>
+                                    </div>
+                                `;
+                            })
+                            .catch(() => {
+                                document.getElementById('preview-' + index).innerHTML =
+                                    '<p class="error-text">[ TRANSMISSION CORRUPTED ]</p>';
+                            });
+                    });
+                })
+                .catch(err => {
+                    container.innerHTML = `
+                        <div class="file-list">
+                            <p class="error-text">&gt; ERROR: Failed to load manifest</p>
+                            <p class="empty-dir">${err.message}</p>
+                            <p class="blink">_</p>
+                        </div>
+                    `;
+                });
+        })();
+    </script>
+
+    <!-- Cursor Decay Trail -->
+    <script>
+        (function () {
+            let throttle = 0;
+            document.addEventListener('mousemove', function (e) {
+                if (Date.now() - throttle < 50) return;
+                throttle = Date.now();
+
+                const particle = document.createElement('div');
+                particle.className = 'cursor-trail';
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                document.body.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 800);
+            });
+        })();
+    </script>
+</body>
+
+</html>

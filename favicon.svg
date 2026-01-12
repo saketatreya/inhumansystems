@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    @keyframes glitch1 {
+      0%, 90%, 100% { transform: translate(0, 0); opacity: 1; }
+      92% { transform: translate(-2px, 1px); opacity: 0.8; }
+      94% { transform: translate(2px, -1px); opacity: 0.9; }
+      96% { transform: translate(-1px, 2px); opacity: 0.7; }
+      98% { transform: translate(1px, -2px); opacity: 0.85; }
+    }
+    @keyframes glitch2 {
+      0%, 85%, 100% { transform: translate(0, 0); }
+      87% { transform: translate(3px, 0); }
+      89% { transform: translate(-3px, 0); }
+      91% { transform: translate(1px, 1px); }
+    }
+    @keyframes corrupt {
+      0%, 95%, 100% { opacity: 0; }
+      96%, 99% { opacity: 0.4; }
+    }
+    .base { fill: #00ff9f; animation: glitch1 3s infinite; }
+    .shadow1 { fill: #ff0040; animation: glitch2 2.5s infinite; mix-blend-mode: screen; }
+    .shadow2 { fill: #00ccff; animation: glitch2 2.8s infinite reverse; mix-blend-mode: screen; }
+    .corrupt { fill: #ffcc00; animation: corrupt 4s infinite; }
+  </style>
+  <rect class="shadow1" x="4" y="4" width="24" height="24" rx="2"/>
+  <rect class="shadow2" x="4" y="4" width="24" height="24" rx="2"/>
+  <rect class="base" x="4" y="4" width="24" height="24" rx="2"/>
+  <!-- I -->
+  <rect class="base" x="10" y="10" width="3" height="12"/>
+  <!-- S -->
+  <path class="base" d="M16 10h6v4h-6v4h6v4h-6z"/>
+  <!-- Corruption artifacts -->
+  <rect class="corrupt" x="8" y="14" width="16" height="2"/>
+  <rect class="corrupt" x="12" y="20" width="8" height="1"/>
+</svg>

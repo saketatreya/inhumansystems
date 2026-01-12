@@ -1,0 +1,16 @@
+[
+  {
+    "id": "dissolution-of-boundaries",
+    "title": "On the Dissolution of Boundaries",
+    "date": "2026-01-12",
+    "tags": ["acceleration", "ml", "philosophy"],
+    "file": "dissolution-of-boundaries.txt"
+  },
+  {
+    "id": "latent-space",
+    "title": "Notes on Latent Space",
+    "date": "2025-12-01",
+    "tags": ["ml", "embeddings", "theory"],
+    "file": "latent-space.txt"
+  }
+]
