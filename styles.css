@@ -1142,6 +1142,256 @@ footer {
 
 
 /* ════════════════════════════════════════════════════════════════════════════
+   TECHNO-BRUTALIST ADDITIONS
+   Raw. Functional. Information-dense.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* Page headers - stripped down */
+.page-header {
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--text-bright);
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+/* Brutalist nav - no decorators */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Project blocks */
+.project-block {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.project-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+
+.project-block .project-id {
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.project-block .project-status {
+    padding: 2px 6px;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.status-active {
+    color: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan);
+}
+
+.status-dormant {
+    color: var(--text-dim);
+    border: 1px solid var(--border-color);
+}
+
+.status-archived {
+    color: var(--accent-magenta);
+    border: 1px solid var(--accent-magenta);
+}
+
+.project-block .project-title {
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--text-bright);
+    margin-bottom: 10px;
+}
+
+.project-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.project-content {
+    line-height: 1.7;
+}
+
+/* Markdown rendered content */
+.project-content h2 {
+    font-size: 16px;
+    color: var(--accent-yellow);
+    margin: 25px 0 10px 0;
+    font-weight: normal;
+}
+
+.project-content h3 {
+    font-size: 14px;
+    color: var(--text-bright);
+    margin: 20px 0 8px 0;
+    font-weight: normal;
+}
+
+.project-content h4 {
+    font-size: 13px;
+    color: var(--text-primary);
+    margin: 15px 0 8px 0;
+    font-weight: normal;
+}
+
+.project-content p {
+    margin-bottom: 10px;
+}
+
+.project-content ul {
+    margin: 10px 0 10px 20px;
+}
+
+.project-content li {
+    margin: 5px 0;
+}
+
+.project-content pre {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.project-content code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.project-content a {
+    color: var(--link-color);
+}
+
+.project-content a:hover {
+    color: var(--accent-cyan);
+}
+
+.md-image {
+    max-width: 100%;
+    margin: 15px 0;
+    border: 1px solid var(--border-color);
+}
+
+/* Utility states */
+.loading-state,
+.error-state,
+.empty-state {
+    padding: 20px;
+    color: var(--text-dim);
+}
+
+.error-state {
+    color: var(--accent-magenta);
+}
+
+.mono {
+    font-family: 'Courier New', monospace;
+}
+
+.back-link {
+    color: var(--text-dim);
+    font-size: 12px;
+}
+
+.back-link:hover {
+    color: var(--accent-cyan);
+}
+
+/* Writing blocks - brutalist */
+.writing-block {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.writing-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+}
+
+.writing-block .writing-title {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--text-bright);
+    margin-bottom: 15px;
+}
+
+.writing-content {
+    line-height: 1.8;
+    padding: 15px;
+    border-left: 2px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+.writing-content p {
+    margin-bottom: 15px;
+}
+
+.writing-actions {
+    font-size: 12px;
+}
+
+/* Mobile brutalist */
+@media (max-width: 600px) {
+    .page-title {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .project-block {
+        padding: 15px;
+    }
+
+    .project-meta-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .project-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
    
    E N D   O F   T R A N S M I S S I O N
    

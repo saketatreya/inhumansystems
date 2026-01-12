@@ -1,0 +1,15 @@
+[
+    {
+        "id": "example-project",
+        "title": "Example Project",
+        "status": "ACTIVE",
+        "date": "2026-01-12",
+        "tags": [
+            "ml",
+            "python",
+            "example"
+        ],
+        "repo": "https://github.com/username/example",
+        "folder": "example-project"
+    }
+]

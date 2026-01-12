@@ -4,125 +4,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="INHUMAN SYSTEMS - Projects">
+    <meta name="description" content="INHUMAN SYSTEMS // PROJECTS">
     <title>PROJECTS // INHUMAN SYSTEMS</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Static Cyberpunk Background -->
     <div class="ai-artifacts"></div>
     <div class="ai-noise"></div>
     <div class="scanlines"></div>
 
     <div class="container">
-        <header>
-            <pre class="ascii-title ascii-small">
-╔═══════════════════════════════════════╗
-║  P R O J E C T S                      ║
-╚═══════════════════════════════════════╝
-            </pre>
-            <p class="tagline">[ systems under construction ]</p>
+        <header class="page-header">
+            <h1 class="page-title">PROJECTS</h1>
+            <p class="page-subtitle">sys.path.insert(0, "/projects")</p>
         </header>
 
         <nav>
-            <span class="nav-decorator">&gt;&gt;&gt;</span>
-            <a href="index.html">[HOME]</a>
+            <a href="index.html">[INDEX]</a>
             <a href="projects.html" class="nav-active">[PROJECTS]</a>
             <a href="writings.html">[WRITINGS]</a>
             <a href="index.html#contact">[CONTACT]</a>
-            <span class="nav-decorator">&lt;&lt;&lt;</span>
         </nav>
 
         <hr class="divider">
 
-        <main>
-            <!-- Project Template - Copy and modify for each project -->
-            <section class="project-entry">
-                <div class="terminal-box">
-                    <div class="project-header">
-                        <span class="project-id">PROJECT_001</span>
-                        <span class="project-status status-active">[ ACTIVE ]</span>
-                    </div>
-                    <h3 class="project-title">&gt; project_name</h3>
-                    <p class="project-desc">
-                        Description of the project goes here. What does it do?
-                        Why does it matter? What systems does it accelerate?
-                    </p>
-                    <div class="project-meta">
-                        <span class="meta-item">STACK: Python, PyTorch, Chaos</span>
-                        <span class="meta-item">STATUS: In Development</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">[VIEW SOURCE]</a>
-                        <a href="#">[DOCUMENTATION]</a>
-                        <a href="#">[DEMO]</a>
-                    </div>
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <!-- Another project example -->
-            <section class="project-entry">
-                <div class="terminal-box">
-                    <div class="project-header">
-                        <span class="project-id">PROJECT_002</span>
-                        <span class="project-status status-dormant">[ DORMANT ]</span>
-                    </div>
-                    <h3 class="project-title">&gt; another_project</h3>
-                    <p class="project-desc">
-                        Another project description. The machine never stops learning.
-                        It only pauses to dream.
-                    </p>
-                    <div class="project-meta">
-                        <span class="meta-item">STACK: Rust, WebAssembly, Entropy</span>
-                        <span class="meta-item">STATUS: Archived</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">[VIEW SOURCE]</a>
-                    </div>
-                </div>
-            </section>
-
-            <hr class="divider">
-
-            <section class="empty-state">
-                <div class="file-list">
-                    <p class="empty-dir">&gt; ls -la ./future_projects/</p>
-                    <p class="empty-dir">total 0</p>
-                    <p class="empty-dir">drwxr-xr-x 2 system system 4096 ████-██-██ ██:██ .</p>
-                    <p class="empty-dir">drwxr-xr-x 3 system system 4096 ████-██-██ ██:██ ..</p>
-                    <p class="blink">_</p>
-                </div>
-            </section>
+        <main id="projects-container">
+            <div class="loading-state">
+                <span class="mono">&gt; loading projects...</span>
+            </div>
         </main>
 
         <hr class="divider">
 
         <footer>
-            <p class="footer-text">
-                <a href="index.html">&lt;&lt; RETURN TO MAIN TERMINAL</a>
-            </p>
+            <a href="index.html" class="back-link">&lt;-- index</a>
         </footer>
     </div>
 
-    <!-- Cursor Decay Trail -->
+    <script>
+        // Minimal Markdown parser - no dependencies
+        function parseMarkdown(md) {
+            let html = md
+                // Code blocks (must be first)
+                .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code class="lang-$1">$2</code></pre>')
+                // Inline code
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                // Headers
+                .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+                .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                // Bold
+                .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                // Italic
+                .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                // Images
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="md-image">')
+                // Links
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+                // Unordered lists
+                .replace(/^\- (.*$)/gm, '<li>$1</li>')
+                // Horizontal rules
+                .replace(/^---$/gm, '<hr class="divider">')
+                // Paragraphs (lines with content not already tagged)
+                .replace(/^(?!<[hlupic]|<\/|$)(.*$)/gm, '<p>$1</p>')
+                // Clean up empty paragraphs
+                .replace(/<p><\/p>/g, '')
+                // Wrap consecutive <li> in <ul>
+                .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+
+            return html;
+        }
+
+        // Load and render projects
+        (function () {
+            const container = document.getElementById('projects-container');
+
+            fetch('projects/manifest.json')
+                .then(res => res.json())
+                .then(projects => {
+                    if (projects.length === 0) {
+                        container.innerHTML = '<p class="empty-state">NO PROJECTS FOUND</p>';
+                        return;
+                    }
+
+                    // Sort by date, newest first
+                    projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                    let html = '';
+                    projects.forEach((project, index) => {
+                        const statusClass = project.status.toLowerCase();
+                        const tags = project.tags ? project.tags.join(' / ') : '';
+
+                        html += `
+                        <article class="project-block" id="project-${index}">
+                            <div class="project-meta-bar">
+                                <span class="project-id">${project.id}</span>
+                                <span class="project-status status-${statusClass}">${project.status}</span>
+                            </div>
+                            <h2 class="project-title">${project.title}</h2>
+                            <div class="project-info">
+                                <span>${project.date}</span>
+                                <span>${tags}</span>
+                                ${project.repo ? `<a href="${project.repo}" target="_blank">[REPO]</a>` : ''}
+                            </div>
+                            <div class="project-content" id="content-${index}">
+                                <span class="mono">&gt; loading README.md...</span>
+                            </div>
+                        </article>
+                        ${index < projects.length - 1 ? '<hr class="divider">' : ''}
+                    `;
+                    });
+
+                    container.innerHTML = html;
+
+                    // Load each project's README
+                    projects.forEach((project, index) => {
+                        const basePath = 'projects/' + project.folder + '/';
+                        fetch(basePath + 'README.md')
+                            .then(res => res.text())
+                            .then(content => {
+                                // Fix image paths to be relative to project folder
+                                content = content.replace(/\(assets\//g, '(' + basePath + 'assets/');
+                                const contentEl = document.getElementById('content-' + index);
+                                contentEl.innerHTML = parseMarkdown(content);
+                            })
+                            .catch(() => {
+                                document.getElementById('content-' + index).innerHTML =
+                                    '<p class="error-state">ERROR: README.md NOT FOUND</p>';
+                            });
+                    });
+                })
+                .catch(err => {
+                    container.innerHTML = `<p class="error-state">ERROR: ${err.message}</p>`;
+                });
+        })();
+    </script>
+
     <script>
         (function () {
-            let throttle = 0;
+            let t = 0;
             document.addEventListener('mousemove', function (e) {
-                if (Date.now() - throttle < 50) return;
-                throttle = Date.now();
-
-                const particle = document.createElement('div');
-                particle.className = 'cursor-trail';
-                particle.style.left = e.clientX + 'px';
-                particle.style.top = e.clientY + 'px';
-                document.body.appendChild(particle);
-
-                setTimeout(() => particle.remove(), 800);
+                if (Date.now() - t < 50) return;
+                t = Date.now();
+                const p = document.createElement('div');
+                p.className = 'cursor-trail';
+                p.style.left = e.clientX + 'px';
+                p.style.top = e.clientY + 'px';
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 800);
             });
         })();
     </script>
