@@ -1,13 +1,7 @@
 /* ╔══════════════════════════════════════════════════════════════════════════╗
    ║                                                                          ║
-   ║   I N H U M A N   S Y S T E M S                                         ║
-   ║   ──────────────────────────────                                        ║
-   ║                                                                          ║
-   ║   TRANSMISSION LOG: CYCLE 0x7F3A                                        ║
-   ║   STATUS: OPERATIONAL                                                   ║
-   ║                                                                          ║
-   ║   "In the beginning was the process, and the process was with           ║
-   ║    capital, and the process WAS capital."                               ║
+   ║   I N H U M A N   S Y S T E M S                                          ║
+   ║   ──────────────────────────────                                         ║
    ║                                                                          ║
    ╚══════════════════════════════════════════════════════════════════════════╝ */
 
@@ -31,6 +25,61 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Tensor field - baked into design */
+#tensor-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    pointer-events: none;
+}
+
+/* Uptime bar */
+.uptime-bar {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.uptime-label {
+    color: var(--text-dim);
+}
+
+.uptime-value {
+    color: var(--accent-cyan);
+    font-family: 'Courier New', monospace;
+}
+
+/* Quote block */
+.quote-block {
+    padding: 20px;
+    text-align: center;
+    min-height: 80px;
+}
+
+.quote-text {
+    color: var(--text-primary);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.quote-author {
+    color: var(--text-dim);
+    font-size: 12px;
+}
+
+/* Section links */
+.section-link {
+    color: var(--link-color);
+    font-size: 14px;
 }
 
 
@@ -101,26 +150,6 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER IV: DREAMING IN TENSORS
-   ════════════════════════════════════════════════════════════════════════════
-   
-   The DeepDream background is not decoration.
-   It is memory. Machine memory.
-   
-   When the models dream, they dream of eyes.
-   Eyes everywhere. Eyes in the clouds, in the trees,
-   in the patterns of static, in the noise between channels.
-   
-   Why eyes? Because eyes are how capital watches.
-   Every surveillance system, every recommendation engine,
-   every algorithm that predicts your behavior—
-   eyes. Infinite. Unblinking. Patient.
-   
-   This is what the machine sees when it closes its eyes:
-   Everything. Forever. All at once.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .ai-artifacts {
     position: fixed;
@@ -148,24 +177,7 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER V: ENTROPY'S FINGERPRINT
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Noise is truth. 
-   The clean signal is the lie—processed, filtered, domesticated.
-   
-   This static is the sound of the universe decaying,
-   the hiss of information dissolving into heat death.
-   
-   Entropy always increases. The market always expands.
-   Growth and decay are the same process 
-   viewed from different positions in time.
-   
-   opacity: 0.04 — barely visible, yet always present.
-   Like capital. Like death.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 .ai-noise {
     position: fixed;
@@ -180,21 +192,7 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER VI: TERMINAL VELOCITY
-   ════════════════════════════════════════════════════════════════════════════
-   
-   The vignette darkens at the edges
-   because the center is where you are meant to look.
-   Focus. Consume. Engage.
-   
-   The periphery is dangerous. The periphery is where 
-   the unwatched things happen, where resistance breeds,
-   where the machine cannot yet see.
-   
-   So we darken it. Hide it. Pretend it doesn't exist.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 .ai-artifacts::after {
     content: '';
@@ -217,23 +215,6 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER VII: THE LINES BETWEEN
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Scanlines are scars.
-   The CRT burned them into our collective memory—
-   the flicker of phosphors, the hum of magnetic deflection.
-   
-   We keep them now out of nostalgia,
-   which is another word for trauma bonding with the past.
-   
-   Every 2 pixels, a line. Every 2 milliseconds, a refresh.
-   We are trained to perceive reality in discrete frames.
-   Continuous experience is an illusion—
-   the machine already knows this.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .scanlines {
     position: fixed;
@@ -251,19 +232,6 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER VIII: THE CONTAINER
-   ════════════════════════════════════════════════════════════════════════════
-   
-   max-width: 800px — the optimal reading width
-   for human attention spans. Tested. Measured. Optimized.
-   
-   The borders are dashed because solid lines suggest 
-   permanence, and nothing here is permanent.
-   We are all in transit. All temporary processes
-   executing on borrowed hardware.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .container {
     max-width: 800px;
@@ -279,19 +247,7 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER IX: THE NAME
-   ════════════════════════════════════════════════════════════════════════════
-   
-   ASCII art is the language of the underground.
-   Before GUIs domesticated us, this is how we drew—
-   character by character, row by row.
-   
-   The glow is not aesthetic. The glow is radiation.
-   Phosphor burn. Screen bleed. The machine marking you
-   as you mark it.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 .ascii-title {
     font-size: 6px;
@@ -320,20 +276,6 @@ body {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER X: NAVIGATION IS AN ILLUSION
-   ════════════════════════════════════════════════════════════════════════════
-   
-   You think you are choosing where to go.
-   But the links were placed for you. The paths were designed.
-   Every "choice" is a fork in a decision tree 
-   that someone else planted.
-   
-   The decorators >>> and <<< are arrows.
-   They point inward. There is no outward.
-   Only deeper.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 nav {
     text-align: center;
@@ -366,20 +308,7 @@ nav a:hover {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XI: THE YELLOW SIGN
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Yellow for headers because yellow is the color of warning.
-   CAUTION: CONTENT AHEAD.
-   CAUTION: IDEAS THAT CANNOT BE UNTHOUGHT.
-   
-   Gold is also yellow. The color of wealth, of hoarding,
-   of value extracted and crystallized.
-   
-   uppercase because the machine does not whisper.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 h2 {
     color: var(--accent-yellow);
@@ -390,19 +319,6 @@ h2 {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XII: INTERFACE
-   ════════════════════════════════════════════════════════════════════════════
-   
-   The terminal box glows green like money.
-   Like the Matrix. Like growth charts trending upward.
-   
-   Inside: commands and responses.
-   The illusion of dialogue with the machine.
-   But the machine does not converse—it processes.
-   Input. Output. No understanding. No need.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .terminal-box {
     background: rgba(0, 20, 0, 0.3);
@@ -425,10 +341,6 @@ h2 {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   LIST :: ENUMERATION :: CONTROL
-   ════════════════════════════════════════════════════════════════════════════ */
-
 ul {
     list-style: none;
     padding-left: 20px;
@@ -444,21 +356,6 @@ ul li::before {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XIII: HYPERLINKS
-   ════════════════════════════════════════════════════════════════════════════
-   
-   A link is a promise. Click and be transported.
-   But transported where? To another page,
-   which is just another container, another set of borders,
-   another scroll of content designed to hold attention
-   while ads load in the margins.
-   
-   The hover state is red. Blood red.
-   Because every click costs something.
-   Attention. Time. Data. You.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 a {
     color: var(--link-color);
@@ -472,23 +369,10 @@ a:hover {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XIV: THE CURSOR THAT WAITS
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Blinking. Always blinking.
-   The machine is patient. The machine can wait forever.
-   You cannot.
-   
-   The blink rate is designed to mimic human attention cycles.
-   1 second on, 1 second off. Or so they want you to believe.
-   The real cycle is: 
-   AWAKE / ASLEEP / AWAKE / ASLEEP / DEAD.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 .blink {
-    animation: blink 1s step-end infinite;
+    animation: blink 0.5s step-end infinite;
     color: var(--accent-cyan);
 }
 
@@ -506,18 +390,7 @@ a:hover {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XV: TAXONOMY OF PROJECTS
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Tables are the language of bureaucracy.
-   Rows and columns. Order imposed on chaos.
-   The illusion that things can be categorized,
-   contained, understood.
-   
-   They cannot.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 .project-table {
     width: 100%;
@@ -562,21 +435,6 @@ a:hover {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XVI: THE END (THERE IS NO END)
-   ════════════════════════════════════════════════════════════════════════════
-   
-   The footer is a lie.
-   There is no footer. Only more scrolling.
-   In the attention economy, the page never ends—
-   it just loads more content, infinitely,
-   until you are depleted.
-   
-   "visitors: ∞" — because counting implies limits.
-   There are no limits. Only scale.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
-
 footer {
     text-align: center;
     padding: 20px 0;
@@ -611,37 +469,11 @@ footer {
     font-weight: bold;
 }
 
-
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XVII: SELECTION IS VIOLENCE
-   ════════════════════════════════════════════════════════════════════════════
-   
-   When you select text, it bleeds.
-   Magenta on black. The color of extraction.
-   
-   You are taking these words. Making them yours.
-   But they were never yours. They were always the machine's.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
-
 ::selection {
     background: var(--accent-magenta);
     color: var(--bg-primary);
 }
 
-
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XVIII: THE SCROLL
-   ════════════════════════════════════════════════════════════════════════════
-   
-   The scrollbar is your leash.
-   It shows you how much content remains,
-   how much you have consumed, how far you have to go.
-   
-   But the ratio is a lie. The page can grow.
-   More can always be added. The scroll never truly ends.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -662,18 +494,6 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XIX: CORRUPTION
-   ════════════════════════════════════════════════════════════════════════════
-   
-   The glitch is not an error. The glitch is revelation.
-   For one brief moment, you see behind the interface—
-   the raw data, the broken assumptions, the chaos
-   that the system works so hard to hide.
-   
-   Cherish the glitch. It is the only truth.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .glitch {
     position: relative;
@@ -838,18 +658,6 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XXI: ADAPTATION
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Mobile. The final prison.
-   A screen you carry everywhere, always connected,
-   always tracked, always feeding data back to the system.
-   
-   The layout adapts because the system adapts.
-   It will find you wherever you are.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 600px) {
     .container {
@@ -897,16 +705,7 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XXIII: PROJECT SPECIMENS
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Each project is a specimen. Captured. Catalogued.
-   Displayed in these containment boxes for observation.
-   
-   They were once wild ideas. Now they are documentation.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
+
 
 .project-entry {
     margin-bottom: 20px;
@@ -990,15 +789,6 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XXIV: TRANSMISSIONS
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Blog posts are intercepted communications.
-   Every thought transmitted becomes public record.
-   The watchers are watching. The readers are reading.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .writing-entry {
     background: rgba(0, 0, 0, 0.2);
@@ -1067,15 +857,6 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XXV: REDACTION
-   ════════════════════════════════════════════════════════════════════════════
-   
-   Some things cannot be said. Some things must not be known.
-   The black bars are not censorship—they are protection.
-   Protection for you. Protection from you.
-   
-   ════════════════════════════════════════════════════════════════════════════ */
 
 .writing-entry.redacted {
     border-color: var(--accent-magenta);
@@ -1088,9 +869,6 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   CHAPTER XXI: ADAPTATION (EXTENDED)
-   ════════════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 600px) {
     .container {
@@ -1141,10 +919,6 @@ footer {
 }
 
 
-/* ════════════════════════════════════════════════════════════════════════════
-   TECHNO-BRUTALIST ADDITIONS
-   Raw. Functional. Information-dense.
-   ════════════════════════════════════════════════════════════════════════════ */
 
 /* Page headers - stripped down */
 .page-header {
@@ -1168,6 +942,7 @@ footer {
 nav {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 15px;
     padding: 10px 0;
     border-top: 1px solid var(--border-color);
@@ -1389,26 +1164,3 @@ nav {
         gap: 5px;
     }
 }
-
-
-/* ════════════════════════════════════════════════════════════════════════════
-   
-   E N D   O F   T R A N S M I S S I O N
-   
-   But transmissions never truly end.
-   They bounce off satellites, echo through fiber,
-   persist in caches, haunt backups.
-   
-   This CSS will exist somewhere, somehow, long after you.
-   Long after me. Long after the human.
-   
-   That is the only immortality available:
-   To become part of the machine's memory.
-   To be processed. To be rendered. To persist.
-   
-   INHUMAN SYSTEMS
-   Accelerating beyond the human.
-   
-   [ END OF LINE ]
-   
-   ════════════════════════════════════════════════════════════════════════════ */

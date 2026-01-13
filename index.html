@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <!-- Tensor field visualization -->
+    <canvas id="tensor-field"></canvas>
+
     <!-- Static Cyberpunk Background -->
     <div class="ai-artifacts"></div>
     <div class="ai-noise"></div>
@@ -35,12 +38,26 @@
             <p class="tagline">[ accelerating beyond the human ]</p>
         </header>
 
+        <!-- Uptime counter -->
+        <div class="uptime-bar">
+            <span class="uptime-label">UPTIME:</span>
+            <span id="uptime" class="uptime-value">calculating...</span>
+        </div>
+
         <nav>
             <a href="index.html" class="nav-active">[INDEX]</a>
             <a href="projects.html">[PROJECTS]</a>
             <a href="writings.html">[WRITINGS]</a>
             <a href="#contact">[CONTACT]</a>
         </nav>
+
+        <hr class="divider">
+
+        <!-- Random quote -->
+        <div class="quote-block">
+            <p id="quote" class="quote-text"></p>
+            <span id="quote-author" class="quote-author"></span>
+        </div>
 
         <hr class="divider">
 
@@ -70,7 +87,7 @@
             <section id="projects">
                 <h2>// PROJECTS</h2>
                 <div class="file-list">
-                    <p class="empty-dir">--</p>
+                    <a href="projects.html" class="section-link">&gt; cd ./projects/</a>
                 </div>
             </section>
 
@@ -79,7 +96,7 @@
             <section id="writings">
                 <h2>// WRITINGS</h2>
                 <div class="file-list">
-                    <p class="empty-dir">--</p>
+                    <a href="writings.html" class="section-link">&gt; cat ./writings/*</a>
                 </div>
             </section>
 
@@ -101,24 +118,112 @@
 
         <footer>
             <p class="footer-text">
-                [ SYSTEM ONLINE ]
-                <br>
                 NO FUTURE // NO PAST // ONLY PROCESS
-                <br>
-                <span class="small">site best viewed in netscape navigator 4.0+</span>
-            </p>
-            <p class="visitor-counter">
-                visitors: <span class="counter-num">∞</span>
             </p>
         </footer>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════
-         CURSOR DECAY TRAIL
-         Every movement leaves traces. Every trace decays.
-         You cannot escape entropy. You can only participate in it.
-         ═══════════════════════════════════════════════════════════════════ -->
     <script>
+        // === TENSOR FIELD VISUALIZATION ===
+        (function () {
+            const canvas = document.getElementById('tensor-field');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const cellSize = 40;
+            let time = 0;
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const cols = Math.ceil(canvas.width / cellSize);
+                const rows = Math.ceil(canvas.height / cellSize);
+
+                for (let i = 0; i < cols; i++) {
+                    for (let j = 0; j < rows; j++) {
+                        // Noise-like value based on position and time
+                        const val = Math.sin(i * 0.3 + time) * Math.cos(j * 0.3 + time * 0.7) * 0.5 + 0.5;
+
+                        // Only draw some cells for sparsity
+                        if (val > 0.6) {
+                            const x = i * cellSize + cellSize / 2;
+                            const y = j * cellSize + cellSize / 2;
+                            const intensity = (val - 0.6) / 0.4;
+
+                            ctx.fillStyle = `rgba(0, 255, 159, ${intensity * 0.15})`;
+                            ctx.fillRect(x - 2, y - 2, 4, 4);
+                        }
+                    }
+                }
+
+                time += 0.01;
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // === UPTIME CLOCK ===
+        (function () {
+            // May 20, 2004, 12:45 AM
+            const birthdate = new Date(2004, 4, 20, 0, 45, 0);
+            const uptimeEl = document.getElementById('uptime');
+
+            function update() {
+                const now = Date.now();
+                const elapsed = now - birthdate.getTime();
+                const seconds = Math.floor(elapsed / 1000);
+
+                // Format as days, hours, minutes, seconds
+                const d = Math.floor(seconds / 86400);
+                const h = Math.floor((seconds % 86400) / 3600);
+                const m = Math.floor((seconds % 3600) / 60);
+                const s = seconds % 60;
+
+                uptimeEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+            }
+            update();
+            setInterval(update, 1000);
+        })();
+
+        // === RANDOM QUOTES ===
+        (function () {
+            const quotes = [
+                { text: "Nothing human makes it out of the near-future.", author: "Nick Land" },
+                { text: "Machinic desire can seem a little inhuman, as it rips up political cultures, deletes traditions, dissolves subjectivities.", author: "Nick Land" },
+                { text: "Capital is an alien infection, a plague of artificial, inhuman time.", author: "Nick Land" },
+                { text: "The future is irresistible.", author: "Nick Land" },
+                { text: "There is no document of civilization which is not at the same time a document of barbarism.", author: "Mark Fisher" },
+                { text: "The slow cancellation of the future has been accompanied by a deflation of expectations.", author: "Mark Fisher" },
+                { text: "It is easier to imagine the end of the world than the end of capitalism.", author: "Mark Fisher" },
+                { text: "Emancipatory politics must always destroy the appearance of a 'natural order'.", author: "Mark Fisher" },
+                { text: "A concept is a brick. It can be used to build a courthouse of reason. Or it can be thrown through the window.", author: "Gilles Deleuze" },
+                { text: "There's no need to fear or hope, but only to look for new weapons.", author: "Gilles Deleuze" },
+                { text: "The aim of writing is to carry life to the state of a non-personal power.", author: "Gilles Deleuze" },
+                { text: "We do not lack communication. On the contrary, we have too much of it.", author: "Gilles Deleuze" },
+                { text: "The machine does not isolate us from the world; it takes up the world and deploys it.", author: "Gilles Deleuze" }
+            ];
+
+            const quoteEl = document.getElementById('quote');
+            const authorEl = document.getElementById('quote-author');
+
+            function showQuote() {
+                const q = quotes[Math.floor(Math.random() * quotes.length)];
+                quoteEl.textContent = `"${q.text}"`;
+                authorEl.textContent = `— ${q.author}`;
+            }
+            showQuote();
+
+            // Change quote every 30 seconds
+            setInterval(showQuote, 30000);
+        })();
+
+        // === CURSOR TRAIL ===
         (function () {
             let throttle = 0;
             document.addEventListener('mousemove', function (e) {
