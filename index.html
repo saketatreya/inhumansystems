@@ -68,7 +68,6 @@
                     <p class="prompt">&gt; whoami</p>
                     <p>
                         A node in the network. Information processing entity.
-                        Building systems that transcend their creators.
                     </p>
                     <p class="prompt">&gt; cat interests.txt</p>
                     <ul>
@@ -102,6 +101,167 @@
 
             <hr class="divider">
 
+            <section id="reaction-diffusion">
+                <h2>// THE BACKGROUND</h2>
+                <div class="terminal-box">
+                    <p class="prompt">&gt; info reaction_diffusion.system</p>
+                    <p>
+                        The patterns behind this page emerge from a <strong>Gray-Scott reaction-diffusion
+                            system</strong> —
+                        two coupled partial differential equations simulating chemical reactions:
+                    </p>
+                    <pre class="equation">
+∂u/∂t = Du∇²u - uv² + F(1-u)
+∂v/∂t = Dv∇²v + uv² - (F+k)v</pre>
+                    <p>
+                        <strong>u</strong> is substrate, <strong>v</strong> is activator.
+                        Your cursor deposits v. Patterns self-organize through diffusion and reaction.
+                        This is literally how Turing patterns form in nature — zebra stripes, leopard spots, coral
+                        structures.
+                    </p>
+                    <p class="prompt">&gt; tweak parameters</p>
+                    <div class="rd-controls">
+                        <div class="control-row">
+                            <label>F (feed rate):</label>
+                            <input type="range" id="ctrl-F" min="0.01" max="0.08" step="0.001" value="0.035">
+                            <span id="val-F">0.035</span>
+                        </div>
+                        <p class="param-desc">How fast substrate u is replenished. Higher = more food for patterns.</p>
+
+                        <div class="control-row">
+                            <label>k (kill rate):</label>
+                            <input type="range" id="ctrl-k" min="0.04" max="0.08" step="0.001" value="0.065">
+                            <span id="val-k">0.065</span>
+                        </div>
+                        <p class="param-desc">How fast activator v decays. Higher = patterns die faster.</p>
+
+                        <div class="control-row">
+                            <label>Du (diffusion u):</label>
+                            <input type="range" id="ctrl-Du" min="0.1" max="0.3" step="0.01" value="0.16">
+                            <span id="val-Du">0.16</span>
+                        </div>
+                        <p class="param-desc">Spread rate of substrate. Usually 2× Dv for stable patterns.</p>
+
+                        <div class="control-row">
+                            <label>Dv (diffusion v):</label>
+                            <input type="range" id="ctrl-Dv" min="0.04" max="0.15" step="0.01" value="0.08">
+                            <span id="val-Dv">0.08</span>
+                        </div>
+                        <p class="param-desc">Spread rate of activator. Lower = sharper patterns.</p>
+
+                        <div class="control-row">
+                            <button id="rd-reset">[ RESET ]</button>
+                            <button id="rd-clear">[ CLEAR ]</button>
+                        </div>
+                    </div>
+                    <p class="small">Presets: F=0.055, k=0.062 (mitosis) | F=0.025, k=0.06 (worms) | F=0.04, k=0.06
+                        (coral)</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- LORENZ ATTRACTOR -->
+            <section id="lorenz">
+                <h2>// LORENZ ATTRACTOR</h2>
+                <div class="terminal-box">
+                    <p class="prompt">&gt; info lorenz.system</p>
+                    <p>
+                        The <strong>Lorenz system</strong> — discovered in 1963 modeling atmospheric convection —
+                        was the first mathematical demonstration of deterministic chaos. Tiny perturbations
+                        lead to wildly divergent outcomes. The butterfly effect.
+                    </p>
+                    <pre class="equation">
+dx/dt = σ(y - x)
+dy/dt = x(ρ - z) - y
+dz/dt = xy - βz</pre>
+                    <canvas id="lorenz-canvas" width="700" height="300"></canvas>
+                    <div class="rd-controls">
+                        <div class="control-row">
+                            <label>σ (sigma):</label>
+                            <input type="range" id="lorenz-sigma" min="5" max="20" step="0.1" value="10">
+                            <span id="lorenz-sigma-val">10.0</span>
+                        </div>
+                        <p class="param-desc">Prandtl number. Affects vortex dynamics.</p>
+                        <div class="control-row">
+                            <label>ρ (rho):</label>
+                            <input type="range" id="lorenz-rho" min="15" max="35" step="0.1" value="28">
+                            <span id="lorenz-rho-val">28.0</span>
+                        </div>
+                        <p class="param-desc">Rayleigh number. Below 24.74 = stable. Above = chaos.</p>
+                        <div class="control-row">
+                            <label>β (beta):</label>
+                            <input type="range" id="lorenz-beta" min="1" max="5" step="0.1" value="2.67">
+                            <span id="lorenz-beta-val">2.67</span>
+                        </div>
+                        <p class="param-desc">Geometric factor of convection cells.</p>
+                        <div class="control-row">
+                            <button id="lorenz-reset">[ RESET ]</button>
+                            <button id="lorenz-perturb">[ PERTURB ]</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- LOGISTIC MAP -->
+            <section id="logistic">
+                <h2>// LOGISTIC MAP</h2>
+                <div class="terminal-box">
+                    <p class="prompt">&gt; info logistic.bifurcation</p>
+                    <p>
+                        The <strong>logistic map</strong> — one equation, infinite complexity.
+                        As r increases: stable point → period-2 → period-4 → ... → chaos.
+                        The bifurcation diagram reveals the onset of chaos through period-doubling.
+                    </p>
+                    <pre class="equation">x_{n+1} = r × x_n × (1 - x_n)</pre>
+                    <canvas id="logistic-canvas" width="700" height="300"></canvas>
+                    <div class="rd-controls">
+                        <div class="control-row">
+                            <label>r (growth rate):</label>
+                            <input type="range" id="logistic-r" min="2.5" max="4" step="0.001" value="3.5">
+                            <span id="logistic-r-val">3.500</span>
+                        </div>
+                        <p class="param-desc">r=3.0 → period-2 | r=3.45 → period-4 | r>3.57 → chaos</p>
+                        <div class="control-row">
+                            <button id="logistic-bifurcation">[ SHOW BIFURCATION ]</button>
+                            <button id="logistic-iterate">[ ITERATE ]</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- JULIA SET -->
+            <section id="julia">
+                <h2>// JULIA SET</h2>
+                <div class="terminal-box">
+                    <p class="prompt">&gt; info julia.fractal</p>
+                    <p>
+                        <strong>Julia sets</strong> — the boundary between escape and capture in the complex plane.
+                        For each c, there's a different Julia set. Move your cursor to change c and
+                        watch the fractal transform. Infinite detail at every scale.
+                    </p>
+                    <pre class="equation">z_{n+1} = z_n² + c</pre>
+                    <canvas id="julia-canvas" width="700" height="400"></canvas>
+                    <div class="rd-controls">
+                        <div class="control-row">
+                            <label>c (complex):</label>
+                            <span id="julia-c">hover canvas</span>
+                        </div>
+                        <p class="param-desc">Move mouse over canvas to change c. Classic values: c=-0.7+0.27i,
+                            c=-0.8+0.156i</p>
+                        <div class="control-row">
+                            <button id="julia-reset">[ RESET c=-0.7+0.27i ]</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
             <section id="contact">
                 <h2>// CONTACT</h2>
                 <div class="terminal-box">
@@ -124,49 +284,170 @@
     </div>
 
     <script>
-        // === TENSOR FIELD VISUALIZATION ===
+        // === REACTION-DIFFUSION FIELD ===
+        // Gray-Scott model with interactive controls
+
         (function () {
             const canvas = document.getElementById('tensor-field');
             const ctx = canvas.getContext('2d');
 
-            function resize() {
+            const scale = 3;
+            let width, height, cols, rows;
+            let u, v, nextU, nextV;
+
+            // Gray-Scott parameters (mutable via sliders)
+            let params = { Du: 0.16, Dv: 0.08, F: 0.035, k: 0.065 };
+
+            let mouseX = -1000, mouseY = -1000;
+            let mouseActive = false, mouseTimer;
+
+            function init() {
+                width = Math.floor(window.innerWidth / scale);
+                height = Math.floor(window.innerHeight / scale);
+                cols = width; rows = height;
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
+
+                const size = cols * rows;
+                u = new Float32Array(size).fill(1);
+                v = new Float32Array(size).fill(0);
+                nextU = new Float32Array(size);
+                nextV = new Float32Array(size);
+
+                seed();
             }
-            resize();
-            window.addEventListener('resize', resize);
 
-            const cellSize = 40;
-            let time = 0;
+            function seed() {
+                const cx = Math.floor(cols / 2), cy = Math.floor(rows / 2);
+                const size = cols * rows;
+                for (let i = -5; i <= 5; i++) {
+                    for (let j = -5; j <= 5; j++) {
+                        const idx = (cy + j) * cols + (cx + i);
+                        if (idx >= 0 && idx < size) v[idx] = 1;
+                    }
+                }
+            }
 
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            function clear() {
+                const size = cols * rows;
+                u.fill(1);
+                v.fill(0);
+                seed();
+            }
 
-                const cols = Math.ceil(canvas.width / cellSize);
-                const rows = Math.ceil(canvas.height / cellSize);
+            init();
+            window.addEventListener('resize', init);
 
-                for (let i = 0; i < cols; i++) {
-                    for (let j = 0; j < rows; j++) {
-                        // Noise-like value based on position and time
-                        const val = Math.sin(i * 0.3 + time) * Math.cos(j * 0.3 + time * 0.7) * 0.5 + 0.5;
+            document.addEventListener('mousemove', function (e) {
+                mouseX = Math.floor(e.clientX / scale);
+                mouseY = Math.floor(e.clientY / scale);
+                mouseActive = true;
+                clearTimeout(mouseTimer);
+                mouseTimer = setTimeout(() => mouseActive = false, 100);
+            });
 
-                        // Only draw some cells for sparsity
-                        if (val > 0.6) {
-                            const x = i * cellSize + cellSize / 2;
-                            const y = j * cellSize + cellSize / 2;
-                            const intensity = (val - 0.6) / 0.4;
+            // === CONTROLS ===
+            const ctrlF = document.getElementById('ctrl-F');
+            const ctrlK = document.getElementById('ctrl-k');
+            const ctrlDu = document.getElementById('ctrl-Du');
+            const ctrlDv = document.getElementById('ctrl-Dv');
+            const valF = document.getElementById('val-F');
+            const valK = document.getElementById('val-k');
+            const valDu = document.getElementById('val-Du');
+            const valDv = document.getElementById('val-Dv');
 
-                            ctx.fillStyle = `rgba(0, 255, 159, ${intensity * 0.15})`;
-                            ctx.fillRect(x - 2, y - 2, 4, 4);
+            if (ctrlF) {
+                ctrlF.addEventListener('input', () => { params.F = parseFloat(ctrlF.value); valF.textContent = params.F.toFixed(3); });
+                ctrlK.addEventListener('input', () => { params.k = parseFloat(ctrlK.value); valK.textContent = params.k.toFixed(3); });
+                ctrlDu.addEventListener('input', () => { params.Du = parseFloat(ctrlDu.value); valDu.textContent = params.Du.toFixed(2); });
+                ctrlDv.addEventListener('input', () => { params.Dv = parseFloat(ctrlDv.value); valDv.textContent = params.Dv.toFixed(2); });
+
+                document.getElementById('rd-reset').addEventListener('click', () => {
+                    params = { Du: 0.16, Dv: 0.08, F: 0.035, k: 0.065 };
+                    ctrlF.value = params.F; valF.textContent = params.F.toFixed(3);
+                    ctrlK.value = params.k; valK.textContent = params.k.toFixed(3);
+                    ctrlDu.value = params.Du; valDu.textContent = params.Du.toFixed(2);
+                    ctrlDv.value = params.Dv; valDv.textContent = params.Dv.toFixed(2);
+                    clear();
+                });
+
+                document.getElementById('rd-clear').addEventListener('click', clear);
+            }
+
+            function laplacian(arr, x, y) {
+                const idx = y * cols + x;
+                const l = x > 0 ? arr[idx - 1] : arr[idx];
+                const r = x < cols - 1 ? arr[idx + 1] : arr[idx];
+                const up = y > 0 ? arr[idx - cols] : arr[idx];
+                const d = y < rows - 1 ? arr[idx + cols] : arr[idx];
+                return l + r + up + d - 4 * arr[idx];
+            }
+
+            function simulate() {
+                if (mouseActive) {
+                    for (let dx = -2; dx <= 2; dx++) {
+                        for (let dy = -2; dy <= 2; dy++) {
+                            const x = mouseX + dx, y = mouseY + dy;
+                            if (x >= 0 && x < cols && y >= 0 && y < rows) {
+                                v[y * cols + x] = Math.min(1, v[y * cols + x] + 0.15);
+                            }
                         }
                     }
                 }
 
-                time += 0.01;
-                requestAnimationFrame(draw);
+                const { Du, Dv, F, k } = params;
+
+                for (let y = 1; y < rows - 1; y++) {
+                    for (let x = 1; x < cols - 1; x++) {
+                        const idx = y * cols + x;
+                        const uVal = u[idx], vVal = v[idx];
+                        const uvv = uVal * vVal * vVal;
+
+                        nextU[idx] = Math.max(0, Math.min(1,
+                            uVal + Du * laplacian(u, x, y) - uvv + F * (1 - uVal)));
+                        nextV[idx] = Math.max(0, Math.min(1,
+                            vVal + Dv * laplacian(v, x, y) + uvv - (F + k) * vVal));
+                    }
+                }
+                [u, nextU] = [nextU, u];
+                [v, nextV] = [nextV, v];
             }
-            draw();
+
+            function render() {
+                const img = ctx.createImageData(canvas.width, canvas.height);
+                const data = img.data;
+
+                for (let y = 0; y < rows; y++) {
+                    for (let x = 0; x < cols; x++) {
+                        const vVal = v[y * cols + x];
+                        if (vVal > 0.01) {
+                            const alpha = Math.floor(vVal * 80);
+                            for (let py = 0; py < scale; py++) {
+                                for (let px = 0; px < scale; px++) {
+                                    const pX = x * scale + px, pY = y * scale + py;
+                                    if (pX < canvas.width && pY < canvas.height) {
+                                        const pIdx = (pY * canvas.width + pX) * 4;
+                                        data[pIdx] = Math.floor(vVal * 40);
+                                        data[pIdx + 1] = Math.floor(200 + vVal * 55);
+                                        data[pIdx + 2] = Math.floor(159 + vVal * 70);
+                                        data[pIdx + 3] = alpha;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ctx.putImageData(img, 0, 0);
+            }
+
+            function loop() {
+                for (let i = 0; i < 5; i++) simulate();
+                render();
+                requestAnimationFrame(loop);
+            }
+            loop();
         })();
+
 
         // === UPTIME CLOCK ===
         (function () {
@@ -223,21 +504,261 @@
             setInterval(showQuote, 30000);
         })();
 
-        // === CURSOR TRAIL ===
+        // === LORENZ ATTRACTOR ===
         (function () {
-            let throttle = 0;
-            document.addEventListener('mousemove', function (e) {
-                if (Date.now() - throttle < 50) return;
-                throttle = Date.now();
+            const canvas = document.getElementById('lorenz-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
 
-                const particle = document.createElement('div');
-                particle.className = 'cursor-trail';
-                particle.style.left = e.clientX + 'px';
-                particle.style.top = e.clientY + 'px';
-                document.body.appendChild(particle);
+            let sigma = 10, rho = 28, beta = 2.667;
+            let x = 0.1, y = 0, z = 0;
+            let trail = [];
+            const maxTrail = 2000;
+            const dt = 0.005;
 
-                setTimeout(() => particle.remove(), 800);
+            function reset() {
+                x = 0.1; y = 0; z = 0;
+                trail = [];
+            }
+
+            function perturb() {
+                x += (Math.random() - 0.5) * 0.1;
+                y += (Math.random() - 0.5) * 0.1;
+            }
+
+            // Controls
+            const sigmaCtrl = document.getElementById('lorenz-sigma');
+            const rhoCtrl = document.getElementById('lorenz-rho');
+            const betaCtrl = document.getElementById('lorenz-beta');
+
+            sigmaCtrl?.addEventListener('input', () => {
+                sigma = parseFloat(sigmaCtrl.value);
+                document.getElementById('lorenz-sigma-val').textContent = sigma.toFixed(1);
             });
+            rhoCtrl?.addEventListener('input', () => {
+                rho = parseFloat(rhoCtrl.value);
+                document.getElementById('lorenz-rho-val').textContent = rho.toFixed(1);
+            });
+            betaCtrl?.addEventListener('input', () => {
+                beta = parseFloat(betaCtrl.value);
+                document.getElementById('lorenz-beta-val').textContent = beta.toFixed(2);
+            });
+            document.getElementById('lorenz-reset')?.addEventListener('click', reset);
+            document.getElementById('lorenz-perturb')?.addEventListener('click', perturb);
+
+            function step() {
+                const dx = sigma * (y - x) * dt;
+                const dy = (x * (rho - z) - y) * dt;
+                const dz = (x * y - beta * z) * dt;
+                x += dx; y += dy; z += dz;
+
+                // Project 3D → 2D (x-z plane works well)
+                const px = canvas.width / 2 + x * 8;
+                const py = canvas.height - 20 - z * 5;
+                trail.push({ x: px, y: py });
+                if (trail.length > maxTrail) trail.shift();
+            }
+
+            function draw() {
+                ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = 0; i < 5; i++) step();
+
+                ctx.strokeStyle = 'rgba(0, 255, 159, 0.7)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                for (let i = 1; i < trail.length; i++) {
+                    const alpha = i / trail.length;
+                    ctx.strokeStyle = `rgba(0, 255, 159, ${alpha * 0.7})`;
+                    ctx.beginPath();
+                    ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
+                    ctx.lineTo(trail[i].x, trail[i].y);
+                    ctx.stroke();
+                }
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // === LOGISTIC MAP ===
+        (function () {
+            const canvas = document.getElementById('logistic-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            let r = 3.5;
+            let showBifurcation = false;
+
+            const rCtrl = document.getElementById('logistic-r');
+            rCtrl?.addEventListener('input', () => {
+                r = parseFloat(rCtrl.value);
+                document.getElementById('logistic-r-val').textContent = r.toFixed(3);
+                if (!showBifurcation) drawIteration();
+            });
+
+            document.getElementById('logistic-bifurcation')?.addEventListener('click', () => {
+                showBifurcation = true;
+                drawBifurcation();
+            });
+
+            document.getElementById('logistic-iterate')?.addEventListener('click', () => {
+                showBifurcation = false;
+                drawIteration();
+            });
+
+            function drawIteration() {
+                ctx.fillStyle = '#0a0a0f';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                let x = 0.5;
+                const points = [];
+
+                // Iterate
+                for (let i = 0; i < 100; i++) {
+                    x = r * x * (1 - x);
+                    if (i > 30) points.push(x); // Skip transient
+                }
+
+                // Draw cobweb
+                ctx.strokeStyle = '#333';
+                ctx.beginPath();
+                ctx.moveTo(0, canvas.height);
+                ctx.lineTo(canvas.width, 0);
+                ctx.stroke();
+
+                // Draw parabola
+                ctx.strokeStyle = 'rgba(0, 255, 159, 0.5)';
+                ctx.beginPath();
+                for (let px = 0; px <= canvas.width; px++) {
+                    const xVal = px / canvas.width;
+                    const yVal = r * xVal * (1 - xVal);
+                    const py = canvas.height - yVal * canvas.height;
+                    if (px === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+
+                // Draw attractor points
+                ctx.fillStyle = 'rgba(255, 0, 100, 0.8)';
+                const unique = [...new Set(points.map(p => p.toFixed(4)))];
+                unique.forEach(p => {
+                    const val = parseFloat(p);
+                    ctx.beginPath();
+                    ctx.arc(val * canvas.width, canvas.height - val * canvas.height, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // Label
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Courier New';
+                ctx.fillText(`r = ${r.toFixed(3)} | ${unique.length} attractor point(s)`, 10, 20);
+            }
+
+            function drawBifurcation() {
+                ctx.fillStyle = '#0a0a0f';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const rMin = 2.5, rMax = 4;
+
+                for (let px = 0; px < canvas.width; px++) {
+                    const rVal = rMin + (px / canvas.width) * (rMax - rMin);
+                    let x = 0.5;
+
+                    // Transient
+                    for (let i = 0; i < 200; i++) {
+                        x = rVal * x * (1 - x);
+                    }
+
+                    // Collect values
+                    for (let i = 0; i < 100; i++) {
+                        x = rVal * x * (1 - x);
+                        const py = canvas.height - x * canvas.height;
+                        ctx.fillStyle = 'rgba(0, 255, 159, 0.3)';
+                        ctx.fillRect(px, py, 1, 1);
+                    }
+                }
+
+                // Mark current r
+                const rPos = ((r - rMin) / (rMax - rMin)) * canvas.width;
+                ctx.strokeStyle = 'rgba(255, 0, 100, 0.8)';
+                ctx.beginPath();
+                ctx.moveTo(rPos, 0);
+                ctx.lineTo(rPos, canvas.height);
+                ctx.stroke();
+
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Courier New';
+                ctx.fillText('Bifurcation diagram: r ∈ [2.5, 4]', 10, 20);
+            }
+
+            drawIteration();
+        })();
+
+        // === JULIA SET ===
+        (function () {
+            const canvas = document.getElementById('julia-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            let cRe = -0.7, cIm = 0.27;
+            const maxIter = 100;
+
+            function render() {
+                const width = canvas.width, height = canvas.height;
+                const imageData = ctx.createImageData(width, height);
+                const data = imageData.data;
+
+                const scale = 3 / Math.min(width, height);
+                const offsetX = width / 2, offsetY = height / 2;
+
+                for (let py = 0; py < height; py++) {
+                    for (let px = 0; px < width; px++) {
+                        let zRe = (px - offsetX) * scale;
+                        let zIm = (py - offsetY) * scale;
+
+                        let iter = 0;
+                        while (zRe * zRe + zIm * zIm < 4 && iter < maxIter) {
+                            const tmp = zRe * zRe - zIm * zIm + cRe;
+                            zIm = 2 * zRe * zIm + cIm;
+                            zRe = tmp;
+                            iter++;
+                        }
+
+                        const idx = (py * width + px) * 4;
+                        if (iter === maxIter) {
+                            data[idx] = 0;
+                            data[idx + 1] = 0;
+                            data[idx + 2] = 0;
+                        } else {
+                            const t = iter / maxIter;
+                            data[idx] = Math.floor(t * 80);
+                            data[idx + 1] = Math.floor(180 + t * 75);
+                            data[idx + 2] = Math.floor(159 + t * 60);
+                        }
+                        data[idx + 3] = 255;
+                    }
+                }
+
+                ctx.putImageData(imageData, 0, 0);
+            }
+
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                cRe = ((e.clientX - rect.left) / canvas.width - 0.5) * 2;
+                cIm = ((e.clientY - rect.top) / canvas.height - 0.5) * 2;
+                document.getElementById('julia-c').textContent = `${cRe.toFixed(3)} + ${cIm.toFixed(3)}i`;
+                render();
+            });
+
+            document.getElementById('julia-reset')?.addEventListener('click', () => {
+                cRe = -0.7; cIm = 0.27;
+                document.getElementById('julia-c').textContent = '-0.7 + 0.27i';
+                render();
+            });
+
+            render();
         })();
     </script>
 </body>

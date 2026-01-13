@@ -34,8 +34,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -3;
+    z-index: 1;
     pointer-events: none;
+    mix-blend-mode: screen;
 }
 
 /* Uptime bar */
@@ -80,6 +81,97 @@
 .section-link {
     color: var(--link-color);
     font-size: 14px;
+}
+
+/* Reaction-diffusion controls */
+.rd-controls {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.control-row label {
+    flex: 0 0 140px;
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+.control-row input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    background: var(--border-color);
+    height: 4px;
+    cursor: pointer;
+}
+
+.control-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-cyan);
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.control-row span {
+    flex: 0 0 50px;
+    font-size: 11px;
+    color: var(--accent-cyan);
+    font-family: 'Courier New', monospace;
+}
+
+.control-row button {
+    background: transparent;
+    color: var(--link-color);
+    border: 1px solid var(--border-color);
+    padding: 5px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.control-row button:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.equation {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 13px;
+    color: var(--accent-yellow);
+    border-left: 2px solid var(--accent-yellow);
+    overflow-x: auto;
+}
+
+.param-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin: -5px 0 12px 0;
+    font-style: italic;
+}
+
+/* Experiment canvases */
+#lorenz-canvas,
+#logistic-canvas,
+#julia-canvas {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    display: block;
+    margin: 15px 0;
+    border: 1px solid var(--border-color);
+    background: #0a0a0f;
 }
 
 
