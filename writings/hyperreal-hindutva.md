@@ -1,7 +1,7 @@
 ---
 title: "Hindutva and the Production of Hyperreal Hinduism"
 tags: [mythology, politics, religion, hyperreality, caste]
-date: 2026-03-28
+date: 2026-03-12
 excerpt: "We must understand Hindutva as a productive apparatus that generates mythology, and that this mythology is self-propagating not because it corresponds to reality but because it creates feedback loops connecting institutional practice, affective investment, territorial violence, and electoral calculation."
 ---
 
