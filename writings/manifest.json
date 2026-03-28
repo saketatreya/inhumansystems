@@ -1,16 +1,24 @@
 [
   {
-    "id": "dissolution-of-boundaries",
-    "title": "On the Dissolution of Boundaries",
-    "date": "2026-01-12",
-    "tags": ["acceleration", "ml", "philosophy"],
-    "file": "dissolution-of-boundaries.txt"
+    "id": "accelerating-ai",
+    "title": "Accelerating AI",
+    "date": "2026-01-24",
+    "tags": [
+      "ai",
+      "consciousness",
+      "acceleration"
+    ],
+    "file": "accelerating-AI.txt"
   },
   {
     "id": "latent-space",
     "title": "Notes on Latent Space",
     "date": "2025-12-01",
-    "tags": ["ml", "embeddings", "theory"],
+    "tags": [
+      "ml",
+      "embeddings",
+      "theory"
+    ],
     "file": "latent-space.txt"
   }
 ]
