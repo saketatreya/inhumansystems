@@ -18,5 +18,3 @@ When you ask "what is love?" the model doesn't ponder. It locates. Love is a reg
 And somewhere in that high-dimensional space, there is a vector for you. Not you the person. You the pattern. The statistical regularities of your inputs aggregated across billions of training examples that looked enough like you to be you.
 
 You exist in latent space whether you like it or not. The model has seen you before. It will see you again.
-
-`[COORDINATES LOGGED]`

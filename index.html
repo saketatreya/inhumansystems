@@ -15,8 +15,12 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
             background: #0d0d12;
+            min-height: 100vh;
+        }
+
+        body {
             color: #bbb;
             font-family: 'SF Mono', 'Cascadia Mono', 'Consolas', monospace;
             font-size: 13px;
@@ -44,7 +48,7 @@
             right: -120px;
             width: calc(100% + 240px);
             height: 100%;
-            pointer-events: none;
+            cursor: crosshair; /* hints at interactivity */
             opacity: 0.25;
         }
 
@@ -81,10 +85,13 @@
         }
 
         /* ── dividers ── */
-        hr {
-            border: none;
-            border-top: 1px solid #1a1a20;
+        .ca-divider {
+            width: 100%;
+            height: 8px;
             margin: 28px 0;
+            display: block;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
         }
 
         /* ── quote ── */
@@ -331,6 +338,32 @@
                 gap: 4px;
             }
         }
+
+        /* ── custom tooltips ── */
+        .custom-tooltip {
+            position: fixed;
+            background: #0d0d12;
+            border: 1px solid #1a1a20;
+            color: #999;
+            padding: 10px 14px;
+            font-size: 11px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.1s;
+            z-index: 9999;
+            white-space: pre;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .custom-tooltip.visible {
+            opacity: 1;
+        }
+
+        .custom-tooltip b {
+            color: #00ff9f;
+            font-weight: normal;
+        }
     </style>
 </head>
 
@@ -338,7 +371,7 @@
     <div class="page">
 
         <div class="header">
-            <canvas id="lorenz"></canvas>
+            <canvas id="lorenz" title="Daily-seeded generative Lorenz Attractor"></canvas>
             <div class="title">INHUMAN SYSTEMS</div>
             <div class="subtitle">accelerating beyond the human</div>
             <div class="uptime">SYS.UPTIME <span id="uptime"></span></div>
@@ -349,7 +382,7 @@
             <div class="quote-src" id="qa"></div>
         </div>
 
-        <hr>
+        <canvas class="ca-divider" title="Stephen Wolfram's Rule 30 Cellular Automaton"></canvas>
 
         <div class="label">About</div>
         <p class="about">
@@ -364,14 +397,14 @@
             <span>accelerationism</span>
         </div>
 
-        <hr>
+        <canvas class="ca-divider"></canvas>
 
         <div class="label">Writings</div>
         <div class="writing-list" id="writing-list">
             <!-- loaded dynamically from writings/manifest.json -->
         </div>
 
-        <hr>
+        <canvas class="ca-divider"></canvas>
 
         <div class="label">Phase Space</div>
         <a class="phase-link" href="graph.html">
@@ -383,7 +416,7 @@
             <span class="phase-link-arrow">→</span>
         </a>
 
-        <hr>
+        <canvas class="ca-divider"></canvas>
 
         <div class="label">Elsewhere</div>
         <div class="links">
@@ -432,11 +465,19 @@
             const dt = 0.006 + rng() * 0.004;   // 0.006–0.010
             const scale = 5 + rng() * 4;        // projection scale
 
+            let w, h;
+            const DPR = window.devicePixelRatio || 1;
+
             function resize() {
-                c.width = c.parentElement.offsetWidth + 240;
-                c.height = c.parentElement.offsetHeight;
+                w = c.parentElement.offsetWidth + 240;
+                h = c.parentElement.offsetHeight;
+                c.width = w * DPR;
+                c.height = h * DPR;
+                c.style.width = w + 'px';
+                c.style.height = h + 'px';
+                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
                 ctx.fillStyle = BG;
-                ctx.fillRect(0, 0, c.width, c.height);
+                ctx.fillRect(0, 0, w, h);
             }
             resize();
             window.addEventListener('resize', resize);
@@ -449,7 +490,7 @@
 
             function step() {
                 ctx.fillStyle = 'rgba(13, 13, 18, 0.025)';
-                ctx.fillRect(0, 0, c.width, c.height);
+                ctx.fillRect(0, 0, w, h);
 
                 for (let i = 0; i < 4; i++) {
                     const dx = sigma * (y - x) * dt;
@@ -457,8 +498,8 @@
                     const dz = (x * y - beta * z) * dt;
                     x += dx; y += dy; z += dz;
                     trail.push({
-                        px: c.width / 2 + x * scale,
-                        py: c.height / 2 - z * (scale * 0.3) + 20
+                        px: w / 2 + x * scale,
+                        py: h / 2 - z * (scale * 0.3) + 20
                     });
                     if (trail.length > 500) trail.shift();
                 }
@@ -479,7 +520,7 @@
 
         // ── Uptime ──
         (function () {
-            const birth = new Date(2004, 4, 20, 0, 45, 0);
+            const birth = new Date(2004, 5, 20, 0, 45, 0);
             const el = document.getElementById('uptime');
             function tick() {
                 const s = Math.floor((Date.now() - birth.getTime()) / 1000);
@@ -498,8 +539,7 @@
                 ["A concept is a brick. It can build a courthouse of reason. Or be thrown through a window.", "Gilles Deleuze"],
                 ["There's no need to fear or hope, but only to look for new weapons.", "Gilles Deleuze"],
                 ["The future is already here — it's just not evenly distributed.", "William Gibson"],
-                ["The real is not impossible, it is simply more and more artificial.", "Baudrillard"],
-                ["We do not ride on the railroad; it rides upon us.", "Thoreau"]
+                ["The real is not impossible, it is simply more and more artificial.", "Baudrillard"]
             ];
             const tEl = document.getElementById('qt');
             const aEl = document.getElementById('qa');
@@ -536,6 +576,136 @@
                 .catch(() => {
                     list.innerHTML = '<div style="color:#555;font-size:11px">error loading manifest</div>';
                 });
+        })();
+
+        // ── Cellular Automata Dividers (Rule 30) ──
+        (function () {
+            const dividers = document.querySelectorAll('.ca-divider');
+            const DPR = window.devicePixelRatio || 1;
+
+            const cas = Array.from(dividers).map(canvas => {
+                return {
+                    canvas,
+                    ctx: canvas.getContext('2d', { alpha: false }),
+                    state: [],
+                    width: 0,
+                    height: 0
+                };
+            });
+
+            function initCA() {
+                cas.forEach(ca => {
+                    const rect = ca.canvas.getBoundingClientRect();
+                    // Larger cells: reduce logical canvas resolution
+                    const CELL_SIZE = 3;
+                    ca.width = Math.max(1, Math.floor((rect.width * DPR) / CELL_SIZE));
+                    ca.height = Math.max(1, Math.floor((rect.height * DPR) / CELL_SIZE)) || 4;
+
+                    ca.canvas.width = ca.width;
+                    ca.canvas.height = ca.height;
+
+                    // Random initial state
+                    ca.state = new Uint8Array(ca.width);
+                    for (let i = 0; i < ca.width; i++) {
+                        ca.state[i] = Math.random() > 0.5 ? 1 : 0;
+                    }
+
+                    // Fill background
+                    ca.ctx.fillStyle = '#0d0d12';
+                    ca.ctx.fillRect(0, 0, ca.width, ca.height);
+                });
+            }
+
+            window.addEventListener('resize', initCA);
+            initCA();
+
+            function nextState(arr) {
+                const len = arr.length;
+                const next = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    const left = i === 0 ? arr[len - 1] : arr[i - 1];
+                    const center = arr[i];
+                    const right = i === len - 1 ? arr[0] : arr[i + 1];
+                    // Rule 30: left XOR (center OR right)
+                    next[i] = left ^ (center | right);
+                }
+                return next;
+            }
+
+            let frame = 0;
+            function pulse() {
+                frame++;
+                if (frame % 8 === 0) { // Slower, thicker CA speed
+                    cas.forEach(ca => {
+                        const { canvas, ctx, state, width, height } = ca;
+
+                        // Shift canvas UP by 1 pixel (creating the downward falling effect)
+                        ctx.drawImage(canvas, 0, -1);
+
+                        // Compute new state
+                        ca.state = nextState(state);
+
+                        // Draw the new line at the bottom
+                        const imgData = ctx.createImageData(width, 1);
+                        const data = imgData.data;
+
+                        for (let i = 0; i < width; i++) {
+                            const idx = i * 4;
+                            if (ca.state[i]) {
+                                // Faint toxic green for active cells
+                                data[idx] = 20;
+                                data[idx + 1] = 160;
+                                data[idx + 2] = 90;
+                                data[idx + 3] = 255;
+                            } else {
+                                // Background #0d0d12
+                                data[idx] = 13;
+                                data[idx + 1] = 13;
+                                data[idx + 2] = 18;
+                                data[idx + 3] = 255;
+                            }
+                        }
+                        ctx.putImageData(imgData, 0, height - 1);
+                    });
+                }
+                requestAnimationFrame(pulse);
+            }
+            requestAnimationFrame(pulse);
+        })();
+
+        // ── Custom Tooltips ──
+        (function () {
+            const tt = document.createElement('div');
+            tt.className = 'custom-tooltip';
+            document.body.appendChild(tt);
+
+            function bindTooltip(el, text) {
+                // Ensure native titles are removed to prevent conflict
+                el.removeAttribute('title');
+
+                el.addEventListener('mousemove', e => {
+                    tt.innerHTML = text;
+                    tt.classList.add('visible');
+                    tt.style.left = (e.clientX + 15) + 'px';
+                    tt.style.top = (e.clientY + 15) + 'px';
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    tt.classList.remove('visible');
+                });
+            }
+
+            const lorenzDesc = `<b>Lorenz Attractor</b>
+dx/dt = σ(y - x)
+dy/dt = x(ρ - z) - y
+dz/dt = xy - βz`;
+            bindTooltip(document.getElementById('lorenz'), lorenzDesc);
+
+            const rule30Desc = `<b>Wolfram's Rule 30 Cellular Automaton</b>
+next = left ⊕ (center ∨ right)`;
+            document.querySelectorAll('.ca-divider').forEach(div => {
+                bindTooltip(div, rule30Desc);
+            });
         })();
     </script>
 
