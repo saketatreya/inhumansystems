@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="INHUMAN SYSTEMS — accelerating beyond the human. Nonlinear dynamics, machine intelligence, accelerationist theory.">
+    <meta name="description"
+        content="INHUMAN SYSTEMS — accelerating beyond the human. Machine intelligence, nonlinear dynamics, accelerationist theory.">
     <title>INHUMAN SYSTEMS</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
@@ -15,278 +16,453 @@
         }
 
         body {
-            background: #0a0a0f;
-            color: #b0b0b0;
-            font-family: monospace;
-            font-size: 14px;
-            line-height: 1.8;
-            max-width: 720px;
+            background: #0d0d12;
+            color: #bbb;
+            font-family: 'SF Mono', 'Cascadia Mono', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .page {
+            max-width: 640px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px 60px 20px;
+            position: relative;
         }
 
-        a {
-            color: #00ccff;
-            text-decoration: none;
+        /* ── header ── */
+        .header {
+            position: relative;
+            padding: 60px 0 24px 0;
+            overflow: hidden;
         }
 
-        a:hover {
-            color: #ff0040;
+        #lorenz {
+            position: absolute;
+            top: 0;
+            left: -120px;
+            right: -120px;
+            width: calc(100% + 240px);
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.25;
         }
 
-        h1, h2 {
-            font-weight: normal;
-            color: #e0e0e0;
-        }
-
-        h1 {
+        .title {
+            position: relative;
+            z-index: 1;
             color: #00ff9f;
-            font-size: 14px;
-            letter-spacing: 6px;
-            margin-bottom: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 2px;
         }
 
-        h2 {
-            color: #ffcc00;
-            font-size: 14px;
-            margin: 40px 0 10px 0;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #252525;
-            margin: 30px 0;
-        }
-
-        .tagline {
-            color: #505050;
-            font-size: 12px;
-            font-style: italic;
-            margin-bottom: 20px;
+        .subtitle {
+            position: relative;
+            z-index: 1;
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 1px;
         }
 
         .uptime {
-            color: #404040;
-            font-size: 11px;
-            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            color: #3a3a3a;
+            font-size: 10px;
+            margin-top: 14px;
+            letter-spacing: 1px;
         }
 
         .uptime span {
             color: #00ff9f;
-        }
-
-        #lorenz {
-            display: block;
-            width: 100%;
-            height: 120px;
-            margin: 10px 0 20px 0;
             opacity: 0.5;
         }
 
+        /* ── dividers ── */
+        hr {
+            border: none;
+            border-top: 1px solid #1a1a20;
+            margin: 28px 0;
+        }
+
+        /* ── quote ── */
         .quote {
-            padding: 12px 0 12px 16px;
-            border-left: 2px solid #252525;
-            color: #808080;
-            font-style: italic;
-            font-size: 13px;
-            min-height: 60px;
-        }
-
-        .quote-author {
-            color: #404040;
-            font-style: normal;
-            font-size: 11px;
-            display: block;
-            margin-top: 6px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul li {
-            margin: 4px 0;
-        }
-
-        ul li::before {
-            content: ":: ";
-            color: #303030;
-        }
-
-        .writing {
-            margin: 20px 0;
-            padding: 16px;
-            border: 1px solid #1a1a1a;
-            background: #0c0c12;
-        }
-
-        .writing-title {
-            color: #e0e0e0;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .writing-meta {
-            color: #404040;
-            font-size: 11px;
-            margin-bottom: 10px;
-        }
-
-        .writing-excerpt {
             color: #707070;
+            font-style: italic;
             font-size: 12px;
-            line-height: 1.7;
+            min-height: 36px;
+            padding: 4px 0;
         }
 
-        .contact li a {
-            color: #00ccff;
+        .quote-src {
+            color: #444;
+            font-style: normal;
+            font-size: 10px;
+            margin-top: 4px;
         }
 
-        footer {
-            color: #252525;
+        /* ── sections ── */
+        .label {
+            color: #555;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        /* ── about ── */
+        .about {
+            color: #999;
+            margin-bottom: 14px;
+        }
+
+        .tags {
+            color: #606060;
             font-size: 11px;
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #151515;
         }
 
+        .tags span::after {
+            content: " · ";
+            color: #333;
+        }
+
+        .tags span:last-child::after {
+            content: "";
+        }
+
+        /* ── writings ── */
+        .writing-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .writing-item {
+            display: block;
+            text-decoration: none;
+            padding: 14px 16px;
+            border: 1px solid #18181e;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .writing-item:hover {
+            border-color: #282830;
+            background: rgba(0, 255, 159, 0.02);
+        }
+
+        .writing-item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .writing-item-title {
+            color: #ccc;
+            font-size: 12px;
+            transition: color 0.15s;
+        }
+
+        .writing-item:hover .writing-item-title {
+            color: #eee;
+        }
+
+        .writing-item-date {
+            color: #3a3a3a;
+            font-size: 10px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .writing-item-excerpt {
+            color: #606060;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .writing-item:hover .writing-item-excerpt {
+            color: #888;
+        }
+
+        .writing-item-arrow {
+            color: #333;
+            font-size: 10px;
+            transition: color 0.15s;
+            margin-top: 8px;
+        }
+
+        .writing-item:hover .writing-item-arrow {
+            color: #00ff9f;
+        }
+
+        /* ── phase space ── */
+        .phase-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            padding: 14px 16px;
+            border: 1px solid #18181e;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .phase-link:hover {
+            border-color: #282830;
+            background: rgba(0, 255, 159, 0.02);
+        }
+
+        .phase-icon {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .phase-icon::before,
+        .phase-icon::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: #00ff9f;
+        }
+
+        .phase-icon::before {
+            width: 4px; height: 4px;
+            top: 6px; left: 8px;
+        }
+
+        .phase-icon::after {
+            width: 3px; height: 3px;
+            bottom: 7px; right: 6px;
+            opacity: 0.5;
+        }
+
+        .phase-link-text {
+            flex: 1;
+        }
+
+        .phase-link-title {
+            color: #ccc;
+            font-size: 12px;
+            transition: color 0.15s;
+        }
+
+        .phase-link:hover .phase-link-title {
+            color: #eee;
+        }
+
+        .phase-link-desc {
+            color: #555;
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        .phase-link:hover .phase-link-desc {
+            color: #777;
+        }
+
+        .phase-link-arrow {
+            color: #333;
+            font-size: 12px;
+            transition: color 0.15s;
+        }
+
+        .phase-link:hover .phase-link-arrow {
+            color: #00ff9f;
+        }
+
+        /* ── links ── */
+        .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .links a {
+            color: #606060;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: color 0.15s;
+        }
+
+        .links a:hover {
+            color: #00ff9f;
+        }
+
+        /* ── footer ── */
+        footer {
+            color: #252528;
+            font-size: 10px;
+            margin-top: 50px;
+            letter-spacing: 2px;
+        }
+
+        /* ── misc ── */
         ::selection {
             background: #ff0040;
-            color: #0a0a0f;
+            color: #0d0d12;
         }
 
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 0;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #0a0a0f;
-        }
+        @media (max-width: 500px) {
+            .header {
+                padding-top: 36px;
+            }
 
-        ::-webkit-scrollbar-thumb {
-            background: #252525;
+            .links {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .writing-item-top {
+                flex-direction: column;
+                gap: 4px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="page">
 
-    <h1>INHUMAN SYSTEMS</h1>
-    <p class="tagline">accelerating beyond the human</p>
-    <p class="uptime">UPTIME: <span id="uptime">calculating...</span></p>
-
-    <canvas id="lorenz"></canvas>
-
-    <div class="quote">
-        <p id="quote-text"></p>
-        <span class="quote-author" id="quote-author"></span>
-    </div>
-
-    <hr>
-
-    <h2>// ABOUT</h2>
-    <p>A node in the network. Information processing entity.</p>
-    <br>
-    <ul>
-        <li>machine intelligence</li>
-        <li>nonlinear dynamics</li>
-        <li>distributed systems</li>
-        <li>cybernetics</li>
-        <li>accelerationist theory</li>
-    </ul>
-
-    <hr>
-
-    <h2>// WRITINGS</h2>
-
-    <div class="writing">
-        <div class="writing-title">Let Capital Win: The Case for Accelerating through Automation</div>
-        <div class="writing-meta">accelerationism / AI / labor / emancipation</div>
-        <div class="writing-excerpt">
-            AI is capital's completion project. The left has always wanted to abolish wage labor 
-            but couldn't figure out how to abolish the necessity that made wage labor necessary. 
-            Autonomous AI production solves this at the technical level. Capital's drive to eliminate 
-            labor as constraint ends up eliminating the constraint on labor.
+        <div class="header">
+            <canvas id="lorenz"></canvas>
+            <div class="title">INHUMAN SYSTEMS</div>
+            <div class="subtitle">accelerating beyond the human</div>
+            <div class="uptime">SYS.UPTIME <span id="uptime"></span></div>
         </div>
-        <br>
-        <a href="writings/accelerating-AI.txt">[read raw]</a>
-    </div>
 
-    <div class="writing">
-        <div class="writing-title">Latent Space</div>
-        <div class="writing-meta">embeddings / identity / pattern</div>
-        <div class="writing-excerpt">
-            In the latent space, there are no individuals. Only vectors. 
-            Directions through an impossibly high-dimensional manifold where 
-            meaning itself becomes geometry. A face is not a face. It is a point.
+        <div class="quote">
+            <span id="qt"></span>
+            <div class="quote-src" id="qa"></div>
         </div>
-        <br>
-        <a href="writings/latent-space.txt">[read raw]</a>
+
+        <hr>
+
+        <div class="label">About</div>
+        <p class="about">
+            A node in the network. Building at the intersection
+            of machine intelligence and inhuman theory.
+        </p>
+        <div class="tags">
+            <span>machine intelligence</span>
+            <span>nonlinear dynamics</span>
+            <span>distributed systems</span>
+            <span>cybernetics</span>
+            <span>accelerationism</span>
+        </div>
+
+        <hr>
+
+        <div class="label">Writings</div>
+        <div class="writing-list" id="writing-list">
+            <!-- loaded dynamically from writings/manifest.json -->
+        </div>
+
+        <hr>
+
+        <div class="label">Phase Space</div>
+        <a class="phase-link" href="graph.html">
+            <div class="phase-icon"></div>
+            <div class="phase-link-text">
+                <div class="phase-link-title">explore the topology</div>
+                <div class="phase-link-desc">force-directed graph of writings and their connections</div>
+            </div>
+            <span class="phase-link-arrow">→</span>
+        </a>
+
+        <hr>
+
+        <div class="label">Elsewhere</div>
+        <div class="links">
+            <a href="mailto:saketatreya@gmail.com">email</a>
+            <a href="https://github.com/saketatreya">github</a>
+        </div>
+
+        <footer>
+            NO FUTURE // NO PAST // ONLY PROCESS
+        </footer>
+
     </div>
-
-    <hr>
-
-    <h2>// DYNAMICS</h2>
-    <p>
-        The Lorenz attractor above traces a deterministic system sensitive to initial 
-        conditions — the signature of chaos. Three coupled ODEs, σ=10, ρ=28, β=8/3. 
-        Small perturbations → divergent trajectories. The shape is an emergent structure: 
-        order from the impossibility of prediction.
-    </p>
-    <br>
-    <p>
-        dx/dt = σ(y − x)<br>
-        dy/dt = x(ρ − z) − y<br>
-        dz/dt = xy − βz
-    </p>
-
-    <hr>
-
-    <h2>// CONTACT</h2>
-    <ul class="contact">
-        <li><a href="mailto:saketatreya@gmail.com">saketatreya@gmail.com</a></li>
-        <li><a href="https://github.com/saketatreya">github/saketatreya</a></li>
-    </ul>
-
-    <hr>
-
-    <footer>
-        NO FUTURE // NO PAST // ONLY PROCESS
-    </footer>
 
     <script>
-        // Lorenz attractor
+        // ── Daily-seeded Lorenz attractor ──
         (function () {
+            const BG = '#0d0d12';
             const c = document.getElementById('lorenz');
             const ctx = c.getContext('2d');
-            c.width = c.offsetWidth;
-            c.height = 120;
 
-            let x = 0.1, y = 0, z = 0;
+            // Seed PRNG from today's date
+            function dateSeed() {
+                const d = new Date();
+                const str = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+                let h = 0;
+                for (let i = 0; i < str.length; i++) {
+                    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+                }
+                return Math.abs(h);
+            }
+
+            function seededRandom(seed) {
+                let s = seed;
+                return function () {
+                    s = (s * 16807 + 0) % 2147483647;
+                    return (s - 1) / 2147483646;
+                };
+            }
+
+            const rng = seededRandom(dateSeed());
+
+            // Daily parameters — subtle variations that stay chaotic
+            const sigma = 8 + rng() * 6;      // 8–14 (classic: 10)
+            const rho = 24 + rng() * 8;        // 24–32 (classic: 28)
+            const beta = 2 + rng() * 2;         // 2–4 (classic: 2.667)
+            const dt = 0.006 + rng() * 0.004;   // 0.006–0.010
+            const scale = 5 + rng() * 4;        // projection scale
+
+            function resize() {
+                c.width = c.parentElement.offsetWidth + 240;
+                c.height = c.parentElement.offsetHeight;
+                ctx.fillStyle = BG;
+                ctx.fillRect(0, 0, c.width, c.height);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Daily initial conditions
+            let x = 0.1 + rng() * 2;
+            let y = rng() * 2 - 1;
+            let z = rng() * 5;
             const trail = [];
-            const dt = 0.01;
 
             function step() {
-                ctx.fillStyle = 'rgba(10, 10, 15, 0.04)';
+                ctx.fillStyle = 'rgba(13, 13, 18, 0.025)';
                 ctx.fillRect(0, 0, c.width, c.height);
 
-                for (let i = 0; i < 3; i++) {
-                    const dx = 10 * (y - x) * dt;
-                    const dy = (x * (28 - z) - y) * dt;
-                    const dz = (x * y - 2.667 * z) * dt;
+                for (let i = 0; i < 4; i++) {
+                    const dx = sigma * (y - x) * dt;
+                    const dy = (x * (rho - z) - y) * dt;
+                    const dz = (x * y - beta * z) * dt;
                     x += dx; y += dy; z += dz;
                     trail.push({
-                        px: c.width / 2 + x * 6,
-                        py: 70 - z * 2.2 + 10
+                        px: c.width / 2 + x * scale,
+                        py: c.height / 2 - z * (scale * 0.3) + 20
                     });
-                    if (trail.length > 350) trail.shift();
+                    if (trail.length > 500) trail.shift();
                 }
 
                 for (let i = 1; i < trail.length; i++) {
-                    const a = (i / trail.length) * 0.4;
+                    const a = (i / trail.length) * 0.5;
                     ctx.strokeStyle = `rgba(0, 255, 159, ${a})`;
+                    ctx.lineWidth = 0.8;
                     ctx.beginPath();
                     ctx.moveTo(trail[i - 1].px, trail[i - 1].py);
                     ctx.lineTo(trail[i].px, trail[i].py);
@@ -295,13 +471,9 @@
                 requestAnimationFrame(step);
             }
             step();
-
-            window.addEventListener('resize', () => {
-                c.width = c.offsetWidth;
-            });
         })();
 
-        // Uptime
+        // ── Uptime ──
         (function () {
             const birth = new Date(2004, 4, 20, 0, 45, 0);
             const el = document.getElementById('uptime');
@@ -313,29 +485,56 @@
             setInterval(tick, 1000);
         })();
 
-        // Quotes
+        // ── Quotes ──
         (function () {
-            const quotes = [
-                { t: "Nothing human makes it out of the near-future.", a: "Nick Land" },
-                { t: "Machinic desire rips up political cultures, deletes traditions, dissolves subjectivities.", a: "Nick Land" },
-                { t: "It is easier to imagine the end of the world than the end of capitalism.", a: "Mark Fisher" },
-                { t: "A concept is a brick. It can build a courthouse of reason. Or be thrown through a window.", a: "Gilles Deleuze" },
-                { t: "There's no need to fear or hope, but only to look for new weapons.", a: "Gilles Deleuze" },
-                { t: "The future is already here — it's just not evenly distributed.", a: "William Gibson" },
-                { t: "We do not ride on the railroad; it rides upon us.", a: "Henry David Thoreau" },
-                { t: "The real is not impossible, it is simply more and more artificial.", a: "Baudrillard" }
+            const Q = [
+                ["Nothing human makes it out of the near-future.", "Nick Land"],
+                ["Machinic desire rips up political cultures, deletes traditions, dissolves subjectivities.", "Nick Land"],
+                ["It is easier to imagine the end of the world than the end of capitalism.", "Mark Fisher"],
+                ["A concept is a brick. It can build a courthouse of reason. Or be thrown through a window.", "Gilles Deleuze"],
+                ["There's no need to fear or hope, but only to look for new weapons.", "Gilles Deleuze"],
+                ["The future is already here — it's just not evenly distributed.", "William Gibson"],
+                ["The real is not impossible, it is simply more and more artificial.", "Baudrillard"],
+                ["We do not ride on the railroad; it rides upon us.", "Thoreau"]
             ];
-            const tEl = document.getElementById('quote-text');
-            const aEl = document.getElementById('quote-author');
+            const tEl = document.getElementById('qt');
+            const aEl = document.getElementById('qa');
+            let last = -1;
             function show() {
-                const q = quotes[Math.floor(Math.random() * quotes.length)];
-                tEl.textContent = `"${q.t}"`;
-                aEl.textContent = `— ${q.a}`;
+                let i;
+                do { i = Math.floor(Math.random() * Q.length); } while (i === last);
+                last = i;
+                tEl.textContent = `"${Q[i][0]}"`;
+                aEl.textContent = `— ${Q[i][1]}`;
             }
             show();
-            setInterval(show, 25000);
+            setInterval(show, 20000);
+        })();
+
+        // ── Load writings from manifest ──
+        (function () {
+            const list = document.getElementById('writing-list');
+
+            fetch('writings/manifest.json')
+                .then(r => r.json())
+                .then(writings => {
+                    list.innerHTML = writings.map(w => `
+                        <a class="writing-item" href="writing.html?f=${encodeURIComponent(w.file)}">
+                            <div class="writing-item-top">
+                                <span class="writing-item-title">${w.title}</span>
+                                <span class="writing-item-date">${w.date || ''}</span>
+                            </div>
+                            <div class="writing-item-excerpt">${w.excerpt || ''}</div>
+                            <div class="writing-item-arrow">→ read</div>
+                        </a>
+                    `).join('');
+                })
+                .catch(() => {
+                    list.innerHTML = '<div style="color:#555;font-size:11px">error loading manifest</div>';
+                });
         })();
     </script>
 
 </body>
+
 </html>

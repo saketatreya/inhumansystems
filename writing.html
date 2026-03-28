@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INHUMAN SYSTEMS</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d0d12;
+            color: #bbb;
+            font-family: 'SF Mono', 'Cascadia Mono', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* ── top bar ── */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 12px 24px;
+            background: rgba(13, 13, 18, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar a {
+            color: #666;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: color 0.15s;
+        }
+
+        .topbar a:hover {
+            color: #00ff9f;
+        }
+
+        .topbar .home-link {
+            color: #00ff9f;
+            opacity: 0.6;
+        }
+
+        .topbar .home-link:hover {
+            opacity: 1;
+        }
+
+        /* ── progress bar ── */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 1px;
+            background: #00ff9f;
+            z-index: 20;
+            width: 0;
+            transition: width 0.05s linear;
+        }
+
+        /* ── article ── */
+        .article {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 100px 20px 80px 20px;
+        }
+
+        .article-title {
+            color: #eee;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #1a1a20;
+        }
+
+        .article-date {
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .article-tag {
+            color: #606060;
+            font-size: 10px;
+            padding: 2px 8px;
+            border: 1px solid #252530;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── prose ── */
+        .prose {
+            color: #bbb;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .prose p {
+            margin-bottom: 18px;
+        }
+
+        .prose h2 {
+            color: #ddd;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 48px 0 18px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #1a1a20;
+        }
+
+        .prose h3 {
+            color: #ccc;
+            font-size: 13px;
+            font-weight: 700;
+            margin: 36px 0 12px 0;
+        }
+
+        .prose strong {
+            color: #eee;
+            font-weight: 700;
+        }
+
+        .prose em {
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .prose a {
+            color: #00ccff;
+            text-decoration: none;
+            border-bottom: 1px solid #1a3040;
+        }
+
+        .prose a:hover {
+            color: #00ff9f;
+            border-color: #00ff9f;
+        }
+
+        .prose blockquote {
+            border-left: 2px solid #2a2a30;
+            padding: 4px 0 4px 18px;
+            margin: 20px 0;
+            color: #888;
+            font-style: italic;
+        }
+
+        .prose code {
+            background: #12121a;
+            padding: 2px 6px;
+            font-size: 12px;
+            color: #00ff9f;
+            border: 1px solid #1e1e28;
+        }
+
+        .prose pre {
+            background: #0f0f16;
+            border: 1px solid #1e1e28;
+            padding: 16px;
+            margin: 20px 0;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .prose pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            color: #aaa;
+        }
+
+        .prose ul,
+        .prose ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .prose li {
+            margin: 6px 0;
+        }
+
+        .prose hr {
+            border: none;
+            border-top: 1px solid #1a1a20;
+            margin: 36px 0;
+        }
+
+        /* ── footer ── */
+        .article-footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #1a1a20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .article-footer a {
+            color: #555;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 1px;
+            transition: color 0.15s;
+        }
+
+        .article-footer a:hover {
+            color: #00ff9f;
+        }
+
+        .end-mark {
+            color: #2a2a2a;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        /* ── loading ── */
+        .loading {
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .loading::after {
+            content: '';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { content: '█'; }
+            51%, 100% { content: ' '; }
+        }
+
+        /* ── selection ── */
+        ::selection {
+            background: #ff0040;
+            color: #0d0d12;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        @media (max-width: 500px) {
+            .article {
+                padding-top: 70px;
+            }
+
+            .article-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="progress" id="progress"></div>
+
+    <div class="topbar">
+        <a class="home-link" href="index.html">← INHUMAN SYSTEMS</a>
+        <a href="#" id="scroll-top" style="display:none">↑ TOP</a>
+    </div>
+
+    <div class="article" id="article">
+        <div class="loading" id="loading">LOADING</div>
+    </div>
+
+    <!-- marked.js for markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+
+    <script>
+        // ── Get filename from URL ──
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('f');
+
+        if (!file) {
+            window.location.href = 'index.html';
+        }
+
+        // ── Parse YAML-ish frontmatter ──
+        function parseFrontmatter(raw) {
+            const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+            if (!match) return { meta: {}, body: raw };
+
+            const meta = {};
+            match[1].split('\n').forEach(line => {
+                const m = line.match(/^(\w+):\s*(.+)$/);
+                if (m) {
+                    let val = m[2].trim();
+                    if (val.startsWith('[') && val.endsWith(']')) {
+                        val = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
+                    }
+                    if (typeof val === 'string') {
+                        val = val.replace(/^["']|["']$/g, '');
+                    }
+                    meta[m[1]] = val;
+                }
+            });
+
+            return { meta, body: match[2] };
+        }
+
+        // ── Configure marked ──
+        marked.setOptions({
+            breaks: false,
+            gfm: true,
+            smartypants: false
+        });
+
+        // ── Load and render ──
+        fetch('writings/' + file)
+            .then(r => {
+                if (!r.ok) throw new Error('not found');
+                return r.text();
+            })
+            .then(raw => {
+                const { meta, body } = parseFrontmatter(raw);
+                const html = marked.parse(body);
+
+                document.title = (meta.title || file) + ' — INHUMAN SYSTEMS';
+
+                const article = document.getElementById('article');
+                const tags = Array.isArray(meta.tags) ? meta.tags : [];
+                const tagsHtml = tags.map(t => `<span class="article-tag">${t}</span>`).join('');
+
+                article.innerHTML = `
+                    <div class="article-title">${meta.title || file}</div>
+                    <div class="article-meta">
+                        ${meta.date ? `<span class="article-date">${meta.date}</span>` : ''}
+                        <div class="article-tags">${tagsHtml}</div>
+                    </div>
+                    <div class="prose">${html}</div>
+                    <div class="article-footer">
+                        <a href="index.html">← back</a>
+                        <span class="end-mark">END TRANSMISSION</span>
+                    </div>
+                `;
+            })
+            .catch(err => {
+                document.getElementById('article').innerHTML = `
+                    <div class="loading">FILE NOT FOUND</div>
+                `;
+            });
+
+        // ── Reading progress ──
+        const bar = document.getElementById('progress');
+        const scrollBtn = document.getElementById('scroll-top');
+
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+            bar.style.width = pct + '%';
+            scrollBtn.style.display = window.scrollY > 400 ? 'inline' : 'none';
+        });
+
+        scrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+
+</html>

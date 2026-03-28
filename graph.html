@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHASE SPACE — INHUMAN SYSTEMS</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d0d12;
+            color: #bbb;
+            font-family: 'SF Mono', 'Cascadia Mono', 'Consolas', monospace;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        canvas {
+            display: block;
+            cursor: grab;
+        }
+
+        canvas:active {
+            cursor: grabbing;
+        }
+
+        /* ── top bar ── */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 12px 24px;
+            background: rgba(13, 13, 18, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar a {
+            color: #00ff9f;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            transition: opacity 0.15s;
+        }
+
+        .topbar a:hover {
+            opacity: 1;
+        }
+
+        .topbar-title {
+            color: #555;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ── tooltip ── */
+        .tooltip {
+            position: fixed;
+            pointer-events: none;
+            background: rgba(13, 13, 18, 0.95);
+            border: 1px solid #252530;
+            padding: 10px 14px;
+            max-width: 320px;
+            z-index: 20;
+            display: none;
+        }
+
+        .tooltip-title {
+            color: #eee;
+            font-size: 11px;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .tooltip-excerpt {
+            color: #777;
+            font-size: 10px;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .tooltip-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tooltip-tag {
+            color: #555;
+            font-size: 9px;
+            padding: 1px 6px;
+            border: 1px solid #1e1e28;
+        }
+
+        .tooltip-hint {
+            color: #333;
+            font-size: 9px;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── legend ── */
+        .legend {
+            position: fixed;
+            bottom: 16px;
+            left: 24px;
+            z-index: 10;
+            display: flex;
+            gap: 16px;
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 0.5px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.writing {
+            background: #00ff9f;
+        }
+
+        .legend-dot.tag {
+            background: #333;
+            border: 1px solid #555;
+        }
+
+        ::selection {
+            background: #ff0040;
+            color: #0d0d12;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <a href="index.html">← INHUMAN SYSTEMS</a>
+        <span class="topbar-title">PHASE SPACE</span>
+    </div>
+
+    <canvas id="graph"></canvas>
+
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title" id="tt-title"></div>
+        <div class="tooltip-excerpt" id="tt-excerpt"></div>
+        <div class="tooltip-tags" id="tt-tags"></div>
+        <div class="tooltip-hint" id="tt-hint"></div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-dot writing"></div>
+            <span>writing</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot tag"></div>
+            <span>tag</span>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('graph');
+        const ctx = canvas.getContext('2d');
+        const tooltip = document.getElementById('tooltip');
+        const ttTitle = document.getElementById('tt-title');
+        const ttExcerpt = document.getElementById('tt-excerpt');
+        const ttTags = document.getElementById('tt-tags');
+        const ttHint = document.getElementById('tt-hint');
+
+        let W, H;
+        const DPR = window.devicePixelRatio || 1;
+
+        function resize() {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            canvas.width = W * DPR;
+            canvas.height = H * DPR;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // ── Graph data ──
+        let nodes = [];
+        let edges = [];
+        let dragging = null;
+        let hoveredNode = null;
+        let mouseX = 0, mouseY = 0;
+        let settled = false;
+        let frameCount = 0;
+
+        // ── Load writings and build graph ──
+        fetch('writings/manifest.json')
+            .then(r => r.json())
+            .then(writings => {
+                const tagMap = {};
+
+                // Create writing nodes
+                writings.forEach((w, i) => {
+                    nodes.push({
+                        id: 'w_' + i,
+                        type: 'writing',
+                        label: w.title,
+                        file: w.file,
+                        excerpt: w.excerpt || '',
+                        tags: w.tags || [],
+                        date: w.date || '',
+                        x: W / 2 + (Math.random() - 0.5) * 300,
+                        y: H / 2 + (Math.random() - 0.5) * 200,
+                        vx: 0, vy: 0,
+                        radius: 8,
+                        mass: 3
+                    });
+
+                    // Track tags
+                    (w.tags || []).forEach(t => {
+                        if (!tagMap[t]) tagMap[t] = [];
+                        tagMap[t].push('w_' + i);
+                    });
+                });
+
+                // Create tag nodes
+                Object.keys(tagMap).forEach(tag => {
+                    const id = 't_' + tag;
+                    nodes.push({
+                        id: id,
+                        type: 'tag',
+                        label: tag,
+                        x: W / 2 + (Math.random() - 0.5) * 400,
+                        y: H / 2 + (Math.random() - 0.5) * 300,
+                        vx: 0, vy: 0,
+                        radius: 4,
+                        mass: 1
+                    });
+
+                    // Connect tag to writings
+                    tagMap[tag].forEach(wId => {
+                        edges.push({ source: wId, target: id });
+                    });
+                });
+
+                // Also connect writings that share tags directly
+                const writingIds = writings.map((_, i) => 'w_' + i);
+                for (let i = 0; i < writingIds.length; i++) {
+                    for (let j = i + 1; j < writingIds.length; j++) {
+                        const a = nodes.find(n => n.id === writingIds[i]);
+                        const b = nodes.find(n => n.id === writingIds[j]);
+                        const shared = a.tags.filter(t => b.tags.includes(t));
+                        if (shared.length > 0) {
+                            edges.push({
+                                source: writingIds[i],
+                                target: writingIds[j],
+                                weight: shared.length
+                            });
+                        }
+                    }
+                }
+
+                animate();
+            });
+
+        // ── Physics ──
+        const REPULSION = 3000;
+        const SPRING_K = 0.008;
+        const SPRING_LEN = 120;
+        const DAMPING = 0.92;
+        const CENTER_PULL = 0.0005;
+
+        function simulate() {
+            const n = nodes.length;
+
+            // Repulsion between all nodes
+            for (let i = 0; i < n; i++) {
+                for (let j = i + 1; j < n; j++) {
+                    const a = nodes[i], b = nodes[j];
+                    let dx = a.x - b.x;
+                    let dy = a.y - b.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                    const force = REPULSION / (dist * dist);
+                    const fx = (dx / dist) * force;
+                    const fy = (dy / dist) * force;
+                    a.vx += fx / a.mass;
+                    a.vy += fy / a.mass;
+                    b.vx -= fx / b.mass;
+                    b.vy -= fy / b.mass;
+                }
+            }
+
+            // Spring forces on edges
+            edges.forEach(e => {
+                const a = nodes.find(n => n.id === e.source);
+                const b = nodes.find(n => n.id === e.target);
+                if (!a || !b) return;
+                let dx = b.x - a.x;
+                let dy = b.y - a.y;
+                let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                const displacement = dist - SPRING_LEN;
+                const force = SPRING_K * displacement;
+                const fx = (dx / dist) * force;
+                const fy = (dy / dist) * force;
+                a.vx += fx; a.vy += fy;
+                b.vx -= fx; b.vy -= fy;
+            });
+
+            // Center pull + damping + integration
+            nodes.forEach(node => {
+                if (node === dragging) return;
+
+                // Pull toward center
+                node.vx += (W / 2 - node.x) * CENTER_PULL;
+                node.vy += (H / 2 - node.y) * CENTER_PULL;
+
+                // Damping
+                node.vx *= DAMPING;
+                node.vy *= DAMPING;
+
+                // Integrate
+                node.x += node.vx;
+                node.y += node.vy;
+
+                // Bounds
+                node.x = Math.max(50, Math.min(W - 50, node.x));
+                node.y = Math.max(60, Math.min(H - 40, node.y));
+            });
+        }
+
+        // ── Render ──
+        function getNodeById(id) {
+            return nodes.find(n => n.id === id);
+        }
+
+        function getConnected(node) {
+            const ids = new Set();
+            edges.forEach(e => {
+                if (e.source === node.id) ids.add(e.target);
+                if (e.target === node.id) ids.add(e.source);
+            });
+            return ids;
+        }
+
+        function render() {
+            ctx.fillStyle = '#0d0d12';
+            ctx.fillRect(0, 0, W, H);
+
+            const connected = hoveredNode ? getConnected(hoveredNode) : null;
+
+            // Draw edges
+            edges.forEach(e => {
+                const a = getNodeById(e.source);
+                const b = getNodeById(e.target);
+                if (!a || !b) return;
+
+                let alpha = 0.08;
+                let width = 0.5;
+
+                if (hoveredNode) {
+                    if (e.source === hoveredNode.id || e.target === hoveredNode.id) {
+                        alpha = 0.4;
+                        width = 1;
+                    } else {
+                        alpha = 0.02;
+                    }
+                }
+
+                ctx.strokeStyle = `rgba(0, 255, 159, ${alpha})`;
+                ctx.lineWidth = width;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
+            });
+
+            // Draw nodes
+            nodes.forEach(node => {
+                let alpha = 1;
+                let glow = false;
+
+                if (hoveredNode) {
+                    if (node === hoveredNode) {
+                        glow = true;
+                    } else if (connected && connected.has(node.id)) {
+                        alpha = 0.9;
+                    } else {
+                        alpha = 0.15;
+                    }
+                }
+
+                if (node.type === 'writing') {
+                    // Writing node — filled circle
+                    const r = node === hoveredNode ? 10 : node.radius;
+
+                    if (glow) {
+                        ctx.shadowColor = '#00ff9f';
+                        ctx.shadowBlur = 20;
+                    }
+
+                    ctx.fillStyle = `rgba(0, 255, 159, ${alpha * 0.8})`;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.shadowBlur = 0;
+
+                    // Label
+                    ctx.fillStyle = `rgba(238, 238, 238, ${alpha * 0.8})`;
+                    ctx.font = '10px "SF Mono", "Cascadia Mono", "Consolas", monospace';
+                    ctx.textAlign = 'center';
+
+                    // Truncate long titles
+                    let label = node.label;
+                    if (label.length > 30) label = label.substring(0, 28) + '…';
+                    ctx.fillText(label, node.x, node.y + r + 14);
+
+                } else {
+                    // Tag node — ring
+                    const r = node === hoveredNode ? 6 : node.radius;
+
+                    ctx.strokeStyle = `rgba(120, 120, 140, ${alpha * 0.6})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    if (glow || (connected && connected.has(node.id))) {
+                        ctx.fillStyle = `rgba(120, 120, 140, ${alpha * 0.15})`;
+                        ctx.fill();
+                    }
+
+                    // Label
+                    ctx.fillStyle = `rgba(160, 160, 170, ${alpha * 0.5})`;
+                    ctx.font = '9px "SF Mono", "Cascadia Mono", "Consolas", monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(node.label, node.x, node.y + r + 12);
+                }
+            });
+        }
+
+        // ── Animation loop ──
+        function animate() {
+            frameCount++;
+            simulate();
+            render();
+            requestAnimationFrame(animate);
+        }
+
+        // ── Mouse interaction ──
+        function getNodeAt(mx, my) {
+            // Check writing nodes first (larger hit area)
+            for (let i = nodes.length - 1; i >= 0; i--) {
+                const n = nodes[i];
+                const dx = mx - n.x;
+                const dy = my - n.y;
+                const hitR = n.type === 'writing' ? 20 : 12;
+                if (dx * dx + dy * dy < hitR * hitR) return n;
+            }
+            return null;
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (dragging) {
+                dragging.x = mouseX;
+                dragging.y = mouseY;
+                dragging.vx = 0;
+                dragging.vy = 0;
+                return;
+            }
+
+            const node = getNodeAt(mouseX, mouseY);
+            hoveredNode = node;
+
+            if (node && node.type === 'writing') {
+                canvas.style.cursor = 'pointer';
+                // Show tooltip
+                ttTitle.textContent = node.label;
+                ttExcerpt.textContent = node.excerpt || '';
+                ttTags.innerHTML = (node.tags || []).map(t =>
+                    `<span class="tooltip-tag">${t}</span>`
+                ).join('');
+                ttHint.textContent = 'click to read';
+                tooltip.style.display = 'block';
+
+                // Position tooltip
+                let tx = mouseX + 16;
+                let ty = mouseY + 16;
+                if (tx + 320 > W) tx = mouseX - 336;
+                if (ty + 120 > H) ty = mouseY - 120;
+                tooltip.style.left = tx + 'px';
+                tooltip.style.top = ty + 'px';
+
+            } else if (node && node.type === 'tag') {
+                canvas.style.cursor = 'grab';
+                ttTitle.textContent = '#' + node.label;
+                ttExcerpt.textContent = '';
+                ttTags.innerHTML = '';
+                ttHint.textContent = '';
+                tooltip.style.display = 'block';
+
+                let tx = mouseX + 16;
+                let ty = mouseY + 16;
+                if (tx + 200 > W) tx = mouseX - 216;
+                tooltip.style.left = tx + 'px';
+                tooltip.style.top = ty + 'px';
+            } else {
+                canvas.style.cursor = 'grab';
+                tooltip.style.display = 'none';
+            }
+        });
+
+        canvas.addEventListener('mousedown', (e) => {
+            const node = getNodeAt(e.clientX, e.clientY);
+            if (node) {
+                if (node.type === 'writing') {
+                    // Navigate to writing
+                    window.location.href = `writing.html?f=${encodeURIComponent(node.file)}`;
+                    return;
+                }
+                dragging = node;
+                canvas.style.cursor = 'grabbing';
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            dragging = null;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            dragging = null;
+            hoveredNode = null;
+            tooltip.style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
