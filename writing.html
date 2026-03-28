@@ -272,6 +272,53 @@
             width: 0;
         }
 
+        /* ── table of contents ── */
+        .toc {
+            position: fixed;
+            left: calc(50% + 340px);
+            top: 100px;
+            width: 250px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            padding-left: 20px;
+            border-left: 1px dashed #1a1a20;
+            display: none; /* enabled via JS if enough headers exist */
+        }
+
+        .toc::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .toc-link {
+            display: block;
+            color: #555;
+            text-decoration: none;
+            font-size: 11px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            transition: color 0.15s;
+        }
+
+        .toc-link:hover {
+            color: #ccc;
+        }
+
+        .toc-link.active {
+            color: #00ff9f;
+        }
+
+        .toc-link.h3 {
+            padding-left: 12px;
+            font-size: 10px;
+            color: #444;
+        }
+
+        @media (max-width: 1300px) {
+            .toc {
+                display: none !important;
+            }
+        }
+
         @media (max-width: 500px) {
             .article {
                 padding-top: 70px;
@@ -292,6 +339,8 @@
         <a class="home-link" href="index.html">← INHUMAN SYSTEMS</a>
         <a href="#" id="scroll-top" style="display:none">↑ TOP</a>
     </div>
+
+    <div class="toc" id="toc"></div>
 
     <div class="article" id="article">
         <div class="loading" id="loading">LOADING</div>
@@ -367,6 +416,52 @@
                         <span class="end-mark">END TRANSMISSION</span>
                     </div>
                 `;
+
+                // ── Generate Table of Contents ──
+                const tocEl = document.getElementById('toc');
+                const headings = article.querySelectorAll('h2, h3');
+                
+                if (headings.length > 2) {
+                    tocEl.style.display = 'block';
+                    let tocHtml = '';
+                    
+                    headings.forEach(h => {
+                        const id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                        h.id = id;
+                        
+                        const level = h.tagName.toLowerCase();
+                        tocHtml += `<a href="#${id}" class="toc-link ${level}" data-target="${id}">${h.textContent}</a>`;
+                    });
+                    
+                    tocEl.innerHTML = tocHtml;
+                    
+                    // Highlight active section on scroll
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+                                const activeLink = document.querySelector(`.toc-link[data-target="${entry.target.id}"]`);
+                                if (activeLink) activeLink.classList.add('active');
+                            }
+                        });
+                    }, { rootMargin: '-10% 0px -80% 0px' });
+                    
+                    headings.forEach(h => observer.observe(h));
+                    
+                    // Smooth scrolling to section via TOC
+                    document.querySelectorAll('.toc-link').forEach(link => {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const target = document.getElementById(this.getAttribute('data-target'));
+                            if (target) {
+                                window.scrollTo({
+                                    top: target.offsetTop - 80, // account for fixed header
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    });
+                }
             })
             .catch(err => {
                 document.getElementById('article').innerHTML = `
