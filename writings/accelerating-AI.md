@@ -1,7 +1,7 @@
 ---
 title: "Let Capital Win: The Case for Accelerating through Automation"
 tags: [accelerationism, AI, labor, emancipation]
-date: 2025-01-15
+date: 2026-01-15
 excerpt: "AI is capital's completion project. The left has always wanted to abolish wage labor but couldn't figure out how to abolish the necessity that made wage labor necessary."
 ---
 
