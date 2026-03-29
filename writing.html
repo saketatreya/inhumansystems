@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INHUMAN SYSTEMS</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$',  right: '$',  display: false}
+            ],
+            throwOnError: false
+        });"></script>
+
     <style>
         * {
             margin: 0;
@@ -215,6 +227,70 @@
             margin: 36px 0;
         }
 
+        /* ── tables ── */
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 12px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .prose thead {
+            border-bottom: 1px solid #2a2a35;
+        }
+
+        .prose th {
+            color: #999;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 10px;
+            padding: 8px 14px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .prose td {
+            padding: 7px 14px;
+            color: #aaa;
+            border-bottom: 1px solid #17171f;
+            vertical-align: top;
+        }
+
+        .prose tr:last-child td {
+            border-bottom: none;
+        }
+
+        .prose tr:hover td {
+            background: #13131a;
+            color: #ccc;
+        }
+
+        /* accent the first column */
+        .prose td:first-child {
+            color: #00ccff;
+            font-size: 11px;
+        }
+
+        /* ── math ── */
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 4px 0;
+            margin: 20px 0 !important;
+        }
+
+        .katex {
+            font-size: 1em;
+            color: #ccc;
+        }
+
+        .katex-display>.katex {
+            color: #ddd;
+        }
+
         /* ── footer ── */
         .article-footer {
             margin-top: 60px;
@@ -258,8 +334,16 @@
         }
 
         @keyframes blink {
-            0%, 50% { content: '█'; }
-            51%, 100% { content: ' '; }
+
+            0%,
+            50% {
+                content: '█';
+            }
+
+            51%,
+            100% {
+                content: ' ';
+            }
         }
 
         /* ── selection ── */
@@ -282,7 +366,7 @@
             overflow-y: auto;
             padding-left: 20px;
             border-left: 1px dashed #1a1a20;
-            display: none; /* enabled via JS if enough headers exist */
+            display: none;
         }
 
         .toc::-webkit-scrollbar {
@@ -381,6 +465,34 @@
             return { meta, body: match[2] };
         }
 
+        // ── Escape math before marked touches it, restore after ──
+        // marked can mangle $...$ and $$...$$ (especially underscores inside them)
+        function escapeMath(src) {
+            const blocks = [];
+
+            // Escape display math first ($$...$$), then inline ($...$)
+            src = src.replace(/\$\$([\s\S]*?)\$\$/g, (_, inner) => {
+                const id = blocks.length;
+                blocks.push({ display: true, inner });
+                return `\x00MATH${id}\x00`;
+            });
+
+            src = src.replace(/\$([^\n$`]+?)\$/g, (_, inner) => {
+                const id = blocks.length;
+                blocks.push({ display: false, inner });
+                return `\x00MATH${id}\x00`;
+            });
+
+            return { escaped: src, blocks };
+        }
+
+        function restoreMath(html, blocks) {
+            return html.replace(/\x00MATH(\d+)\x00/g, (_, id) => {
+                const { display, inner } = blocks[+id];
+                return display ? `$$${inner}$$` : `$${inner}$`;
+            });
+        }
+
         // ── Configure marked ──
         marked.setOptions({
             breaks: false,
@@ -396,7 +508,11 @@
             })
             .then(raw => {
                 const { meta, body } = parseFrontmatter(raw);
-                const html = marked.parse(body);
+
+                // Protect math from marked's parser, then render markdown, then restore
+                const { escaped, blocks } = escapeMath(body);
+                const rawHtml = marked.parse(escaped);
+                const html = restoreMath(rawHtml, blocks);
 
                 document.title = (meta.title || file) + ' — INHUMAN SYSTEMS';
 
@@ -417,25 +533,35 @@
                     </div>
                 `;
 
+                // ── Trigger KaTeX auto-render on the newly injected content ──
+                if (window.renderMathInElement) {
+                    renderMathInElement(article, {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ],
+                        throwOnError: false
+                    });
+                }
+
                 // ── Generate Table of Contents ──
                 const tocEl = document.getElementById('toc');
                 const headings = article.querySelectorAll('h2, h3');
-                
+
                 if (headings.length > 2) {
                     tocEl.style.display = 'block';
                     let tocHtml = '';
-                    
+
                     headings.forEach(h => {
                         const id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
                         h.id = id;
-                        
+
                         const level = h.tagName.toLowerCase();
                         tocHtml += `<a href="#${id}" class="toc-link ${level}" data-target="${id}">${h.textContent}</a>`;
                     });
-                    
+
                     tocEl.innerHTML = tocHtml;
-                    
-                    // Highlight active section on scroll
+
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
@@ -445,17 +571,16 @@
                             }
                         });
                     }, { rootMargin: '0px 0px -60% 0px' });
-                    
+
                     headings.forEach(h => observer.observe(h));
-                    
-                    // Smooth scrolling to section via TOC
+
                     document.querySelectorAll('.toc-link').forEach(link => {
-                        link.addEventListener('click', function(e) {
+                        link.addEventListener('click', function (e) {
                             e.preventDefault();
                             const target = document.getElementById(this.getAttribute('data-target'));
                             if (target) {
                                 window.scrollTo({
-                                    top: target.offsetTop - 80, // account for fixed header
+                                    top: target.offsetTop - 80,
                                     behavior: 'smooth'
                                 });
                             }
@@ -463,7 +588,7 @@
                     });
                 }
             })
-            .catch(err => {
+            .catch(() => {
                 document.getElementById('article').innerHTML = `
                     <div class="loading">FILE NOT FOUND</div>
                 `;
