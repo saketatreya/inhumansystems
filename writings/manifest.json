@@ -47,5 +47,17 @@
         ],
         "date": "2025-03-28",
         "excerpt": "Baudrillard, Generative AI, and the Colonial Monopoly on the Real"
+    },
+    {
+        "file": "pokemon-rl.md",
+        "title": "Solving Pokémon as a POMDP",
+        "tags": [
+            "pokemon",
+            "AI",
+            "RL",
+            "dev"
+        ],
+        "date": "2026-02-15",
+        "excerpt": "A technical deep-dive into building a Gen 9 Random Battle agent that learns from nothing but wins and losses through Bayesian Belief Tracking, Observation Engineering, and Pure RL"
     }
 ]
