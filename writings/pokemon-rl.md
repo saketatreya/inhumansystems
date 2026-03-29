@@ -1,3 +1,4 @@
+---
 title: "Solving Pokémon as a POMDP"
 tags: [pokemon, AI, RL, dev]
 date: 2026-02-15
