@@ -59,5 +59,18 @@
         ],
         "date": "2026-02-15",
         "excerpt": "A technical deep-dive into building a Gen 9 Random Battle agent that learns from nothing but wins and losses through Bayesian Belief Tracking, Observation Engineering, and Pure RL"
+    },
+    {
+        "file": "multiagent-intelligence.md",
+        "title": "The Wrong Unit of Analysis",
+        "tags": [
+            "AI",
+            "RL",
+            "intelligence",
+            "philosophy",
+            "deleuze"
+        ],
+        "date": "2026-01-25",
+        "excerpt": "Why Intelligence Requires a Differential Field"
     }
 ]
