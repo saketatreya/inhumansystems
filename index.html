@@ -1,714 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="INHUMAN SYSTEMS — accelerating beyond the human. Machine intelligence, reinforcement learning, accelerationist theory.">
     <title>INHUMAN SYSTEMS</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            background: #0d0d12;
-            min-height: 100vh;
-        }
-
         body {
-            color: #bbb;
-            font-family: 'SF Mono', 'Cascadia Mono', 'Consolas', monospace;
-            font-size: 13px;
-            line-height: 1.7;
+            background-color: #000;
+            background-image: linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111), 
+                              linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #ddd;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 10px;
+            /* Hide default cursor to use the rat */
+            cursor: none; 
         }
 
-        .page {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-            position: relative;
+        /* Enforce custom cursor over interactive elements too */
+        a, button, input { cursor: none; }
+
+        #rat-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            width: 80px; 
+            height: 80px;
+            transform: translate(-50%, -50%);
         }
 
-        /* ── header ── */
-        .header {
-            position: relative;
-            padding: 60px 0 24px 0;
-            overflow: hidden;
+        @keyframes rat-color {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
-        #lorenz {
-            position: absolute;
-            top: 0;
-            left: -120px;
-            right: -120px;
-            width: calc(100% + 240px);
-            height: 100%;
-            cursor: crosshair; /* hints at interactivity */
-            opacity: 0.25;
+        .page-block {
+            background: #000;
+            border: 3px outset #555;
+            margin: 15px auto;
+            max-width: 900px;
+            padding: 15px;
+            box-shadow: 5px 5px 0px #222;
         }
 
-        .title {
-            position: relative;
-            z-index: 1;
-            color: #00ff9f;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 5px;
-            margin-bottom: 2px;
+        .header-block {
+            text-align: center;
+            border-bottom: 2px dashed #ff4d4d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .subtitle {
-            position: relative;
-            z-index: 1;
-            color: #555;
-            font-size: 11px;
-            letter-spacing: 1px;
+        .header-block h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px #ff4d4d;
         }
 
-        .uptime {
-            position: relative;
-            z-index: 1;
-            color: #3a3a3a;
-            font-size: 10px;
-            margin-top: 14px;
-            letter-spacing: 1px;
+        nav {
+            text-align: center;
+            background: #1a1a1a;
+            border: 2px inset #444;
+            padding: 5px;
+            margin-bottom: 20px;
         }
 
-        .uptime span {
-            color: #00ff9f;
-            opacity: 0.5;
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
         }
 
-        /* ── dividers ── */
-        .ca-divider {
-            width: 100%;
-            height: 8px;
-            margin: 28px 0;
+        nav a:hover {
+            color: #ff4d4d;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+        }
+
+        .section-header {
+            background: #222;
+            color: #fff;
+            padding: 5px;
+            margin: -15px -15px 15px -15px;
+            border-bottom: 2px solid #555;
+            font-weight: bold;
+        }
+
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-list li {
+            border-bottom: 1px dotted #444;
+            padding: 8px 0;
+        }
+
+        .article-list a {
+            color: #66b5ff;
+            text-decoration: none;
+            font-size: 1.1rem;
             display: block;
-            image-rendering: crisp-edges;
-            image-rendering: pixelated;
         }
 
-        /* ── quote ── */
-        .quote {
-            color: #707070;
-            font-style: italic;
-            font-size: 12px;
-            min-height: 36px;
-            padding: 4px 0;
+        .article-list a:hover {
+            color: #ff4d4d;
+            background: #111;
         }
 
-        .quote-src {
-            color: #444;
-            font-style: normal;
-            font-size: 10px;
+        .article-date {
+            color: #888;
+            font-size: 0.85rem;
+            float: right;
+        }
+
+        .article-excerpt {
+            color: #aaa;
+            font-size: 0.9rem;
             margin-top: 4px;
         }
 
-        /* ── sections ── */
-        .label {
-            color: #555;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        /* ── about ── */
-        .about {
-            color: #999;
-            margin-bottom: 14px;
-        }
-
         .tags {
-            color: #606060;
-            font-size: 11px;
-        }
-
-        .tags span::after {
-            content: " · ";
-            color: #333;
-        }
-
-        .tags span:last-child::after {
-            content: "";
-        }
-
-        /* ── writings ── */
-        .writing-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .writing-item {
-            display: block;
-            text-decoration: none;
-            padding: 14px 16px;
-            border: 1px solid #18181e;
-            transition: border-color 0.2s, background 0.2s;
-        }
-
-        .writing-item:hover {
-            border-color: #282830;
-            background: rgba(0, 255, 159, 0.02);
-        }
-
-        .writing-item-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 6px;
-        }
-
-        .writing-item-title {
-            color: #ccc;
-            font-size: 12px;
-            transition: color 0.15s;
-        }
-
-        .writing-item:hover .writing-item-title {
-            color: #eee;
-        }
-
-        .writing-item-date {
-            color: #3a3a3a;
-            font-size: 10px;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-        }
-
-        .writing-item-excerpt {
-            color: #606060;
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
-        .writing-item:hover .writing-item-excerpt {
-            color: #888;
-        }
-
-        .writing-item-arrow {
-            color: #333;
-            font-size: 10px;
-            transition: color 0.15s;
-            margin-top: 8px;
-        }
-
-        .writing-item:hover .writing-item-arrow {
-            color: #00ff9f;
-        }
-
-        /* ── phase space ── */
-        .phase-link {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            padding: 14px 16px;
-            border: 1px solid #18181e;
-            transition: border-color 0.2s, background 0.2s;
-        }
-
-        .phase-link:hover {
-            border-color: #282830;
-            background: rgba(0, 255, 159, 0.02);
-        }
-
-        .phase-icon {
-            width: 28px;
-            height: 28px;
-            border: 1px solid #333;
-            border-radius: 50%;
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .phase-icon::before,
-        .phase-icon::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            background: #00ff9f;
-        }
-
-        .phase-icon::before {
-            width: 4px;
-            height: 4px;
-            top: 6px;
-            left: 8px;
-        }
-
-        .phase-icon::after {
-            width: 3px;
-            height: 3px;
-            bottom: 7px;
-            right: 6px;
-            opacity: 0.5;
-        }
-
-        .phase-link-text {
-            flex: 1;
-        }
-
-        .phase-link-title {
-            color: #ccc;
-            font-size: 12px;
-            transition: color 0.15s;
-        }
-
-        .phase-link:hover .phase-link-title {
-            color: #eee;
-        }
-
-        .phase-link-desc {
-            color: #555;
-            font-size: 10px;
-            margin-top: 3px;
-        }
-
-        .phase-link:hover .phase-link-desc {
-            color: #777;
-        }
-
-        .phase-link-arrow {
-            color: #333;
-            font-size: 12px;
-            transition: color 0.15s;
-        }
-
-        .phase-link:hover .phase-link-arrow {
-            color: #00ff9f;
-        }
-
-        /* ── links ── */
-        .links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .links a {
-            color: #606060;
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 1px;
-            transition: color 0.15s;
-        }
-
-        .links a:hover {
-            color: #00ff9f;
-        }
-
-        /* ── footer ── */
-        footer {
-            color: #252528;
-            font-size: 10px;
-            margin-top: 50px;
-            letter-spacing: 2px;
-        }
-
-        /* ── misc ── */
-        ::selection {
-            background: #ff0040;
-            color: #0d0d12;
-        }
-
-        ::-webkit-scrollbar {
-            width: 0;
-        }
-
-        @media (max-width: 500px) {
-            .header {
-                padding-top: 36px;
-            }
-
-            .links {
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-
-            .writing-item-top {
-                flex-direction: column;
-                gap: 4px;
-            }
-        }
-
-        /* ── custom tooltips ── */
-        .custom-tooltip {
-            position: fixed;
-            background: #0d0d12;
-            border: 1px solid #1a1a20;
-            color: #999;
-            padding: 10px 14px;
-            font-size: 11px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.1s;
-            z-index: 9999;
-            white-space: pre;
-            line-height: 1.6;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-
-        .custom-tooltip.visible {
-            opacity: 1;
-        }
-
-        .custom-tooltip b {
-            color: #00ff9f;
-            font-weight: normal;
+            font-size: 0.75rem;
+            color: #ffcc00;
         }
     </style>
 </head>
-
 <body>
-    <div class="page">
 
-        <div class="header">
-            <canvas id="lorenz" title="Daily-seeded generative Lorenz Attractor"></canvas>
-            <div class="title">INHUMAN SYSTEMS</div>
-            <div class="subtitle">accelerating beyond the human</div>
-            <div class="uptime">SYS.UPTIME <span id="uptime"></span></div>
+    <!-- The custom cursor image -->
+    <img id="rat-cursor" src="writings/rat__3.gif" alt="spinning rat">
+
+    <div class="page-block">
+        <div class="header-block">
+            <h1>inhuman.systems</h1>
+            <div style="color: #888; font-size: 0.9rem;">hello meat computer</div>
         </div>
 
-        <div class="quote">
-            <span id="qt"></span>
-            <div class="quote-src" id="qa"></div>
-        </div>
+        <nav>
+            <a href="#about">[ About ]</a>
+            <a href="#writing">[ Writing ]</a>
+        </nav>
 
-        <canvas class="ca-divider" title="Stephen Wolfram's Rule 30 Cellular Automaton"></canvas>
+        <div class="content-grid">
+            <!-- Left Column: About & Links -->
+            <div>
+                <div class="page-block" id="about" style="margin-top:0;">
+                    <div class="section-header">ME</div>
+                    <p>hi i'm saket</p>
+                    <p>everything is computer if you really think about it </p>
+                    <p>Currently researching multi-agent intelligence and the latent space.</p>
+                    <hr style="border:1px dashed #444;">
+                    <p style="font-size: 0.85rem; color: #888;">"Nothing human makes it out of the near-future."</p>
+                </div>
 
-        <div class="label">About</div>
-        <p class="about">
-            A node in the network maintained by Saket Atreya.
-            Building at the intersection of machine intelligence and inhuman theory.
-        </p>
-        <div class="tags">
-            <span>machine intelligence</span>
-            <span>reinforcement learning</span>
-            <span>distributed systems</span>
-            <span>cybernetics</span>
-            <span>accelerationism</span>
-        </div>
-
-        <canvas class="ca-divider"></canvas>
-
-        <div class="label">Writings</div>
-        <div class="writing-list" id="writing-list">
-            <!-- loaded dynamically from writings/manifest.json -->
-        </div>
-
-        <canvas class="ca-divider"></canvas>
-
-        <div class="label">Phase Space</div>
-        <a class="phase-link" href="graph.html">
-            <div class="phase-icon"></div>
-            <div class="phase-link-text">
-                <div class="phase-link-title">explore the topology</div>
-                <div class="phase-link-desc">force-directed graph of writings and their connections</div>
+                <div class="page-block">
+                    <div class="section-header">LINKS</div>
+                    <ul style="padding-left: 20px; margin: 0; color: #66b5ff;">
+                        <li><a href="mailto:saket.s.atreya@gmail.com" style="color: #66b5ff; text-decoration: none;">Email</a></li>
+                        <li><a href="https://github.com/saketatreya" style="color: #66b5ff; text-decoration: none;">GitHub</a></li>
+                        <li><a href="feed.xml" style="color: #66b5ff; text-decoration: none;">RSS Feed</a></li>
+                    </ul>
+                </div>
             </div>
-            <span class="phase-link-arrow">→</span>
-        </a>
 
-        <canvas class="ca-divider"></canvas>
-
-        <div class="label">Elsewhere</div>
-        <div class="links">
-            <a href="mailto:saketatreya@gmail.com">email</a>
-            <a href="https://github.com/saketatreya">github</a>
+            <!-- Right Column: Articles -->
+            <div class="page-block" id="writing" style="margin-top:0;">
+                <div class="section-header">WRITING</div>
+                <ul class="article-list" id="article-list">
+                    <li><div class="article-excerpt">Loading transmissions...</div></li>
+                </ul>
+            </div>
         </div>
-
-        <footer>
-            NO FUTURE // NO PAST // ONLY PROCESS
-        </footer>
-
     </div>
 
     <script>
-        // ── Daily-seeded Lorenz attractor ──
-        (function () {
-            const BG = '#0d0d12';
-            const c = document.getElementById('lorenz');
-            const ctx = c.getContext('2d');
+        // Only JS used is to make the custom animated cursor work
+        const rat = document.getElementById('rat-cursor');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        
+        // Initial positioning
+        rat.style.left = mouseX + 'px';
+        rat.style.top = mouseY + 'px';
 
-            // Seed PRNG from today's date
-            function dateSeed() {
-                const d = new Date();
-                const str = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-                let h = 0;
-                for (let i = 0; i < str.length; i++) {
-                    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
-                }
-                return Math.abs(h);
-            }
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            rat.style.left = mouseX + 'px';
+            rat.style.top = mouseY + 'px';
+        });
 
-            function seededRandom(seed) {
-                let s = seed;
-                return function () {
-                    s = (s * 16807 + 0) % 2147483647;
-                    return (s - 1) / 2147483646;
-                };
-            }
+        // Hide rat if mouse leaves window
+        document.addEventListener('mouseout', () => {
+            rat.style.display = 'none';
+        });
+        document.addEventListener('mouseover', () => {
+            rat.style.display = 'block';
+        });
 
-            const rng = seededRandom(dateSeed());
-
-            // Daily parameters — subtle variations that stay chaotic
-            const sigma = 8 + rng() * 6;      // 8–14 (classic: 10)
-            const rho = 24 + rng() * 8;        // 24–32 (classic: 28)
-            const beta = 2 + rng() * 2;         // 2–4 (classic: 2.667)
-            const dt = 0.006 + rng() * 0.004;   // 0.006–0.010
-            const scale = 5 + rng() * 4;        // projection scale
-
-            let w, h;
-            const DPR = window.devicePixelRatio || 1;
-
-            function resize() {
-                w = c.parentElement.offsetWidth + 240;
-                h = c.parentElement.offsetHeight;
-                c.width = w * DPR;
-                c.height = h * DPR;
-                c.style.width = w + 'px';
-                c.style.height = h + 'px';
-                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-                ctx.fillStyle = BG;
-                ctx.fillRect(0, 0, w, h);
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            // Daily initial conditions
-            let x = 0.1 + rng() * 2;
-            let y = rng() * 2 - 1;
-            let z = rng() * 5;
-            const trail = [];
-
-            function step() {
-                ctx.fillStyle = 'rgba(13, 13, 18, 0.025)';
-                ctx.fillRect(0, 0, w, h);
-
-                for (let i = 0; i < 4; i++) {
-                    const dx = sigma * (y - x) * dt;
-                    const dy = (x * (rho - z) - y) * dt;
-                    const dz = (x * y - beta * z) * dt;
-                    x += dx; y += dy; z += dz;
-                    trail.push({
-                        px: w / 2 + x * scale,
-                        py: h / 2 - z * (scale * 0.3) + 20
-                    });
-                    if (trail.length > 500) trail.shift();
-                }
-
-                for (let i = 1; i < trail.length; i++) {
-                    const a = (i / trail.length) * 0.5;
-                    ctx.strokeStyle = `rgba(0, 255, 159, ${a})`;
-                    ctx.lineWidth = 0.8;
-                    ctx.beginPath();
-                    ctx.moveTo(trail[i - 1].px, trail[i - 1].py);
-                    ctx.lineTo(trail[i].px, trail[i].py);
-                    ctx.stroke();
-                }
-                requestAnimationFrame(step);
-            }
-            step();
-        })();
-
-        // ── Uptime ──
-        (function () {
-            const birth = new Date(2004, 5, 20, 0, 45, 0);
-            const el = document.getElementById('uptime');
-            function tick() {
-                const s = Math.floor((Date.now() - birth.getTime()) / 1000);
-                el.textContent = `${Math.floor(s / 86400)}d ${Math.floor((s % 86400) / 3600)}h ${Math.floor((s % 3600) / 60)}m ${s % 60}s`;
-            }
-            tick();
-            setInterval(tick, 1000);
-        })();
-
-        // ── Quotes ──
-        (function () {
-            const Q = [
-                ["Nothing human makes it out of the near-future.", "Nick Land"],
-                ["Machinic desire rips up political cultures, deletes traditions, dissolves subjectivities.", "Nick Land"],
-                ["It is easier to imagine the end of the world than the end of capitalism.", "Mark Fisher"],
-                ["A concept is a brick. It can build a courthouse of reason. Or be thrown through a window.", "Gilles Deleuze"],
-                ["There's no need to fear or hope, but only to look for new weapons.", "Gilles Deleuze"],
-                ["The future is already here — it's just not evenly distributed.", "William Gibson"],
-                ["The real is not impossible, it is simply more and more artificial.", "Baudrillard"]
-            ];
-            const tEl = document.getElementById('qt');
-            const aEl = document.getElementById('qa');
-            let last = -1;
-            function show() {
-                let i;
-                do { i = Math.floor(Math.random() * Q.length); } while (i === last);
-                last = i;
-                tEl.textContent = `"${Q[i][0]}"`;
-                aEl.textContent = `— ${Q[i][1]}`;
-            }
-            show();
-            setInterval(show, 20000);
-        })();
-
-        // ── Load writings from manifest ──
-        (function () {
-            const list = document.getElementById('writing-list');
-
-            fetch('writings/manifest.json')
-                .then(r => r.json())
-                .then(writings => {
-                    list.innerHTML = writings.map(w => `
-                        <a class="writing-item" href="writing.html?f=${encodeURIComponent(w.file)}">
-                            <div class="writing-item-top">
-                                <span class="writing-item-title">${w.title}</span>
-                                <span class="writing-item-date">${w.date || ''}</span>
-                            </div>
-                            <div class="writing-item-excerpt">${w.excerpt || ''}</div>
-                            <div class="writing-item-arrow">→ read</div>
-                        </a>
-                    `).join('');
-                })
-                .catch(() => {
-                    list.innerHTML = '<div style="color:#555;font-size:11px">error loading manifest</div>';
-                });
-        })();
-
-        // ── Cellular Automata Dividers (Rule 30) ──
-        (function () {
-            const dividers = document.querySelectorAll('.ca-divider');
-            const DPR = window.devicePixelRatio || 1;
-
-            const cas = Array.from(dividers).map(canvas => {
-                return {
-                    canvas,
-                    ctx: canvas.getContext('2d', { alpha: false }),
-                    state: [],
-                    width: 0,
-                    height: 0
-                };
+        // Fetch and sort writings
+        fetch('writings/manifest.json')
+            .then(response => response.json())
+            .then(writings => {
+                // Sort by date descending
+                writings.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                const list = document.getElementById('article-list');
+                list.innerHTML = writings.map(w => {
+                    const tagsStr = (w.tags || []).join(', ');
+                    return `
+                        <li>
+                            <span class="article-date">${w.date}</span>
+                            <a href="writing.html?f=${encodeURIComponent(w.file)}">${w.title}</a>
+                            <div class="tags">${tagsStr}</div>
+                            <div class="article-excerpt">${w.excerpt || ''}</div>
+                        </li>
+                    `;
+                }).join('');
+            })
+            .catch(err => {
+                document.getElementById('article-list').innerHTML = '<li>Error loading transmissions.</li>';
             });
-
-            function initCA() {
-                cas.forEach(ca => {
-                    const rect = ca.canvas.getBoundingClientRect();
-                    // Larger cells: reduce logical canvas resolution
-                    const CELL_SIZE = 3;
-                    ca.width = Math.max(1, Math.floor((rect.width * DPR) / CELL_SIZE));
-                    ca.height = Math.max(1, Math.floor((rect.height * DPR) / CELL_SIZE)) || 4;
-
-                    ca.canvas.width = ca.width;
-                    ca.canvas.height = ca.height;
-
-                    // Random initial state
-                    ca.state = new Uint8Array(ca.width);
-                    for (let i = 0; i < ca.width; i++) {
-                        ca.state[i] = Math.random() > 0.5 ? 1 : 0;
-                    }
-
-                    // Fill background
-                    ca.ctx.fillStyle = '#0d0d12';
-                    ca.ctx.fillRect(0, 0, ca.width, ca.height);
-                });
-            }
-
-            window.addEventListener('resize', initCA);
-            initCA();
-
-            function nextState(arr) {
-                const len = arr.length;
-                const next = new Uint8Array(len);
-                for (let i = 0; i < len; i++) {
-                    const left = i === 0 ? arr[len - 1] : arr[i - 1];
-                    const center = arr[i];
-                    const right = i === len - 1 ? arr[0] : arr[i + 1];
-                    // Rule 30: left XOR (center OR right)
-                    next[i] = left ^ (center | right);
-                }
-                return next;
-            }
-
-            let frame = 0;
-            function pulse() {
-                frame++;
-                if (frame % 8 === 0) { // Slower, thicker CA speed
-                    cas.forEach(ca => {
-                        const { canvas, ctx, state, width, height } = ca;
-
-                        // Shift canvas UP by 1 pixel (creating the downward falling effect)
-                        ctx.drawImage(canvas, 0, -1);
-
-                        // Compute new state
-                        ca.state = nextState(state);
-
-                        // Draw the new line at the bottom
-                        const imgData = ctx.createImageData(width, 1);
-                        const data = imgData.data;
-
-                        for (let i = 0; i < width; i++) {
-                            const idx = i * 4;
-                            if (ca.state[i]) {
-                                // Faint toxic green for active cells
-                                data[idx] = 20;
-                                data[idx + 1] = 160;
-                                data[idx + 2] = 90;
-                                data[idx + 3] = 255;
-                            } else {
-                                // Background #0d0d12
-                                data[idx] = 13;
-                                data[idx + 1] = 13;
-                                data[idx + 2] = 18;
-                                data[idx + 3] = 255;
-                            }
-                        }
-                        ctx.putImageData(imgData, 0, height - 1);
-                    });
-                }
-                requestAnimationFrame(pulse);
-            }
-            requestAnimationFrame(pulse);
-        })();
-
-        // ── Custom Tooltips ──
-        (function () {
-            const tt = document.createElement('div');
-            tt.className = 'custom-tooltip';
-            document.body.appendChild(tt);
-
-            function bindTooltip(el, text) {
-                // Ensure native titles are removed to prevent conflict
-                el.removeAttribute('title');
-
-                el.addEventListener('mousemove', e => {
-                    tt.innerHTML = text;
-                    tt.classList.add('visible');
-                    tt.style.left = (e.clientX + 15) + 'px';
-                    tt.style.top = (e.clientY + 15) + 'px';
-                });
-
-                el.addEventListener('mouseleave', () => {
-                    tt.classList.remove('visible');
-                });
-            }
-
-            const lorenzDesc = `<b>Lorenz Attractor</b>
-dx/dt = σ(y - x)
-dy/dt = x(ρ - z) - y
-dz/dt = xy - βz`;
-            bindTooltip(document.getElementById('lorenz'), lorenzDesc);
-
-            const rule30Desc = `<b>Wolfram's Rule 30 Cellular Automaton</b>
-next = left ⊕ (center ∨ right)`;
-            document.querySelectorAll('.ca-divider').forEach(div => {
-                bindTooltip(div, rule30Desc);
-            });
-        })();
     </script>
-
 </body>
-
 </html>

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INHUMAN SYSTEMS</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <!-- KaTeX -->
+    <!-- KaTeX for math -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
@@ -19,187 +17,157 @@
         });"></script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background: #0d0d12;
-            color: #bbb;
-            font-family: 'SF Mono', 'Cascadia Mono', 'Consolas', monospace;
-            font-size: 13px;
-            line-height: 1.7;
+            background-color: #000;
+            background-image: linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111), 
+                              linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #ddd;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 10px;
+            cursor: none; 
         }
 
-        /* ── top bar ── */
-        .topbar {
+        a, button, input { cursor: none; }
+
+        #rat-cursor {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 10;
-            padding: 12px 24px;
-            background: rgba(13, 13, 18, 0.92);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid #1a1a20;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            pointer-events: none;
+            z-index: 99999;
+            width: 80px; 
+            height: 80px;
+            transform: translate(-50%, -50%);
         }
 
-        .topbar a {
-            color: #666;
+        @keyframes rat-color {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .page-block {
+            background: #000;
+            border: 3px outset #555;
+            margin: 15px auto;
+            max-width: 900px;
+            padding: 15px;
+            box-shadow: 5px 5px 0px #222;
+        }
+
+        .header-block {
+            text-align: center;
+            border-bottom: 2px dashed #ff4d4d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header-block h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px #ff4d4d;
+        }
+
+        nav {
+            text-align: center;
+            background: #1a1a1a;
+            border: 2px inset #444;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #fff;
             text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 2px;
-            transition: color 0.15s;
+            font-weight: bold;
+            margin: 0 10px;
         }
 
-        .topbar a:hover {
-            color: #00ff9f;
+        nav a:hover {
+            color: #ff4d4d;
         }
 
-        .topbar .home-link {
-            color: #00ff9f;
-            opacity: 0.6;
-        }
-
-        .topbar .home-link:hover {
-            opacity: 1;
-        }
-
-        /* ── progress bar ── */
-        .progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 1px;
-            background: #00ff9f;
-            z-index: 20;
-            width: 0;
-            transition: width 0.05s linear;
-        }
-
-        /* ── article ── */
-        .article {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 100px 20px 80px 20px;
-        }
-
+        /* Article styles */
         .article-title {
-            color: #eee;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            line-height: 1.5;
-            margin-bottom: 14px;
+            color: #fff;
+            margin-bottom: 0.3em;
+            font-size: 2rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
         }
 
         .article-meta {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid #1a1a20;
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 2em;
+            border-bottom: 2px dashed #444;
+            padding-bottom: 10px;
         }
 
-        .article-date {
-            color: #555;
-            font-size: 11px;
-            letter-spacing: 1px;
+        .article-meta .tags {
+            color: #ffcc00;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 5px;
         }
 
-        .article-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .article-tag {
-            color: #606060;
-            font-size: 10px;
-            padding: 2px 8px;
-            border: 1px solid #252530;
-            letter-spacing: 0.5px;
-        }
-
-        /* ── prose ── */
         .prose {
-            color: #bbb;
-            font-size: 13px;
-            line-height: 2;
-        }
-
-        .prose p {
-            margin-bottom: 18px;
+            line-height: 1.8;
+            font-size: 1.15rem;
         }
 
         .prose h2 {
-            color: #ddd;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin: 48px 0 18px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #1a1a20;
+            margin-top: 1.5em;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.3em;
+            font-size: 1.5rem;
+            color: #fff;
         }
 
         .prose h3 {
-            color: #ccc;
-            font-size: 13px;
-            font-weight: 700;
-            margin: 36px 0 12px 0;
+            margin-top: 1.2em;
+            font-size: 1.2rem;
+            color: #ddd;
         }
 
-        .prose strong {
-            color: #eee;
-            font-weight: 700;
-        }
-
-        .prose em {
-            color: #ccc;
-            font-style: italic;
-        }
+        .prose strong { color: #fff; }
+        .prose em { color: #ccc; }
 
         .prose a {
-            color: #00ccff;
+            color: #66b5ff;
             text-decoration: none;
-            border-bottom: 1px solid #1a3040;
+            border-bottom: 1px dotted #66b5ff;
         }
 
         .prose a:hover {
-            color: #00ff9f;
-            border-color: #00ff9f;
+            color: #ff4d4d;
+            border-bottom: 1px solid #ff4d4d;
+            background: #111;
         }
 
         .prose blockquote {
-            border-left: 2px solid #2a2a30;
-            padding: 4px 0 4px 18px;
-            margin: 20px 0;
-            color: #888;
+            border-left: 4px solid #ff4d4d;
+            padding-left: 15px;
+            margin: 1.5em 0;
+            color: #aaa;
+            background: #111;
+            padding: 10px 15px;
             font-style: italic;
         }
 
         .prose code {
-            background: #12121a;
-            padding: 2px 6px;
-            font-size: 12px;
-            color: #00ff9f;
-            border: 1px solid #1e1e28;
+            background: #1a1a1a;
+            padding: 2px 5px;
+            font-size: 0.9em;
+            color: #66b5ff;
+            border: 1px solid #333;
         }
 
         .prose pre {
-            background: #0f0f16;
-            border: 1px solid #1e1e28;
-            padding: 16px;
-            margin: 20px 0;
+            background: #111;
+            border: 2px inset #444;
+            padding: 1em;
             overflow-x: auto;
             line-height: 1.5;
         }
@@ -207,234 +175,216 @@
         .prose pre code {
             background: none;
             padding: 0;
-            border: none;
             color: #aaa;
+            border: none;
         }
 
-        .prose ul,
-        .prose ol {
-            margin: 16px 0;
-            padding-left: 24px;
-        }
-
-        .prose li {
-            margin: 6px 0;
+        .prose ul, .prose ol {
+            margin: 1em 0;
+            padding-left: 2em;
         }
 
         .prose hr {
             border: none;
-            border-top: 1px solid #1a1a20;
-            margin: 36px 0;
+            border-top: 2px dashed #444;
+            margin: 2em 0;
         }
 
-        /* ── tables ── */
+        .prose img {
+            max-width: 100%;
+            height: auto;
+            border: 2px outset #555;
+            display: block;
+            margin: 1em auto;
+        }
+
+        /* Tables */
         .prose table {
             width: 100%;
             border-collapse: collapse;
-            margin: 24px 0;
-            font-size: 12px;
-            overflow-x: auto;
-            display: block;
-        }
-
-        .prose thead {
-            border-bottom: 1px solid #2a2a35;
+            margin: 1.5em 0;
+            background: #0a0a0a;
         }
 
         .prose th {
-            color: #999;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 10px;
-            padding: 8px 14px;
             text-align: left;
-            white-space: nowrap;
+            padding: 8px;
+            border-bottom: 2px solid #555;
+            color: #ff4d4d;
+            background: #111;
         }
 
         .prose td {
-            padding: 7px 14px;
-            color: #aaa;
-            border-bottom: 1px solid #17171f;
-            vertical-align: top;
-        }
-
-        .prose tr:last-child td {
-            border-bottom: none;
+            padding: 8px;
+            border-bottom: 1px solid #222;
         }
 
         .prose tr:hover td {
-            background: #13131a;
-            color: #ccc;
+            background: #111;
         }
 
-        /* accent the first column */
-        .prose td:first-child {
-            color: #00ccff;
-            font-size: 11px;
-        }
-
-        /* ── math ── */
+        /* Math overrides */
         .katex-display {
             overflow-x: auto;
             overflow-y: hidden;
-            padding: 4px 0;
-            margin: 20px 0 !important;
+            padding: 10px;
+            background: #0a0a0a;
+            border: 1px dashed #333;
+            margin: 1.5em 0 !important;
         }
 
-        .katex {
-            font-size: 1em;
-            color: #ccc;
+        /* Progress Bar */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #ff4d4d;
+            z-index: 20;
+            width: 0;
+            transition: width 0.05s linear;
         }
 
-        .katex-display>.katex {
-            color: #ddd;
+        .loading {
+            color: #ffcc00;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 5em 0;
+            font-weight: bold;
         }
 
-        /* ── footer ── */
         .article-footer {
-            margin-top: 60px;
-            padding-top: 24px;
-            border-top: 1px solid #1a1a20;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            margin-top: 3em;
+            padding-top: 1em;
+            border-top: 2px solid #333;
         }
 
         .article-footer a {
-            color: #555;
+            color: #fff;
             text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 1px;
-            transition: color 0.15s;
+            font-weight: bold;
+            padding: 5px 15px;
+            border: 2px outset #555;
+            background: #222;
         }
-
+        
         .article-footer a:hover {
-            color: #00ff9f;
+            border-style: inset;
+            color: #ff4d4d;
         }
 
-        .end-mark {
-            color: #2a2a2a;
-            font-size: 10px;
-            letter-spacing: 3px;
+        /* TOC Styles */
+        .toc-container {
+            background: #111;
+            border: 2px inset #444;
+            padding: 10px;
+            margin-bottom: 2em;
         }
 
-        /* ── loading ── */
-        .loading {
-            color: #555;
-            font-size: 11px;
-            letter-spacing: 2px;
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .loading::after {
-            content: '';
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            50% {
-                content: '█';
+        @media (min-width: 1300px) {
+            .toc-container {
+                position: fixed;
+                top: 50px;
+                right: 20px;
+                width: 250px;
+                max-height: calc(100vh - 100px);
+                overflow-y: auto;
+                z-index: 100;
+                margin-bottom: 0;
             }
-
-            51%,
-            100% {
-                content: ' ';
-            }
+            .toc-container::-webkit-scrollbar { width: 8px; }
+            .toc-container::-webkit-scrollbar-track { background: #000; border-left: 1px solid #444; }
+            .toc-container::-webkit-scrollbar-thumb { background: #555; border: 1px outset #888; }
         }
 
-        /* ── selection ── */
-        ::selection {
-            background: #ff0040;
-            color: #0d0d12;
-        }
-
-        ::-webkit-scrollbar {
-            width: 0;
-        }
-
-        /* ── table of contents ── */
-        .toc {
-            position: fixed;
-            left: calc(50% + 340px);
-            top: 100px;
-            width: 250px;
-            max-height: calc(100vh - 140px);
-            overflow-y: auto;
-            padding-left: 20px;
-            border-left: 1px dashed #1a1a20;
-            display: none;
-        }
-
-        .toc::-webkit-scrollbar {
-            width: 0;
-        }
-
-        .toc-link {
-            display: block;
-            color: #555;
-            text-decoration: none;
-            font-size: 11px;
+        .toc-header {
+            color: #ff4d4d;
+            font-weight: bold;
+            border-bottom: 1px dashed #444;
             margin-bottom: 8px;
-            line-height: 1.4;
-            transition: color 0.15s;
+            padding-bottom: 4px;
         }
 
-        .toc-link:hover {
-            color: #ccc;
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.95rem;
         }
 
-        .toc-link.active {
-            color: #00ff9f;
+        .toc-list li {
+            margin-bottom: 4px;
         }
 
-        .toc-link.h3 {
-            padding-left: 12px;
-            font-size: 10px;
-            color: #444;
+        .toc-list li.toc-h3 {
+            padding-left: 15px;
         }
 
-        @media (max-width: 1300px) {
-            .toc {
-                display: none !important;
-            }
+        .toc-list a {
+            color: #66b5ff;
+            text-decoration: none;
         }
 
-        @media (max-width: 500px) {
-            .article {
-                padding-top: 70px;
-            }
-
-            .article-title {
-                font-size: 14px;
-            }
+        .toc-list a:hover {
+            color: #fff;
+            background: #ff4d4d;
         }
     </style>
 </head>
-
 <body>
 
     <div class="progress" id="progress"></div>
 
-    <div class="topbar">
-        <a class="home-link" href="index.html">← INHUMAN SYSTEMS</a>
-        <a href="#" id="scroll-top" style="display:none">↑ TOP</a>
-    </div>
+    <!-- The custom cursor image -->
+    <img id="rat-cursor" src="writings/rat__3.gif" alt="spinning rat">
 
-    <div class="toc" id="toc"></div>
+    <div class="page-block">
+        <div class="header-block">
+            <h1>INHUMAN SYSTEMS</h1>
+            <div style="color: #888; font-size: 0.9rem;">READING TRANSMISSION</div>
+        </div>
 
-    <div class="article" id="article">
-        <div class="loading" id="loading">LOADING</div>
+        <nav>
+            <a href="index.html">[ ← Return Home ]</a>
+        </nav>
+
+        <div id="article">
+            <p class="loading" id="loading">DECRYPTING...</p>
+        </div>
     </div>
 
     <!-- marked.js for markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
 
     <script>
-        // ── Get filename from URL ──
+        // Custom Cursor Logic
+        const rat = document.getElementById('rat-cursor');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        
+        rat.style.left = mouseX + 'px';
+        rat.style.top = mouseY + 'px';
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            rat.style.left = mouseX + 'px';
+            rat.style.top = mouseY + 'px';
+        });
+
+        document.addEventListener('mouseout', () => rat.style.display = 'none');
+        document.addEventListener('mouseover', () => rat.style.display = 'block');
+
+        // Reading Progress
+        const bar = document.getElementById('progress');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+            bar.style.width = pct + '%';
+        });
+
+        // Article Fetching & Rendering
         const params = new URLSearchParams(window.location.search);
         const file = params.get('f');
 
@@ -442,11 +392,9 @@
             window.location.href = 'index.html';
         }
 
-        // ── Parse YAML-ish frontmatter ──
         function parseFrontmatter(raw) {
             const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
             if (!match) return { meta: {}, body: raw };
-
             const meta = {};
             match[1].split('\n').forEach(line => {
                 const m = line.match(/^(\w+):\s*(.+)$/);
@@ -461,28 +409,21 @@
                     meta[m[1]] = val;
                 }
             });
-
             return { meta, body: match[2] };
         }
 
-        // ── Escape math before marked touches it, restore after ──
-        // marked can mangle $...$ and $$...$$ (especially underscores inside them)
         function escapeMath(src) {
             const blocks = [];
-
-            // Escape display math first ($$...$$), then inline ($...$)
             src = src.replace(/\$\$([\s\S]*?)\$\$/g, (_, inner) => {
                 const id = blocks.length;
                 blocks.push({ display: true, inner });
                 return `\x00MATH${id}\x00`;
             });
-
-            src = src.replace(/\$([^\n$`]+?)\$/g, (_, inner) => {
+            src = src.replace(/\$([^\n$\`]+?)\$/g, (_, inner) => {
                 const id = blocks.length;
                 blocks.push({ display: false, inner });
                 return `\x00MATH${id}\x00`;
             });
-
             return { escaped: src, blocks };
         }
 
@@ -493,14 +434,8 @@
             });
         }
 
-        // ── Configure marked ──
-        marked.setOptions({
-            breaks: false,
-            gfm: true,
-            smartypants: false
-        });
+        marked.setOptions({ breaks: false, gfm: true, smartypants: false });
 
-        // ── Load and render ──
         fetch('writings/' + file)
             .then(r => {
                 if (!r.ok) throw new Error('not found');
@@ -508,8 +443,7 @@
             })
             .then(raw => {
                 const { meta, body } = parseFrontmatter(raw);
-
-                // Protect math from marked's parser, then render markdown, then restore
+                const readingTime = Math.max(1, Math.round(body.split(/\s+/).length / 200));
                 const { escaped, blocks } = escapeMath(body);
                 const rawHtml = marked.parse(escaped);
                 const html = restoreMath(rawHtml, blocks);
@@ -518,22 +452,48 @@
 
                 const article = document.getElementById('article');
                 const tags = Array.isArray(meta.tags) ? meta.tags : [];
-                const tagsHtml = tags.map(t => `<span class="article-tag">${t}</span>`).join('');
+                const tagsStr = tags.join(', ');
 
                 article.innerHTML = `
-                    <div class="article-title">${meta.title || file}</div>
+                    <h1 class="article-title">${meta.title || file}</h1>
                     <div class="article-meta">
-                        ${meta.date ? `<span class="article-date">${meta.date}</span>` : ''}
-                        <div class="article-tags">${tagsHtml}</div>
+                        ${meta.date || 'UNKNOWN DATE'} // EST. READ: ${readingTime} MIN
+                        ${tags.length > 0 ? '<span class="tags">TAGS: ' + tagsStr + '</span>' : ''}
+                    </div>
+                    <div id="toc-container" class="toc-container" style="display:none;">
+                        <div class="toc-header">INDEX</div>
+                        <ul id="toc-list" class="toc-list"></ul>
                     </div>
                     <div class="prose">${html}</div>
                     <div class="article-footer">
-                        <a href="index.html">← back</a>
-                        <span class="end-mark">END TRANSMISSION</span>
+                        <a href="index.html">RETURN TO INDEX</a>
                     </div>
                 `;
 
-                // ── Trigger KaTeX auto-render on the newly injected content ──
+                // Generate Table of Contents
+                const prose = article.querySelector('.prose');
+                const headings = prose.querySelectorAll('h2, h3');
+                if (headings.length > 0) {
+                    const tocContainer = article.querySelector('#toc-container');
+                    const tocList = article.querySelector('#toc-list');
+                    tocContainer.style.display = 'block';
+                    
+                    headings.forEach((h, i) => {
+                        const id = h.id || 'heading-' + i;
+                        h.id = id; // Ensure heading has an ID
+                        
+                        const li = document.createElement('li');
+                        li.className = 'toc-' + h.tagName.toLowerCase();
+                        
+                        const a = document.createElement('a');
+                        a.href = '#' + id;
+                        a.textContent = h.textContent;
+                        
+                        li.appendChild(a);
+                        tocList.appendChild(li);
+                    });
+                }
+
                 if (window.renderMathInElement) {
                     renderMathInElement(article, {
                         delimiters: [
@@ -543,74 +503,10 @@
                         throwOnError: false
                     });
                 }
-
-                // ── Generate Table of Contents ──
-                const tocEl = document.getElementById('toc');
-                const headings = article.querySelectorAll('h2, h3');
-
-                if (headings.length > 2) {
-                    tocEl.style.display = 'block';
-                    let tocHtml = '';
-
-                    headings.forEach(h => {
-                        const id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                        h.id = id;
-
-                        const level = h.tagName.toLowerCase();
-                        tocHtml += `<a href="#${id}" class="toc-link ${level}" data-target="${id}">${h.textContent}</a>`;
-                    });
-
-                    tocEl.innerHTML = tocHtml;
-
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
-                                const activeLink = document.querySelector(`.toc-link[data-target="${entry.target.id}"]`);
-                                if (activeLink) activeLink.classList.add('active');
-                            }
-                        });
-                    }, { rootMargin: '0px 0px -60% 0px' });
-
-                    headings.forEach(h => observer.observe(h));
-
-                    document.querySelectorAll('.toc-link').forEach(link => {
-                        link.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            const target = document.getElementById(this.getAttribute('data-target'));
-                            if (target) {
-                                window.scrollTo({
-                                    top: target.offsetTop - 80,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        });
-                    });
-                }
             })
             .catch(() => {
-                document.getElementById('article').innerHTML = `
-                    <div class="loading">FILE NOT FOUND</div>
-                `;
+                document.getElementById('article').innerHTML = '<p class="loading">404: TRANSMISSION NOT FOUND</p>';
             });
-
-        // ── Reading progress ──
-        const bar = document.getElementById('progress');
-        const scrollBtn = document.getElementById('scroll-top');
-
-        window.addEventListener('scroll', () => {
-            const h = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
-            bar.style.width = pct + '%';
-            scrollBtn.style.display = window.scrollY > 400 ? 'inline' : 'none';
-        });
-
-        scrollBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
     </script>
-
 </body>
-
 </html>
