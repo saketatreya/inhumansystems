@@ -3,233 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INHUMAN SYSTEMS</title>
-    <style>
-        body {
-            background-color: #000;
-            background-image: linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111), 
-                              linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            color: #ddd;
-            font-family: 'Times New Roman', Times, serif;
-            margin: 0;
-            padding: 10px;
-            /* Hide default cursor to use the rat */
-            cursor: none; 
-        }
-
-        /* Enforce custom cursor over interactive elements too */
-        a, button, input { cursor: none; }
-
-        #rat-cursor {
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            width: 80px; 
-            height: 80px;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes rat-color {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        .page-block {
-            background: #000;
-            border: 3px outset #555;
-            margin: 15px auto;
-            max-width: 900px;
-            padding: 15px;
-            box-shadow: 5px 5px 0px #222;
-        }
-
-        .header-block {
-            text-align: center;
-            border-bottom: 2px dashed #ff4d4d;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .header-block h1 {
-            color: #fff;
-            margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px #ff4d4d;
-        }
-
-        nav {
-            text-align: center;
-            background: #1a1a1a;
-            border: 2px inset #444;
-            padding: 5px;
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
-        }
-
-        nav a:hover {
-            color: #ff4d4d;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 15px;
-        }
-
-        .section-header {
-            background: #222;
-            color: #fff;
-            padding: 5px;
-            margin: -15px -15px 15px -15px;
-            border-bottom: 2px solid #555;
-            font-weight: bold;
-        }
-
-        .article-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .article-list li {
-            border-bottom: 1px dotted #444;
-            padding: 8px 0;
-        }
-
-        .article-list a {
-            color: #66b5ff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            display: block;
-        }
-
-        .article-list a:hover {
-            color: #ff4d4d;
-            background: #111;
-        }
-
-        .article-date {
-            color: #888;
-            font-size: 0.85rem;
-            float: right;
-        }
-
-        .article-excerpt {
-            color: #aaa;
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-
-        .tags {
-            font-size: 0.75rem;
-            color: #ffcc00;
-        }
-    </style>
+    <title>Saket Atreya — inhuman.systems</title>
+    <meta name="description" content="Saket Atreya — research intern at Lossfunk and IIIT Hyderabad CS undergraduate. World models, reinforcement learning, representation geometry, and learning agents.">
+    <link rel="canonical" href="https://inhuman.systems/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Saket Atreya — inhuman.systems">
+    <meta property="og:description" content="Learning systems, political systems, and the structures that make them behave.">
+    <meta property="og:url" content="https://inhuman.systems/">
+    <meta name="theme-color" content="#090909">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate" type="application/rss+xml" title="inhuman.systems — writing" href="feed.xml">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="site.js"></script>
 </head>
 <body>
-
-    <!-- The custom cursor image -->
-    <img id="rat-cursor" src="writings/rat__3.gif" alt="spinning rat">
-
-    <div class="page-block">
-        <div class="header-block">
-            <h1>inhuman.systems</h1>
-            <div style="color: #888; font-size: 0.9rem;">hello meat computer</div>
-        </div>
-
-        <nav>
-            <a href="#about">[ About ]</a>
-            <a href="#writing">[ Writing ]</a>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <img class="rat-cursor" src="writings/rat__3.gif" alt="" aria-hidden="true" hidden>
+    <div class="site-shell">
+        <header class="masthead">
+            <div class="eyebrow">Saket Atreya / department of applied meat computation</div>
+            <div class="masthead-row">
+                <a class="wordmark" href="index.html" aria-label="inhuman.systems home">inhuman.systems</a>
+                <img class="rat-mascot" src="writings/rat__3.gif" alt="A spinning rat" width="76" height="76">
+            </div>
+            <p>hello meat computer. please keep your limbs inside the latent space.</p>
+        </header>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a href="#about">[ about ]</a>
+            <a href="research.html">[ research ]</a>
+            <a href="#projects">[ things built ]</a>
+            <a href="#writing">[ writing ]</a>
+            <a href="#contact">[ contact ]</a>
+            <a href="assets/saket-atreya-cv.pdf">[ CV / PDF ]</a>
+            <button class="rat-toggle" type="button" aria-label="Toggle the following rat" aria-pressed="false" hidden>rat: off</button>
         </nav>
-
-        <div class="content-grid">
-            <!-- Left Column: About & Links -->
-            <div>
-                <div class="page-block" id="about" style="margin-top:0;">
-                    <div class="section-header">ME</div>
-                    <p>hi i'm saket</p>
-                    <p>everything is computer if you really think about it </p>
-                    <p>Currently researching multi-agent intelligence and the latent space.</p>
-                    <hr style="border:1px dashed #444;">
-                    <p style="font-size: 0.85rem; color: #888;">"Nothing human makes it out of the near-future."</p>
+        <main id="main">
+            <section class="intro" id="about" aria-labelledby="about-title">
+                <div>
+                    <span class="section-label">01 / a locally running biological process</span>
+                    <h1 id="about-title">hi, i'm saket.</h1>
+                    <p class="lead">A meat computer building world models, training agents, and asking the error bars to explain themselves. The rat has been appointed external examiner. Nobody checked its references.</p>
+                    <p>I'm a research intern at Lossfunk and a computer science undergraduate at IIIT Hyderabad, graduating in May 2027. My current work asks what world models learn about motion, how agents handle partial information, and what our evaluations actually establish.</p>
+                    <p class="profile-tools">Python · PyTorch · Hugging Face · vLLM · MuJoCo</p>
+                    <div class="profile-links" aria-label="Research profile links">
+                        <a class="primary-link" href="research.html">Enter the paper enclosure →</a>
+                        <a href="assets/saket-atreya-cv.pdf">CV (PDF)</a>
+                        <a href="mailto:saket.s.atreya@gmail.com">Email me</a>
+                    </div>
+                    <p>I also build software and write about cybernetics, political economy, and philosophy. Everything is computer if you really think about it. Some computers have parliaments. Some have gradients. This one requires lunch.</p>
                 </div>
-
-                <div class="page-block">
-                    <div class="section-header">LINKS</div>
-                    <ul style="padding-left: 20px; margin: 0; color: #66b5ff;">
-                        <li><a href="mailto:saket.s.atreya@gmail.com" style="color: #66b5ff; text-decoration: none;">Email</a></li>
-                        <li><a href="https://github.com/saketatreya" style="color: #66b5ff; text-decoration: none;">GitHub</a></li>
-                        <li><a href="feed.xml" style="color: #66b5ff; text-decoration: none;">RSS Feed</a></li>
+                <aside class="intro-note" aria-label="Current research questions">
+                    <h2>UNRESOLVED RAT BUSINESS</h2>
+                    <ul>
+                        <li>Does the model misunderstand motion, or did we hand it cursed directions?</li>
+                        <li>Can geometry do this before we rent another GPU?</li>
+                        <li>What can several confused agents learn together?</li>
                     </ul>
+                    <p class="meta">Updated <time datetime="2026-10-14">14 October 2026</time>.<br>The rat has reviewed zero papers and is already demanding a named chair.</p>
+                </aside>
+            </section>
+
+            <section class="section" id="research" aria-labelledby="research-title">
+                <div class="section-heading">
+                    <div><span class="section-label">02 / research</span><h2 id="research-title">The machines have some explaining to do</h2></div>
+                    <a class="text-link" href="research.html">Papers &amp; supporting evidence →</a>
                 </div>
-            </div>
+                <ol class="research-list">
+                    <li>
+                        <span class="entry-number" aria-hidden="true">01</span>
+                        <div>
+                            <h3><a href="research.html#world-models">What does rollout error actually measure?</a></h3>
+                            <p>Auditing released navigation world models from 49M to 1.01B parameters. Correcting rollout commands reduced the 1B model's 4 FPS LPIPS by 18.8% on the confirmation cohort, without retraining.</p>
+                            <p class="meta">World models · evaluation · 2026 manuscript</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="entry-number" aria-hidden="true">02</span>
+                        <div>
+                            <h3><a href="research.html#transport">Compute what the camera determines. Learn the remainder.</a></h3>
+                            <p>Analytic camera-motion transport in frozen vision encoders: a rotation warp with no fitted parameters explains 16–37% of held-out feature change. Studying where geometry helps, and where pooling hides it.</p>
+                            <p class="meta">Representation learning · geometry · workshop manuscript</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="entry-number" aria-hidden="true">03</span>
+                        <div>
+                            <h3><a href="research.html#relatedness">Reading relatedness and hierarchy</a></h3>
+                            <p>Across five modalities, low exact split recovery can coexist with substantial local hierarchical agreement. Measuring what a declared readout makes accessible, including the effects of centering and normalization.</p>
+                            <p class="meta">Self-supervised learning · hierarchy · revised manuscript</p>
+                        </div>
+                    </li>
+                </ol>
+                <p class="text-link"><a href="research.html#synthetic-code">Synthetic-code transfer</a> · <a href="research.html#replay">Offline RL</a> · <a href="research.html#certgap">Policy diagnostics</a> · <a href="research.html#self">AI and the self</a></p>
+            </section>
 
-            <!-- Right Column: Articles -->
-            <div class="page-block" id="writing" style="margin-top:0;">
-                <div class="section-header">WRITING</div>
-                <ul class="article-list" id="article-list">
-                    <li><div class="article-excerpt">Loading transmissions...</div></li>
+            <section class="section" id="projects" aria-labelledby="projects-title">
+                <div class="section-heading">
+                    <div><span class="section-label">03 / things built</span><h2 id="projects-title">Things that escaped the terminal</h2></div>
+                    <a class="text-link" href="https://github.com/saketatreya">GitHub ↗</a>
+                </div>
+                <ul class="project-list">
+                    <li>
+                        <span class="project-kind">Software agents</span>
+                        <h3><a href="https://github.com/saketatreya/RICH">RICH ↗</a></h3>
+                        <p>A system for turning intent into a specification, an architecture, and working software. Independent checks, resumable execution, explicit contracts. Bureaucracy for the little people inside the GPU.</p>
+                        <span class="meta">Python · agent orchestration · verification</span>
+                    </li>
+                    <li>
+                        <span class="project-kind">Reinforcement learning</span>
+                        <h3><a href="https://github.com/saketatreya/showdownRL">Pokémon Showdown agent ↗</a></h3>
+                        <p>Recurrent PPO, opponent-role beliefs, damage-aware state, and checkpoint self-play in Gen 9 Random Battles. A partially observed decision problem wearing a small electric rodent.</p>
+                        <a class="text-link" href="writing.html?f=pokemon-rl.md">Read the technical write-up →</a>
+                    </li>
+                    <li>
+                        <span class="project-kind">Games &amp; graph theory</span>
+                        <h3><a href="https://github.com/saketatreya/mincut-pacman">Min-Cut Muncher ↗</a></h3>
+                        <p>Pac-Man, except the ghosts solve a max-flow problem to cut off your escape. An x-ray mode shows the trap. The ghosts have discovered operations research and become unbearable.</p>
+                        <span class="meta">Dinic's algorithm · browser game</span>
+                    </li>
+                    <li>
+                        <span class="project-kind">Systems programming</span>
+                        <h3><a href="https://github.com/saketatreya/oksh">oksh ↗</a></h3>
+                        <p>A shell written in C: processes, signals, redirection, foreground and background jobs. A tiny command-line habitat in which I am personally responsible for the plumbing.</p>
+                        <span class="meta">C · Unix</span>
+                    </li>
+                    <li>
+                        <span class="project-kind">Personal tools</span>
+                        <h3>Daybook</h3>
+                        <p>A study planner connecting mathematics, research papers, university courses, and the finite number of hours in a day. An ongoing territorial dispute between ambition and a calendar.</p>
+                        <span class="meta">Python · learning tools</span>
+                    </li>
                 </ul>
-            </div>
-        </div>
+            </section>
+
+            <section class="section" id="writing" aria-labelledby="writing-title">
+                <div class="section-heading">
+                    <div><span class="section-label">04 / writing</span><h2 id="writing-title">Transmissions from the protein computer</h2></div>
+                    <a class="text-link" href="feed.xml">RSS ↗</a>
+                </div>
+                <p class="section-intro">Intelligence, automation, power, and the strange things that happen when meaning becomes geometry.</p>
+                <div class="writing-tools" hidden>
+                    <label for="writing-search">Find an essay by title, subject, or tag</label>
+                    <input id="writing-search" type="search" placeholder="Try “RL”, “politics”, or “latent space”…" autocomplete="off" aria-controls="article-list">
+                    <p id="filter-status" class="filter-status meta" role="status" aria-live="polite"></p>
+                </div>
+                <ul class="article-list" id="article-list">
+                    <!-- WRITINGS:START -->
+                    <li>
+                        <div class="article-topline">
+                            <h3><a href="writing.html?f=hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a></h3>
+                            <time class="meta" datetime="2026-03-12">2026-03-12</time>
+                        </div>
+                        <p class="article-excerpt">We must understand Hindutva as a productive apparatus that generates mythology, and that this mythology is self-propagating not because it corresponds to reality but because it creates feedback loops connecting institutional practice, affective investment, territorial violence, and electoral calculation.</p>
+                        <div class="tags"><span>mythology</span><span>politics</span><span>religion</span><span>hyperreality</span><span>caste</span></div>
+                    </li>
+                    <li>
+                        <div class="article-topline">
+                            <h3><a href="writing.html?f=pokemon-rl.md">Solving Pokémon as a POMDP</a></h3>
+                            <time class="meta" datetime="2026-02-15">2026-02-15</time>
+                        </div>
+                        <p class="article-excerpt">A technical deep-dive into building a Gen 9 Random Battle agent that learns from nothing but wins and losses through Bayesian Belief Tracking, Observation Engineering, and Pure RL</p>
+                        <div class="tags"><span>pokemon</span><span>AI</span><span>RL</span><span>dev</span></div>
+                    </li>
+                    <li>
+                        <div class="article-topline">
+                            <h3><a href="writing.html?f=multiagent-intelligence.md">The Wrong Unit of Analysis</a></h3>
+                            <time class="meta" datetime="2026-01-25">2026-01-25</time>
+                        </div>
+                        <p class="article-excerpt">Why Intelligence Requires a Differential Field</p>
+                        <div class="tags"><span>AI</span><span>RL</span><span>intelligence</span><span>philosophy</span><span>deleuze</span></div>
+                    </li>
+                    <li>
+                        <div class="article-topline">
+                            <h3><a href="writing.html?f=accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a></h3>
+                            <time class="meta" datetime="2026-01-15">2026-01-15</time>
+                        </div>
+                        <p class="article-excerpt">AI is capital&#x27;s completion project. The left has always wanted to abolish wage labor but couldn&#x27;t figure out how to abolish the necessity that made wage labor necessary.</p>
+                        <div class="tags"><span>accelerationism</span><span>AI</span><span>labor</span><span>emancipation</span></div>
+                    </li>
+                    <li>
+                        <div class="article-topline">
+                            <h3><a href="writing.html?f=iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a></h3>
+                            <time class="meta" datetime="2025-03-28">2025-03-28</time>
+                        </div>
+                        <p class="article-excerpt">Baudrillard, Generative AI, and the Colonial Monopoly on the Real</p>
+                        <div class="tags"><span>hyperreality</span><span>politics</span><span>generative-ai</span><span>baudrillard</span></div>
+                    </li>
+                    <li>
+                        <div class="article-topline">
+                            <h3><a href="writing.html?f=latent-space.md">Latent Space</a></h3>
+                            <time class="meta" datetime="2025-02-20">2025-02-20</time>
+                        </div>
+                        <p class="article-excerpt">In the latent space, there are no individuals. Only vectors. Directions through an impossibly high-dimensional manifold where meaning itself becomes geometry.</p>
+                        <div class="tags"><span>embeddings</span><span>identity</span><span>pattern</span><span>AI</span></div>
+                    </li>
+                    <!-- WRITINGS:END -->
+                </ul>
+                <p class="empty-message" id="no-writings" hidden>No essays match. Try another word or clear the search.</p>
+            </section>
+
+            <section class="section contact" id="contact" aria-labelledby="contact-title">
+                <span class="section-label">05 / an open channel</span>
+                <h2 id="contact-title">Send a signal into the organism</h2>
+                <p style="margin-top: 16px">I'm interested in research and research engineering roles in world models, reinforcement learning, and multi-agent learning, in the US or India. I'm authorized to work in the US without sponsorship.</p>
+                <p>For a role, a collaboration, or a sufficiently interesting argument: the inbox is open. The rat handles neither recruitment nor payroll.</p>
+                <div class="contact-links">
+                    <a href="mailto:saket.s.atreya@gmail.com">saket.s.atreya@gmail.com</a>
+                    <a href="assets/saket-atreya-cv.pdf">Research CV (PDF)</a>
+                    <a href="https://github.com/saketatreya">GitHub ↗</a>
+                </div>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <span>No cookies. One rat. An unreasonable number of matrices.</span>
+            <a href="#about">Back to the meat computer ↑</a>
+        </footer>
     </div>
-
-    <script>
-        // Only JS used is to make the custom animated cursor work
-        const rat = document.getElementById('rat-cursor');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        
-        // Initial positioning
-        rat.style.left = mouseX + 'px';
-        rat.style.top = mouseY + 'px';
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            rat.style.left = mouseX + 'px';
-            rat.style.top = mouseY + 'px';
-        });
-
-        // Hide rat if mouse leaves window
-        document.addEventListener('mouseout', () => {
-            rat.style.display = 'none';
-        });
-        document.addEventListener('mouseover', () => {
-            rat.style.display = 'block';
-        });
-
-        // Fetch and sort writings
-        fetch('writings/manifest.json')
-            .then(response => response.json())
-            .then(writings => {
-                // Sort by date descending
-                writings.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                const list = document.getElementById('article-list');
-                list.innerHTML = writings.map(w => {
-                    const tagsStr = (w.tags || []).join(', ');
-                    return `
-                        <li>
-                            <span class="article-date">${w.date}</span>
-                            <a href="writing.html?f=${encodeURIComponent(w.file)}">${w.title}</a>
-                            <div class="tags">${tagsStr}</div>
-                            <div class="article-excerpt">${w.excerpt || ''}</div>
-                        </li>
-                    `;
-                }).join('');
-            })
-            .catch(err => {
-                document.getElementById('article-list').innerHTML = '<li>Error loading transmissions.</li>';
-            });
-    </script>
 </body>
 </html>

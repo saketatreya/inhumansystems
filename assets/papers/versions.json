@@ -1,0 +1,33 @@
+{
+  "updated": "2026-10-14",
+  "papers": {
+    "bellman-residual-improvement.pdf": {
+      "sha256": "cf66a482e3a263aafd17f4d90661ba864ca9bb3103711fa2f5fac9eb8237ad5e",
+      "bytes": 580812
+    },
+    "delegation-and-self.pdf": {
+      "sha256": "7f76eb2596a48aba48304d9c09bd0759caee69337cb3b9442fbb366ad4bfe771",
+      "bytes": 223660
+    },
+    "experience-replay-spectral-bounds.pdf": {
+      "sha256": "a41c5ea1297f7d6a7569cf436cecef8bcd97973acf47da15dc0a957ae4e15ab8",
+      "bytes": 295994
+    },
+    "frozen-encoder-geometry.pdf": {
+      "sha256": "ece205f577b5d71c69d30108f8b6e70442d4c1a3e42f7a662ba5d664481cdbc7",
+      "bytes": 584759
+    },
+    "relatedness-and-hierarchy.pdf": {
+      "sha256": "60de82b6edb4f25b72aa57e42bd235d0b2227107bb018c76cc20478b5eec4048",
+      "bytes": 342391
+    },
+    "synthetic-code-transfer.pdf": {
+      "sha256": "a0778c4b22e4ce5fd26073dfee6e7e9a2c49060ba9ffdd9958dd164c822b6ad5",
+      "bytes": 400226
+    },
+    "world-model-rollout-audit.pdf": {
+      "sha256": "c27b1ad03b1e181822bd09b072c4bb522157bbf5ed68fccc5ee803e78ea5901f",
+      "bytes": 455581
+    }
+  }
+}

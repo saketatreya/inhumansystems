@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research — Saket Atreya — inhuman.systems</title>
+    <meta name="description" content="Research by Saket Atreya on world-model evaluation, representation geometry, offline reinforcement learning, synthetic-code transfer, and AI-assisted agency.">
+    <link rel="canonical" href="https://inhuman.systems/research.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Research — Saket Atreya">
+    <meta property="og:description" content="World models, representation geometry, reinforcement learning, and the limits of our measurements.">
+    <meta property="og:url" content="https://inhuman.systems/research.html">
+    <meta name="theme-color" content="#090909">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate" type="application/rss+xml" title="inhuman.systems — writing" href="feed.xml">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="site.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <img class="rat-cursor" src="writings/rat__3.gif" alt="" aria-hidden="true" hidden>
+    <div class="site-shell">
+        <header class="masthead">
+            <div class="eyebrow">Saket Atreya / the hypothesis containment facility</div>
+            <div class="masthead-row">
+                <a class="wordmark" href="index.html" aria-label="inhuman.systems home">inhuman.systems</a>
+                <img class="rat-mascot" src="writings/rat__3.gif" alt="A spinning rat" width="76" height="76">
+            </div>
+            <p>please do not feed the baselines after midnight</p>
+        </header>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a href="index.html#about">[ about ]</a>
+            <a href="research.html" aria-current="page">[ research ]</a>
+            <a href="index.html#projects">[ things built ]</a>
+            <a href="index.html#writing">[ writing ]</a>
+            <a href="index.html#contact">[ contact ]</a>
+            <a href="assets/saket-atreya-cv.pdf">[ CV / PDF ]</a>
+            <button class="rat-toggle" type="button" aria-label="Toggle the following rat" aria-pressed="false" hidden>rat: off</button>
+        </nav>
+        <main id="main">
+            <div class="page-intro">
+                <span class="section-label">Research / updated <time datetime="2026-10-14">14 October 2026</time></span>
+                <h1>The rat demands a control group.</h1>
+                <p>I work on action-conditioned world models and partially observed agents, and on evaluations that distinguish model capability from artifacts of the measurement. Longer term, I'm interested in how useful behavior emerges through interaction between agents.</p>
+                <p>At Lossfunk, I develop models on frozen vision encoders that compute camera motion analytically and learn the residual scene dynamics. My work combines experiment implementation, matched baselines, preregistered hypotheses, and checking claims against saved results.</p>
+                <div class="profile-links">
+                    <a class="primary-link" href="assets/saket-atreya-cv.pdf">Research CV (PDF)</a>
+                    <a href="mailto:saket.s.atreya@gmail.com">Contact me</a>
+                    <a href="https://github.com/saketatreya">GitHub ↗</a>
+                </div>
+                <p class="research-status">Papers, experiments, and several hypotheses that did not survive contact with a CSV. Statuses refer to the work below; the PDFs retain their original manuscript metadata.</p>
+            </div>
+            <nav class="research-index" aria-label="Research topics">
+                <span class="section-label">Choose a rabbit hole / the rat has jurisdiction</span>
+                <ul>
+                    <li><a href="#world-models">Evaluating world-model rollouts</a></li>
+                    <li><a href="#residual-dynamics">Learning residual scene dynamics</a></li>
+                    <li><a href="#transport">Geometry in frozen vision encoders</a></li>
+                    <li><a href="#relatedness">Relatedness and hierarchy</a></li>
+                    <li><a href="#synthetic-code">Transfer through synthetic code</a></li>
+                    <li><a href="#replay">Experience replay and mixing</a></li>
+                    <li><a href="#certgap">Diagnosing policy improvement</a></li>
+                    <li><a href="#partially-observed-agents">Self-play under partial observation</a></li>
+                    <li><a href="#self">Delegation and the self</a></li>
+                </ul>
+            </nav>
+
+            <article class="research-entry" id="world-models">
+                <span class="status-label">01 / World models · 2026 manuscript</span>
+                <h2>Separating Command Error, Chaining Cost and One-Call Error in the Rollout Evaluation of a Video World Model</h2>
+                <p>A rollout's error can grow because the model is being given the wrong commands, because predictions are chained through previous outputs, or because predicting farther into the future is already difficult in one call. A single error curve does not separate those effects.</p>
+                <p>This work audits released navigation world models from 49M to 1.01B parameters using corrected commands, matched single-call predictions, and repeated-command controls. These comparisons require no retraining.</p>
+                <dl class="evidence">
+                    <dt>Result</dt><dd>Correcting the rollout commands lowers the 1B model's 4 FPS LPIPS by <strong>18.8%</strong> (95% CI: 16.9–20.6%) on the prospectively specified confirmation cohort.</dd>
+                    <dt>Method</dt><dd>Paired references on the same items and horizons; decision rules registered before evaluation; saved results checked against manuscript claims.</dd>
+                    <dt>Scope</dt><dd>One released model family. The split between chaining cost and single-call error is a post-hoc analysis and differs between cohorts.</dd>
+                </dl>
+                <p class="entry-links text-link"><a href="assets/papers/world-model-rollout-audit.pdf">Read paper (PDF) →</a> · <a href="assets/papers/world-model-rollout-audit.pdf" download>Download PDF ↓</a></p>
+            </article>
+
+            <article class="research-entry" id="residual-dynamics">
+                <span class="status-label">Ongoing / World models · Lossfunk research</span>
+                <h2>Compute camera motion. Learn scene dynamics.</h2>
+                <p>I develop action-conditioned predictors on frozen vision encoders, using analytic camera transport as a base prediction and learning the residual. The comparison keeps the learned architecture, parameter count, and initialization matched.</p>
+                <dl class="evidence">
+                    <dt>Result</dt><dd>In the held-out ARKitScenes DINOv3 experiment, prediction skill rises from <strong>0.393 to 0.557</strong> with transport as the base prediction. Transport alone reaches 0.482; providing it as an input reaches 0.427.</dd>
+                    <dt>Measure</dt><dd>Skill is one minus prediction MSE divided by copy-last MSE. This result uses a 3M-parameter predictor, two seeds, and 100 test scans.</dd>
+                    <dt>Contribution</dt><dd>Analytic transport and learned residual models, parameter-matched comparisons, and evaluation with held-out splits and visit-level bootstrap intervals.</dd>
+                </dl>
+                <p class="entry-links text-link"><a href="mailto:saket.s.atreya@gmail.com?subject=Residual%20world-model%20research">Discuss the experiments →</a></p>
+            </article>
+
+            <article class="research-entry" id="transport">
+                <span class="status-label">02 / Representation geometry · NeurReps 2026 workshop manuscript</span>
+                <h2>Readout is not generation: SE(3) in the patch tokens of frozen encoders</h2>
+                <p>When a camera moves, some of the change in a vision model's representation follows directly from geometry. I study how much of that change can be computed by resampling the patch-token field, with no learned motion predictor.</p>
+                <p>The experiments compare geometric transport with learned predictors, examine transfer to new scenes and sensitivity to pose errors, and show how mean pooling can hide spatial structure that remains useful for prediction.</p>
+                <dl class="evidence">
+                    <dt>Result</dt><dd>A rotation warp with no fitted parameters explains <strong>16–37%</strong> of held-out feature change at a four-frame gap and beats the matched learned flow head in <strong>10 of 15</strong> comparisons. The fixed-depth plane warp wins <strong>15 of 15</strong>.</dd>
+                    <dt>Scope</dt><dd>Five encoders in the flow-head comparison, a small-data regime, and cells above a prespecified displacement floor. The plane warp's depth is fixed at 2 m, not tuned on these comparisons.</dd>
+                </dl>
+                <p class="entry-links text-link"><a href="assets/papers/frozen-encoder-geometry.pdf">Read paper (PDF) →</a> · <a href="assets/papers/frozen-encoder-geometry.pdf" download>Download PDF ↓</a></p>
+            </article>
+
+            <article class="research-entry" id="relatedness">
+                <span class="status-label">03 / Self-supervised learning · NeurReps 2026 workshop work · revised manuscript</span>
+                <h2>Reading Relatedness and Hierarchy from Frozen Representations</h2>
+                <p>Which relationships can we read from frozen representations, and at what resolution? This project compares pairwise relatedness, local quartet agreement, and exact reference splits across text, speech, proteins, vision, and single-cell data.</p>
+                <p>Reconstructed trees recover a minority of the specified splits in the four larger populations, yet retain substantial quartet agreement. Low exact split recovery therefore does not establish that hierarchical information is absent.</p>
+                <dl class="evidence">
+                    <dt>Method</dt><dd>Matched readout comparisons, neighbor joining and FastME reconstruction, exact additive-distance controls, and a separate feature-space simulation.</dd>
+                    <dt>Finding</dt><dd>Changing the origin can substantially change cosine-based associations. Centering largely explains an apparent alignment effect in the language readouts.</dd>
+                    <dt>Scope</dt><dd>Each domain has its own reference: a semantic taxonomy or cell-type grouping does not describe evolutionary descent. Results concern the specified readouts and reference relationships.</dd>
+                </dl>
+                <p class="entry-links text-link"><a href="https://github.com/saketatreya/autoresearch">Earlier experiments ↗</a> · <a href="https://github.com/saketatreya/rep-phylogeny">Earlier language-analysis code ↗</a> · <a href="assets/papers/relatedness-and-hierarchy.pdf">Read revised paper (PDF) →</a> · <a href="assets/papers/relatedness-and-hierarchy.pdf" download>Download PDF ↓</a></p>
+            </article>
+
+            <article class="research-entry" id="synthetic-code">
+                <span class="status-label">04 / Model behavior &amp; measurement · manuscript under review</span>
+                <h2>What Transfers through Synthetic Code? Separating Security, Style, and Provenance</h2>
+                <p>A teacher model generates code; other models learn from it. If the students inherit both output style and security behavior, which measurements establish a behavioral change, and which simply identify their common origin?</p>
+                <p>This study compares human annotation, automated security scorers, corpus statistics, and activation probes. The current artifact audit examines output censoring, generation length, and shared model lineage as explanations that the measurements must distinguish.</p>
+                <dl class="evidence">
+                    <dt>Finding</dt><dd>Fresh human annotation of prospectively generated 1,024-token responses finds 39/195 unsafe treatment outputs versus 3/78 controls; the automated scorers disagree on the same outputs. Masking responses at token 320 also changes the measured contrast.</dd>
+                    <dt>Scope</dt><dd>One teacher/carrier per arm limits upstream replication. The human endpoint supports a behavioral contrast in this pipeline; scorer disagreement, output style and shared lineage limit what it establishes about a portable mechanism.</dd>
+                </dl>
+                <p class="entry-links text-link"><a href="assets/papers/synthetic-code-transfer.pdf">Read paper (PDF) →</a> · <a href="assets/papers/synthetic-code-transfer.pdf" download>Download PDF ↓</a></p>
+            </article>
+
+            <article class="research-entry" id="replay">
+                <span class="status-label">05 / Offline reinforcement learning · ICML 2026 DEMO workshop</span>
+                <h2>Spectral Perturbation Bounds for Experience Replay: A Bias–Variance Decomposition for Offline Decision-Making</h2>
+                <p>More diverse offline data can improve statistical efficiency while increasing the mismatch between the policies that collected it. This paper studies that trade-off through mixture Markov kernels and the environment's mixing properties, with a theoretical decomposition and synthetic-MDP experiments.</p>
+                <p class="entry-links text-link"><a href="assets/papers/experience-replay-spectral-bounds.pdf">Read paper (PDF) →</a> · <a href="assets/papers/experience-replay-spectral-bounds.pdf" download>Download PDF ↓</a> · <a href="https://openreview.net/forum?id=9suIaAdex2">OpenReview ↗</a></p>
+            </article>
+
+            <article class="research-entry" id="certgap">
+                <span class="status-label">06 / Reinforcement-learning diagnostics · research manuscript</span>
+                <h2>The Bellman Residual Is Not the Improvement Signal</h2>
+                <p>Does a smaller value-function error tell us that the next policy update will help? CertGap investigates the gap between fitting a critic and improving a policy, combining theoretical analysis with logged updates from PPO, SAC, and TRPO.</p>
+                <p>The project compares the Bellman residual with diagnostics based on start-state critic bias. These are measurements of policy updates; establishing a useful diagnostic is a separate question from building a better policy-improvement algorithm.</p>
+                <p class="entry-links text-link"><a href="assets/papers/bellman-residual-improvement.pdf">Read paper (PDF) →</a> · <a href="assets/papers/bellman-residual-improvement.pdf" download>Download PDF ↓</a> · <a href="https://github.com/saketatreya/CertGap">Code and experiment record ↗</a></p>
+            </article>
+
+            <article class="research-entry" id="partially-observed-agents">
+                <span class="status-label">Project / Reinforcement learning · self-play</span>
+                <h2>Pokémon as a partially observed decision problem</h2>
+                <p>I built a recurrent PPO agent for Gen 9 Random Battles with opponent-role belief updates and damage-aware state features. Training mixes checkpoint opponents and random opponents with win/loss rewards; recurrent state and explicit beliefs address information missing from a single observation.</p>
+                <p>The technical write-up covers the observation design, belief updates, reward choices, and training setup.</p>
+                <p class="entry-links text-link"><a href="writing.html?f=pokemon-rl.md">Technical write-up →</a> · <a href="https://github.com/saketatreya/showdownRL">Code ↗</a></p>
+            </article>
+
+            <article class="research-entry" id="self">
+                <span class="status-label">07 / Human–AI interaction · 2026 manuscript</span>
+                <h2>Delegation, Ownership, and the Boundaries of the Self in AI-Assisted Programming</h2>
+                <p>What happens when a tool begins producing work that its user did not specify in detail? This paper distinguishes delegation from familiar forms of tool use and examines how felt capability, knowledge of one's abilities, and credited authorship can come apart.</p>
+                <p>It brings that conceptual argument into contact with a study of AI co-authorship attestations in public commits. The attestation data measure a changing convention of credit; the proposed account of ownership remains a question for further study.</p>
+                <p class="entry-links text-link"><a href="assets/papers/delegation-and-self.pdf">Read paper (PDF) →</a> · <a href="assets/papers/delegation-and-self.pdf" download>Download PDF ↓</a></p>
+            </article>
+
+            <section class="section" aria-labelledby="research-contact-title">
+                <h2 id="research-contact-title">The organism accepts correspondence</h2>
+                <p style="margin-top: 16px">I'm looking for research and research engineering opportunities in world models, reinforcement learning, and multi-agent learning. For experiment details, collaborations, or an unusually good objection, <a href="mailto:saket.s.atreya@gmail.com">email me</a> or <a href="assets/saket-atreya-cv.pdf">read my CV</a>. The less formal versions of these interests live in the <a href="index.html#writing">essays</a>.</p>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <span>All hypotheses enter voluntarily. Some leave as footnotes.</span>
+            <a href="index.html">← Back to the index</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 ---
 title: "The Iran War Did Not Take Place (And Is Killing People)"
-tags: [hyperreality, poltics, generative-ai, baudrillard]
+tags: [hyperreality, politics, generative-ai, baudrillard]
 date: 2025-03-28
 excerpt: "Baudrillard, Generative AI, and the Colonial Monopoly on the Real"
 ---
