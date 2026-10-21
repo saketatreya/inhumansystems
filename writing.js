@@ -141,7 +141,7 @@
             document.title = `${missing ? 'Essay not found' : 'Unable to load essay'} — inhuman.systems`;
             article.className = 'error-message';
             article.setAttribute('aria-busy', 'false');
-            article.innerHTML = `<h1>${missing ? 'Transmission not found.' : 'The transmission could not load.'}</h1>
+            article.innerHTML = `<h1>${missing ? 'Essay not found.' : 'The essay could not load.'}</h1>
                 <p>${missing ? 'That essay is not in the index.' : 'Please try reloading the page.'}</p>
                 <p><a href="index.html#writing">← Browse all writing</a>${entry ? ` · <a href="writings/${encodeURIComponent(entry.file)}">Read the Markdown</a>` : ''}</p>`;
         }

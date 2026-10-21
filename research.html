@@ -16,31 +16,25 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="site.js"></script>
 </head>
-<body>
+<body id="top" class="research-page">
     <a class="skip-link" href="#main">Skip to content</a>
-    <img class="rat-cursor" src="writings/rat__3.gif" alt="" aria-hidden="true" hidden>
     <div class="site-shell">
-        <header class="masthead">
-            <div class="eyebrow">Saket Atreya / the hypothesis containment facility</div>
-            <div class="masthead-row">
-                <a class="wordmark" href="index.html" aria-label="inhuman.systems home">inhuman.systems</a>
-                <img class="rat-mascot" src="writings/rat__3.gif" alt="A spinning rat" width="76" height="76">
-            </div>
-            <p>please do not feed the baselines after midnight</p>
+        <header class="site-header">
+            <a class="wordmark" href="index.html">inhuman.systems</a>
+            <nav class="site-nav" aria-label="Main navigation">
+                <a href="research.html" aria-current="page">Research</a>
+                <a href="index.html#writing">Writing</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#about">About</a>
+                <a href="mailto:saket.s.atreya@gmail.com">Email</a>
+                <a href="assets/saket-atreya-cv.pdf">CV <span class="link-format">[pdf]</span></a>
+                <a href="feed.xml">RSS</a>
+            </nav>
         </header>
-        <nav class="site-nav" aria-label="Main navigation">
-            <a href="index.html#about">[ about ]</a>
-            <a href="research.html" aria-current="page">[ research ]</a>
-            <a href="index.html#projects">[ things built ]</a>
-            <a href="index.html#writing">[ writing ]</a>
-            <a href="index.html#contact">[ contact ]</a>
-            <a href="assets/saket-atreya-cv.pdf">[ CV / PDF ]</a>
-            <button class="rat-toggle" type="button" aria-label="Toggle the following rat" aria-pressed="false" hidden>rat: off</button>
-        </nav>
-        <main id="main">
+        <main id="main" class="research-main">
             <div class="page-intro">
                 <span class="section-label">Research / updated <time datetime="2026-10-14">14 October 2026</time></span>
-                <h1>The rat demands a control group.</h1>
+                <h1>Research</h1>
                 <p>I work on action-conditioned world models and partially observed agents, and on evaluations that distinguish model capability from artifacts of the measurement. Longer term, I'm interested in how useful behavior emerges through interaction between agents.</p>
                 <p>At Lossfunk, I develop models on frozen vision encoders that compute camera motion analytically and learn the residual scene dynamics. My work combines experiment implementation, matched baselines, preregistered hypotheses, and checking claims against saved results.</p>
                 <div class="profile-links">
@@ -48,10 +42,10 @@
                     <a href="mailto:saket.s.atreya@gmail.com">Contact me</a>
                     <a href="https://github.com/saketatreya">GitHub ↗</a>
                 </div>
-                <p class="research-status">Papers, experiments, and several hypotheses that did not survive contact with a CSV. Statuses refer to the work below; the PDFs retain their original manuscript metadata.</p>
+                <p class="research-status">Papers and ongoing experiments. Statuses refer to the work below; the PDFs retain their original manuscript metadata.</p>
             </div>
             <nav class="research-index" aria-label="Research topics">
-                <span class="section-label">Choose a rabbit hole / the rat has jurisdiction</span>
+                <span class="section-label">Contents</span>
                 <ul>
                     <li><a href="#world-models">Evaluating world-model rollouts</a></li>
                     <li><a href="#residual-dynamics">Learning residual scene dynamics</a></li>
@@ -66,7 +60,7 @@
             </nav>
 
             <article class="research-entry" id="world-models">
-                <span class="status-label">01 / World models · 2026 manuscript</span>
+                <span class="status-label">World models · 2026 manuscript</span>
                 <h2>Separating Command Error, Chaining Cost and One-Call Error in the Rollout Evaluation of a Video World Model</h2>
                 <p>A rollout's error can grow because the model is being given the wrong commands, because predictions are chained through previous outputs, or because predicting farther into the future is already difficult in one call. A single error curve does not separate those effects.</p>
                 <p>This work audits released navigation world models from 49M to 1.01B parameters using corrected commands, matched single-call predictions, and repeated-command controls. These comparisons require no retraining.</p>
@@ -91,7 +85,7 @@
             </article>
 
             <article class="research-entry" id="transport">
-                <span class="status-label">02 / Representation geometry · NeurReps 2026 workshop manuscript</span>
+                <span class="status-label">Representation geometry · NeurReps 2026 workshop manuscript</span>
                 <h2>Readout is not generation: SE(3) in the patch tokens of frozen encoders</h2>
                 <p>When a camera moves, some of the change in a vision model's representation follows directly from geometry. I study how much of that change can be computed by resampling the patch-token field, with no learned motion predictor.</p>
                 <p>The experiments compare geometric transport with learned predictors, examine transfer to new scenes and sensitivity to pose errors, and show how mean pooling can hide spatial structure that remains useful for prediction.</p>
@@ -103,7 +97,7 @@
             </article>
 
             <article class="research-entry" id="relatedness">
-                <span class="status-label">03 / Self-supervised learning · NeurReps 2026 workshop work · revised manuscript</span>
+                <span class="status-label">Self-supervised learning · NeurReps 2026 workshop work · revised manuscript</span>
                 <h2>Reading Relatedness and Hierarchy from Frozen Representations</h2>
                 <p>Which relationships can we read from frozen representations, and at what resolution? This project compares pairwise relatedness, local quartet agreement, and exact reference splits across text, speech, proteins, vision, and single-cell data.</p>
                 <p>Reconstructed trees recover a minority of the specified splits in the four larger populations, yet retain substantial quartet agreement. Low exact split recovery therefore does not establish that hierarchical information is absent.</p>
@@ -116,7 +110,7 @@
             </article>
 
             <article class="research-entry" id="synthetic-code">
-                <span class="status-label">04 / Model behavior &amp; measurement · manuscript under review</span>
+                <span class="status-label">Model behavior &amp; measurement · manuscript under review</span>
                 <h2>What Transfers through Synthetic Code? Separating Security, Style, and Provenance</h2>
                 <p>A teacher model generates code; other models learn from it. If the students inherit both output style and security behavior, which measurements establish a behavioral change, and which simply identify their common origin?</p>
                 <p>This study compares human annotation, automated security scorers, corpus statistics, and activation probes. The current artifact audit examines output censoring, generation length, and shared model lineage as explanations that the measurements must distinguish.</p>
@@ -128,14 +122,14 @@
             </article>
 
             <article class="research-entry" id="replay">
-                <span class="status-label">05 / Offline reinforcement learning · ICML 2026 DEMO workshop</span>
+                <span class="status-label">Offline reinforcement learning · ICML 2026 DEMO workshop</span>
                 <h2>Spectral Perturbation Bounds for Experience Replay: A Bias–Variance Decomposition for Offline Decision-Making</h2>
                 <p>More diverse offline data can improve statistical efficiency while increasing the mismatch between the policies that collected it. This paper studies that trade-off through mixture Markov kernels and the environment's mixing properties, with a theoretical decomposition and synthetic-MDP experiments.</p>
                 <p class="entry-links text-link"><a href="assets/papers/experience-replay-spectral-bounds.pdf">Read paper (PDF) →</a> · <a href="assets/papers/experience-replay-spectral-bounds.pdf" download>Download PDF ↓</a> · <a href="https://openreview.net/forum?id=9suIaAdex2">OpenReview ↗</a></p>
             </article>
 
             <article class="research-entry" id="certgap">
-                <span class="status-label">06 / Reinforcement-learning diagnostics · research manuscript</span>
+                <span class="status-label">Reinforcement-learning diagnostics · research manuscript</span>
                 <h2>The Bellman Residual Is Not the Improvement Signal</h2>
                 <p>Does a smaller value-function error tell us that the next policy update will help? CertGap investigates the gap between fitting a critic and improving a policy, combining theoretical analysis with logged updates from PPO, SAC, and TRPO.</p>
                 <p>The project compares the Bellman residual with diagnostics based on start-state critic bias. These are measurements of policy updates; establishing a useful diagnostic is a separate question from building a better policy-improvement algorithm.</p>
@@ -151,7 +145,7 @@
             </article>
 
             <article class="research-entry" id="self">
-                <span class="status-label">07 / Human–AI interaction · 2026 manuscript</span>
+                <span class="status-label">Human–AI interaction · 2026 manuscript</span>
                 <h2>Delegation, Ownership, and the Boundaries of the Self in AI-Assisted Programming</h2>
                 <p>What happens when a tool begins producing work that its user did not specify in detail? This paper distinguishes delegation from familiar forms of tool use and examines how felt capability, knowledge of one's abilities, and credited authorship can come apart.</p>
                 <p>It brings that conceptual argument into contact with a study of AI co-authorship attestations in public commits. The attestation data measure a changing convention of credit; the proposed account of ownership remains a question for further study.</p>
@@ -159,13 +153,13 @@
             </article>
 
             <section class="section" aria-labelledby="research-contact-title">
-                <h2 id="research-contact-title">The organism accepts correspondence</h2>
-                <p style="margin-top: 16px">I'm looking for research and research engineering opportunities in world models, reinforcement learning, and multi-agent learning. For experiment details, collaborations, or an unusually good objection, <a href="mailto:saket.s.atreya@gmail.com">email me</a> or <a href="assets/saket-atreya-cv.pdf">read my CV</a>. The less formal versions of these interests live in the <a href="index.html#writing">essays</a>.</p>
+                <h2 id="research-contact-title">Get in touch</h2>
+                <p>I'm looking for research and research engineering opportunities in world models, reinforcement learning, and multi-agent learning. For experiment details, collaborations, or an unusually good objection, <a href="mailto:saket.s.atreya@gmail.com">email me</a> or <a href="assets/saket-atreya-cv.pdf">read my CV</a>. The less formal versions of these interests live in the <a href="index.html#writing">essays</a>.</p>
             </section>
         </main>
         <footer class="site-footer">
-            <span>All hypotheses enter voluntarily. Some leave as footnotes.</span>
-            <a href="index.html">← Back to the index</a>
+            <p>No analytics. No tracking cookies.</p>
+            <div class="footer-links"><a href="feed.xml">RSS</a><a href="https://github.com/saketatreya/inhumansystems">Source</a><button class="cursor-toggle text-button" type="button" hidden>Use ordinary cursor</button><a href="#top">↑ Top</a></div>
         </footer>
     </div>
 </body>

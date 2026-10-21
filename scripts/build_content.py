@@ -39,6 +39,8 @@ def load_entries():
         datetime.strptime(entry["date"], "%Y-%m-%d")
         if not entry["title"] or not isinstance(entry.get("tags", []), list):
             raise ValueError(f"Invalid metadata: {filename}")
+        if "summary" in entry and (not isinstance(entry["summary"], str) or not entry["summary"].strip()):
+            raise ValueError(f"Invalid homepage summary: {filename}")
         if not (ROOT / "writings" / filename).is_file():
             raise ValueError(f"Missing writing: {filename}")
     return sorted(entries, key=lambda entry: entry["date"], reverse=True)
@@ -49,12 +51,14 @@ def make_index(entries):
     for entry in entries:
         link = "writing.html?" + urlencode({"f": entry["file"]})
         tags = "".join(f"<span>{escape(tag)}</span>" for tag in entry.get("tags", []))
-        items.append(f'''                    <li>
+        search_text = " ".join([entry["title"], entry.get("excerpt", ""), entry.get("summary", ""), *entry.get("tags", [])])
+        summary = entry.get("summary", entry.get("excerpt", ""))
+        items.append(f'''                    <li data-search="{escape(search_text, quote=True)}">
                         <div class="article-topline">
                             <h3><a href="{escape(link)}">{escape(entry["title"])}</a></h3>
                             <time class="meta" datetime="{entry["date"]}">{entry["date"]}</time>
                         </div>
-                        <p class="article-excerpt">{escape(entry.get("excerpt", ""))}</p>
+                        <p class="article-excerpt">{escape(summary)}</p>
                         <div class="tags">{tags}</div>
                     </li>''')
     return "\n".join(items)
