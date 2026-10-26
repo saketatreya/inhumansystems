@@ -1,9 +1,8 @@
 # inhuman.systems
 
-Saket Atreya's personal website: research, projects, and writing.
-
-Static HTML, CSS, and JavaScript, served directly by GitHub Pages. No package
-installation or application server is required. `CNAME` sets the existing domain.
+Saket Atreya's static website: research, projects, and writing. HTML, CSS, and
+vanilla JavaScript are served directly by GitHub Pages. There is no application
+server, package installation, framework, bundler, or build step at hosting time.
 
 ## Preview
 
@@ -11,123 +10,95 @@ installation or application server is required. `CNAME` sets the existing domain
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Open <http://localhost:8765>. Use HTTP for the preview; the essay reader fetches
-local Markdown and browsers restrict these requests under `file://`.
+Open <http://127.0.0.1:8765>. The essay reader fetches local Markdown and needs
+HTTP rather than `file://`.
 
-## Files
+## Pages and behaviour
 
-- `index.html`: introduction, all seven papers, current research, five projects, and the writing index.
-- `research.html`: current research, workshop manuscripts, scoped results, and links to available work.
-- `assets/saket-atreya-cv.pdf`: current research CV, linked from the homepage and research page.
-- `writing.html` / `writing.js`: Markdown reader, contents, math, and reading progress.
-- `style.css` / `site.js`: shared reading-page presentation, rat controls, and essay search/subject filters.
-- `home.css`: the purple page, asymmetric opening composition, and homepage presentation.
-- `assets/fonts/`: self-hosted Adwaita Mono regular/bold subsets and their SIL Open Font License.
-- `assets/vendor/`: pinned Marked and KaTeX distributions, local math fonts, and licenses.
-- `assets/rat-still.png`: the original GIF's first frame for paused and reduced-motion use.
-- `assets/rat-pointer.png`: a small native cursor derived from the original rat GIF.
-- `assets/work/`: original frames from the rollout paper, the Min-Cut Muncher screenshot, and the original knotted-rat artwork and prompt.
-- `assets/work/README.md`: sources and qualifications for the images and game.
-- `games/mincut/`: the self-contained playable game and its embedded font license.
-- `writings/manifest.json`: canonical titles, dates, excerpts, tags, essay filenames, and optional short homepage summaries.
-- `writings/*.md`: essay bodies with their existing frontmatter.
-- `feed.xml`: RSS summaries generated from the manifest.
+- `index.html`: the corporation's homepage, interactive org chart, research,
+  manifest-based press releases, products, investor relations, board minutes,
+  testimonials, leadership, guestbook, and observation report. The plain text
+  index is real HTML and remains readable without JavaScript.
+- `writing.html?f=<file>.md`: the memo archive and essay reader. Metadata and
+  adjacent memo links use `writings/manifest.json` in its existing order. Only
+  files in that manifest can be loaded. The original Markdown body is rendered
+  with the existing locally pinned Marked 15.0.7 and KaTeX 0.16.11. Redaction is
+  confined to the memo's CC and CLEARANCE fields. The raw attachment and
+  `#heading-N` links remain available.
+- `certificate.html?n=&t=&r=&f=&d=`: name, time, rats, employees fired, and issue
+  date from the report. Print CSS produces one landscape page, 11 × 8.5 inches.
+- `research.html`: the existing research content and anchors in the shared shell.
+- `preferences.js`: loads stored palette, cursor, and playback preferences before
+  first paint. `site.js` handles those controls, rat sightings, and certificates.
+- `home.js`: the homepage interactions and live report. Mouse positions, hover
+  durations, clicks, and report values stay in memory in the visitor's browser;
+  they are never sent to a server. Guestbook entries and preferences stay in
+  that browser's localStorage. Storage being unavailable does not block use.
+- `style.css`: the approved desktop design and responsive rules. The sheet is
+  880px wide on desktop; narrow viewports reflow, with the org chart scrolling
+  inside its own region. Dark mode preserves image and green terminal colours
+  and uses a separate dark tiled background.
 
-The homepage and research page work without JavaScript. The formatted essay
-reader uses locally served Marked 15.0.7 and KaTeX 0.16.11. Rendering requires
-no third-party requests; all scripts, styles, images, and fonts are served here.
-It only renders files in the manifest, retains `writing.html?f=...` URLs and
-`#heading-N` section anchors, and offers plain Markdown when formatting is
-unavailable. These are author-controlled Markdown files, not an untrusted-content
-publishing service.
+The wordmark uses Archivo Black from Google Fonts. Other text uses system
+Times New Roman, Arial, Courier New, Verdana, and Tahoma stacks. The local
+KaTeX math fonts remain part of the Markdown renderer.
 
-The original rat GIF appears at its natural proportions beside the wordmark,
-in its own space clear of text and links. Its pause/play control is in the footer. On devices
-with a fine pointer, the rat is the actual native CSS cursor, with its nose at
-the click point. The footer can restore the ordinary cursor. Cursor and animation
-preferences stay in local storage when storage is available. Reduced motion
-shows still rat images, including without JavaScript. The cursor itself is
-static, and touch devices keep their native behavior. No analytics or tracking
-scripts are used.
+`games/`, `assets/papers/`, `feed.xml`, and essay Markdown retain their existing
+content. Asset provenance is in `assets/work/README.md`; vendor licenses remain
+beside their distributions.
 
-## Design and checks
+## Update essays
 
-The homepage uses a flat purple background, dark ink, a large monospace
-wordmark, and underlined links. A paper-colored research index opens beside
-an oversized static image of a knotted rat and the introduction. The artwork
-is deliberately unexplained on the page. Writing follows as a broad index
-with the author's *Latent Space* excerpt; projects have a separate layout
-with the original playable game and its screenshot.
+Edit `writings/manifest.json` for title, date, excerpt, tags, and filename. The
+manifest is the source for Press Releases, the org chart's Press Office, the
+plain index, the reader sidebar, metadata, and adjacent memo links. It is not
+re-sorted by the site.
 
-The desktop composition is 1160px wide. At 720px and below it becomes a
-document with a compact image/introduction, then the research index. Direct
-section links stay near the top. The mobile wordmark wraps onto two lines.
-Publication statuses and links remain visible at every size; repeated paper
-summaries are hidden on small screens. The static artwork adds no scripts
-or animation; its lossless WebP preserves the generated image's transparency.
+Refresh the checked-in static lists after a manifest change:
 
-The research archive and essay reader retain their dark backgrounds, 704px reading
-columns, and 18px text. Reduced
-motion selects a still rat through a native picture source even without
-JavaScript.
+```sh
+python3 scripts/build_content.py
+```
 
-Min-Cut Muncher is served locally at `games/mincut/`. Its original engine and
-controls are retained; a return link and source link connect it to the site.
+This is a maintainer command, not a hosting requirement. It uses the small
+approved HTML row templates in `scripts/templates/` and does not rewrite RSS
+or Markdown. Research and project content is maintained in the static pages.
 
-The homepage lists all current work: ongoing research, seven papers, six essays,
-and five projects. Short writing excerpts come from the optional `summary`
-manifest field; entries without it use `excerpt`. RSS and the reader metadata
-continue to use the original excerpts. Search and subject filters are inside
-the native “Find an essay” disclosure. Search includes the original full titles,
-excerpts, displayed summaries, and tags via `data-search`; shortening the visible
-copy does not reduce what can be found. Full tags remain visible in the reader.
-
-When changing the design, check the homepage, research archive, and a technical
-essay at 320, 375, 720, 721, 1024, 1100, and 1440px, and at 200% zoom. Check
-combined search/subject filters,
-empty results and reset, all local PDF links, math and scrollable tables, keyboard
-focus, native cursor and rat preferences, live reduced-motion changes, touch, and JavaScript-disabled
-fallbacks. Check game start, pause, x-ray, and return navigation on desktop and
-touch. The pages should make no third-party requests. Keep the existing reader
-URLs, research anchors, RSS, and paper paths stable.
-
-## Update the writing
-
-1. Add the Markdown file under `writings/`.
-2. Add its metadata to `writings/manifest.json` and keep its frontmatter consistent.
-   An optional `summary` supplies a short excerpt for the homepage; prefer the
-   author’s wording and retain the full `excerpt` for RSS, search, and reader metadata.
-3. Regenerate the homepage list, the reader's no-JavaScript fallback, and RSS:
-
-   ```sh
-   python3 scripts/build_content.py
-   ```
-
-4. Commit the generated files alongside the source. There is no build step at
-   hosting time.
-
-Check the generated artifacts and scripts locally:
+## Check changes
 
 ```sh
 python3 scripts/build_content.py --check
+python3 scripts/check_links.py
+node --check preferences.js
 node --check site.js
+node --check home.js
 node --check writing.js
 git diff --check
 ```
 
-Edit biography, project, and research descriptions directly in the HTML. Use
-“manuscript” for work whose publication status is not established, and distinguish
-early public experiment records from later manuscripts. Retain the existing
-essay dates unless the author corrects them.
+The browser suite uses optional development tools installed outside the site:
 
-## Research updates
+```sh
+python3 -m venv /tmp/inhuman-tools
+/tmp/inhuman-tools/bin/pip install playwright pypdf
+/tmp/inhuman-tools/bin/python -m playwright install chromium
+/tmp/inhuman-tools/bin/python scripts/check_browser.py
+```
 
-Research summaries were checked against the current local manuscripts on 14 October
-2026. When updating, retain the distinction between the rotation warp (10/15
-comparisons) and fixed-depth plane warp (15/15), and between exact split recovery
-and graded hierarchical agreement. Public language-analysis repositories predate
-the five-domain hierarchy manuscript. Keep manuscript/workshop status explicit;
-do not infer acceptance from a manuscript template or venue name.
+Run the local HTTP server first. The suite checks all interactions, all six
+essays and their metadata/navigation, math and tables, light/dark palettes,
+1280px/390px layouts, local persistence, no-JavaScript links, console errors,
+and certificate printing. Screenshots and PDFs go to `/tmp/inhuman-review` by
+default; use `--artifacts` to choose another directory. The PDFs should each
+contain one 792 × 612 point page.
 
-Replace `assets/saket-atreya-cv.pdf` when the vetted research CV changes. Keep the
-HTML update dates and the CV consistent.
+## Hosting and release
+
+The GitHub Pages API confirms that `saketatreya/inhumansystems` publishes the
+repository root on branch `master`, using the built-in `pages-build-deployment`
+workflow. `CNAME` specifies `inhuman.systems`; `.nojekyll` permits direct static
+serving. There is no checked-in deployment workflow or separate build command.
+
+Work on a branch and review the diff and screenshots before merging. A push to
+`master` triggers the existing Pages deployment. Check its result in the
+repository's Actions tab, then verify the live homepage, a memo, and certificate.

@@ -1,221 +1,719 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html data-theme="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saket Atreya — inhuman.systems</title>
-    <meta name="description" content="Saket Atreya: a meat computer working on world models, reinforcement learning, and representation geometry. Research, software, and writing on intelligence and power.">
-    <link rel="canonical" href="https://inhuman.systems/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Saket Atreya — inhuman.systems">
-    <meta property="og:description" content="Saket Atreya’s research, software, and writing.">
-    <meta property="og:url" content="https://inhuman.systems/">
-    <meta name="theme-color" content="#190f24">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="alternate" type="application/rss+xml" title="inhuman.systems — writing" href="feed.xml">
-    <link rel="preload" href="assets/fonts/adwaita-mono-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="home.css">
-    <script defer src="site.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>inhuman.systems</title>
+<meta content="Saket Atreya — inhuman.systems" name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="feed.xml" rel="alternate" title="inhuman.systems" type="application/rss+xml"/>
+<script src="preferences.js"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="site.js"></script>
+<script defer="" src="home.js"></script>
 </head>
-<body id="top" class="home-page">
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="site-shell">
-        <header class="home-header">
-            <div class="byline"><span>Saket Atreya</span></div>
-            <div class="header-links"><a href="mailto:saket.s.atreya@gmail.com">Email</a><a href="assets/saket-atreya-cv.pdf">CV [pdf]</a><a href="https://github.com/saketatreya">GitHub</a><a href="feed.xml">RSS</a></div>
-        </header>
-        <div class="masthead">
-            <h1><span>inhuman.</span><span>systems</span></h1>
-            <picture class="resident-rat">
-                <source media="(prefers-reduced-motion: reduce)" srcset="assets/rat-still.png">
-                <img class="rat-mascot" src="writings/rat__3.gif" width="200" height="200" alt="A spinning rat">
-            </picture>
-        </div>
-        <nav class="site-nav" aria-label="Main navigation">
-            <a href="#research">Research</a><a href="#writing">Writing</a><a href="#projects">Projects</a><a href="#about">About</a>
-        </nav>
-        <main id="main">
-            <div class="work-grid">
-                <div class="introduction">
-                    <div class="body-plate">
-                        <p class="meat-label"><span class="meat-word">meat</span> <span class="computer-word">computer</span></p>
-                        <img class="knotted-rat" src="assets/work/rat-knot.webp" width="1536" height="1024" alt="A long grey rat whose body is tied in a loose, impossible knot">
-                    </div>
-                    <div class="intro-copy">
-                        <p>I’m Saket. I work on world models, reinforcement learning, and representation geometry.</p>
-                        <p class="affiliation">Research intern at Lossfunk.<br>CS at IIIT Hyderabad.</p>
-                    </div>
-                </div>
-                <section id="research" class="research-section" aria-labelledby="research-title">
-                    <div class="section-heading"><h2 id="research-title">Research</h2><a href="research.html">Full archive →</a></div>
-                    <figure class="research-figure">
-                        <a class="frame-strip" href="research.html#world-models" aria-label="Read the world-model rollout audit">
-                            <span><img src="assets/work/rollout-000.png" width="188" height="188" alt="Recorded outdoor scene at eight seconds"><span>Recorded</span></span>
-                            <span><img src="assets/work/rollout-001.png" width="188" height="188" alt="One-call prediction inventing a paved path"><span>1 call</span></span>
-                            <span><img src="assets/work/rollout-002.png" width="188" height="188" alt="Eight-call prediction inventing a building"><span>8 calls</span></span>
-                            <span><img src="assets/work/rollout-003.png" width="188" height="188" alt="Thirty-two-call prediction of the same moment"><span>32 calls</span></span>
-                        </a>
-                        <figcaption>One clip, the same 8-second endpoint. From the <a href="assets/papers/world-model-rollout-audit.pdf#page=7">rollout audit, fig. 3</a>. The recorded frame uses a different display crop.</figcaption>
-                    </figure>
-                    <div class="current-research">
-                        <span class="status-label">Currently at Lossfunk</span>
-                        <h3><a href="research.html#residual-dynamics">Compute camera motion.<br>Learn what’s left.</a></h3>
-                        <p>Analytical camera motion and learned residual dynamics on frozen vision encoders. <a href="research.html#residual-dynamics">Experiments &amp; scope →</a></p>
-                    </div>
-                    <ul class="research-list">
-                        <li>
-                            <h3><a href="research.html#world-models">What does rollout error actually measure?</a></h3>
-                            <p>Separating command error, chaining cost, and one-call error in video world models.</p>
-                            <div class="entry-meta"><span>2026 manuscript</span><a href="assets/papers/world-model-rollout-audit.pdf">PDF</a></div>
-                        </li>
-                        <li>
-                            <h3><a href="research.html#transport">Readout is not generation</a></h3>
-                            <p>Camera geometry in the patch tokens of frozen vision encoders.</p>
-                            <div class="entry-meta"><span>NeurReps 2026 workshop manuscript</span><a href="assets/papers/frozen-encoder-geometry.pdf">PDF</a></div>
-                        </li>
-                        <li>
-                            <h3><a href="research.html#relatedness">Reading relatedness and hierarchy</a></h3>
-                            <p>What frozen representations reveal about hierarchy across five modalities.</p>
-                            <div class="entry-meta"><span>NeurReps 2026 workshop work · revised manuscript</span><a href="assets/papers/relatedness-and-hierarchy.pdf">PDF</a></div>
-                        </li>
-                        <li>
-                            <h3><a href="research.html#synthetic-code">What transfers through synthetic code?</a></h3>
-                            <p>Separating security behavior, style, and provenance in teacher-generated code.</p>
-                            <div class="entry-meta"><span>Manuscript under review</span><a href="assets/papers/synthetic-code-transfer.pdf">PDF</a></div>
-                        </li>
-                        <li>
-                            <h3><a href="research.html#replay">Spectral perturbation bounds for experience replay</a></h3>
-                            <p>Data diversity, environment mixing, and a bias–variance view of offline learning.</p>
-                            <div class="entry-meta"><span>ICML 2026 DEMO workshop</span><a href="assets/papers/experience-replay-spectral-bounds.pdf">PDF</a></div>
-                        </li>
-                        <li>
-                            <h3><a href="research.html#certgap">The Bellman residual is not the improvement signal</a></h3>
-                            <p>The gap between fitting a critic and improving a policy.</p>
-                            <div class="entry-meta"><span>Research manuscript</span><a href="assets/papers/bellman-residual-improvement.pdf">PDF</a><a href="https://github.com/saketatreya/CertGap">Code</a></div>
-                        </li>
-                        <li>
-                            <h3><a href="research.html#self">Delegation, ownership, and the boundaries of the self</a></h3>
-                            <p>Capability, authorship, and self-knowledge in AI-assisted programming.</p>
-                            <div class="entry-meta"><span>2026 manuscript</span><a href="assets/papers/delegation-and-self.pdf">PDF</a></div>
-                        </li>
-                    </ul>
-                </section>
-                <section id="writing" class="writing-section" aria-labelledby="writing-title">
-                    <div class="section-heading"><h2 id="writing-title">Writing</h2><a href="feed.xml">RSS →</a></div>
-                    <div class="writing-intro">
-                        <figure class="writing-fragment">
-                            <blockquote>In the latent space, <br>there are no individuals. <br><em>Only vectors.</em></blockquote>
-                            <figcaption><a href="writing.html?f=latent-space.md">Latent Space ↗</a></figcaption>
-                        </figure>
-                    <details class="writing-tools" hidden>
-                        <summary>Find an essay</summary>
-                        <label for="writing-search">Title, idea, or tag</label>
-                        <input id="writing-search" type="search" autocomplete="off" aria-controls="article-list">
-                        <div class="writing-filters" role="group" aria-label="Filter essays by subject">
-                            <button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="machines" aria-pressed="false">Machines</button><button type="button" data-filter="power" aria-pressed="false">Power</button><button type="button" data-filter="philosophy" aria-pressed="false">Philosophy</button>
-                        </div>
-                        <p id="filter-status" class="filter-status meta" role="status" aria-live="polite"></p>
-                    </details>
-                    </div>
-                    <ul class="article-list" id="article-list">
-                    <!-- WRITINGS:START -->
-                    <li data-search="Hindutva and the Production of Hyperreal Hinduism We must understand Hindutva as a productive apparatus that generates mythology, and that this mythology is self-propagating not because it corresponds to reality but because it creates feedback loops connecting institutional practice, affective investment, territorial violence, and electoral calculation. The conventional explanation, that the BJP mobilized latent Hindu majoritarian sentiment explains nothing. mythology politics religion hyperreality caste">
-                        <div class="article-topline">
-                            <h3><a href="writing.html?f=hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a></h3>
-                            <time class="meta" datetime="2026-03-12">2026-03-12</time>
-                        </div>
-                        <p class="article-excerpt">The conventional explanation, that the BJP mobilized latent Hindu majoritarian sentiment explains nothing.</p>
-                        <div class="tags"><span>mythology</span><span>politics</span><span>religion</span><span>hyperreality</span><span>caste</span></div>
-                    </li>
-                    <li data-search="Solving Pokémon as a POMDP A technical deep-dive into building a Gen 9 Random Battle agent that learns from nothing but wins and losses through Bayesian Belief Tracking, Observation Engineering, and Pure RL A Gen 9 Random Battle agent that learns from nothing but wins and losses. pokemon AI RL dev">
-                        <div class="article-topline">
-                            <h3><a href="writing.html?f=pokemon-rl.md">Solving Pokémon as a POMDP</a></h3>
-                            <time class="meta" datetime="2026-02-15">2026-02-15</time>
-                        </div>
-                        <p class="article-excerpt">A Gen 9 Random Battle agent that learns from nothing but wins and losses.</p>
-                        <div class="tags"><span>pokemon</span><span>AI</span><span>RL</span><span>dev</span></div>
-                    </li>
-                    <li data-search="The Wrong Unit of Analysis Why Intelligence Requires a Differential Field The dominant paradigm in AI development shares an assumption so foundational it is almost never examined: that intelligence is a property of a single system. AI RL intelligence philosophy deleuze">
-                        <div class="article-topline">
-                            <h3><a href="writing.html?f=multiagent-intelligence.md">The Wrong Unit of Analysis</a></h3>
-                            <time class="meta" datetime="2026-01-25">2026-01-25</time>
-                        </div>
-                        <p class="article-excerpt">The dominant paradigm in AI development shares an assumption so foundational it is almost never examined: that intelligence is a property of a single system.</p>
-                        <div class="tags"><span>AI</span><span>RL</span><span>intelligence</span><span>philosophy</span><span>deleuze</span></div>
-                    </li>
-                    <li data-search="Let Capital Win: The Case for Accelerating through Automation AI is capital&#x27;s completion project. The left has always wanted to abolish wage labor but couldn&#x27;t figure out how to abolish the necessity that made wage labor necessary. AI is capital&#x27;s completion project. accelerationism AI labor emancipation">
-                        <div class="article-topline">
-                            <h3><a href="writing.html?f=accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a></h3>
-                            <time class="meta" datetime="2026-01-15">2026-01-15</time>
-                        </div>
-                        <p class="article-excerpt">AI is capital&#x27;s completion project.</p>
-                        <div class="tags"><span>accelerationism</span><span>AI</span><span>labor</span><span>emancipation</span></div>
-                    </li>
-                    <li data-search="The Iran War Did Not Take Place (And Is Killing People) Baudrillard, Generative AI, and the Colonial Monopoly on the Real The short answer is that Baudrillard was right but not far enough. hyperreality politics generative-ai baudrillard">
-                        <div class="article-topline">
-                            <h3><a href="writing.html?f=iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a></h3>
-                            <time class="meta" datetime="2025-03-28">2025-03-28</time>
-                        </div>
-                        <p class="article-excerpt">The short answer is that Baudrillard was right but not far enough.</p>
-                        <div class="tags"><span>hyperreality</span><span>politics</span><span>generative-ai</span><span>baudrillard</span></div>
-                    </li>
-                    <li data-search="Latent Space In the latent space, there are no individuals. Only vectors. Directions through an impossibly high-dimensional manifold where meaning itself becomes geometry. The meaning is the neighborhood. embeddings identity pattern AI">
-                        <div class="article-topline">
-                            <h3><a href="writing.html?f=latent-space.md">Latent Space</a></h3>
-                            <time class="meta" datetime="2025-02-20">2025-02-20</time>
-                        </div>
-                        <p class="article-excerpt">The meaning is the neighborhood.</p>
-                        <div class="tags"><span>embeddings</span><span>identity</span><span>pattern</span><span>AI</span></div>
-                    </li>
-                    <!-- WRITINGS:END -->
-                    </ul>
-                    <div class="empty-message" id="no-writings" hidden><p>No essays match this search.</p><button class="text-button" id="clear-search" type="button">Clear search &amp; show all essays</button></div>
-                </section>
-            <section id="projects" class="projects-section" aria-labelledby="projects-title">
-                <div class="section-heading"><h2 id="projects-title">Things I’ve made</h2><a href="https://github.com/saketatreya">GitHub →</a></div>
-                <div class="project-layout">
-                    <figure class="game-figure">
-                        <a href="games/mincut/" aria-label="Play Min-Cut Muncher"><img src="assets/work/mincut-cordon.png" width="840" height="840" alt="Four ghosts form a minimum cut around Pac-Man" loading="lazy"></a>
-                        <figcaption><a href="games/mincut/">Min-Cut Muncher</a><span>The ghosts run Dinic’s algorithm to cut off your escape.</span><span class="game-links"><a href="games/mincut/">Play →</a><a href="https://github.com/saketatreya/mincut-pacman">Code</a></span></figcaption>
-                    </figure>
-                    <ul class="project-list">
-                        <li>
-                            <div class="project-name"><h3><a href="https://github.com/saketatreya/RICH">RICH</a></h3><span class="meta">Software agents</span></div>
-                            <div><p>Software agents with explicit contracts, independent checks, and resumable execution.</p></div>
-                            <div class="project-links"><a href="https://github.com/saketatreya/RICH">Code</a></div>
-                        </li>
-                        <li>
-                            <div class="project-name"><h3><a href="https://github.com/saketatreya/showdownRL">Pokémon RL</a></h3><span class="meta">Reinforcement learning</span></div>
-                            <div><p>Recurrent PPO, belief tracking, and self-play in Gen 9 Random Battles.</p></div>
-                            <div class="project-links"><a href="https://github.com/saketatreya/showdownRL">Code</a><a href="writing.html?f=pokemon-rl.md">Write-up</a></div>
-                        </li>
-                        <li>
-                            <div class="project-name"><h3><a href="https://github.com/saketatreya/oksh">oksh</a></h3><span class="meta">C / Unix</span></div>
-                            <p>A C shell with process control, signals, redirection, and job management.</p>
-                            <div class="project-links"><a href="https://github.com/saketatreya/oksh">Code</a></div>
-                        </li>
-                        <li>
-                            <div class="project-name"><h3>Daybook</h3><span class="meta">Personal tool / Python</span></div>
-                            <p>A personal study planner connecting mathematics, papers, courses, and time.</p>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            </div>
-            <section id="about" class="about-section" aria-labelledby="about-title">
-                <h2 id="about-title">About</h2>
-                <div class="about-copy">
-                    <p>I’m interested in how behavior emerges from structure: learning systems, economic incentives, political power. Cybernetics, political economy, philosophy, and the internet.</p>
-                    <p>I’m looking for research and research engineering opportunities in world models, reinforcement learning, and multi-agent learning, in the US or India. I’m authorized to work in the US without sponsorship.</p>
-                    <div id="contact" class="contact-links"><a href="mailto:saket.s.atreya@gmail.com">saket.s.atreya@gmail.com</a><a href="assets/saket-atreya-cv.pdf">Research CV [pdf]</a></div>
-                </div>
-            </section>
-        </main>
-        <footer class="site-footer">
-            <div class="footer-links"><a href="feed.xml">RSS</a><a href="https://github.com/saketatreya/inhumansystems">Source</a><a href="assets/work/README.md">Image credits</a></div>
-            <div class="footer-links"><button class="rat-playback text-button" type="button" hidden>Pause animation</button><button class="cursor-toggle text-button" type="button" hidden>Use ordinary cursor</button><a href="#top">↑ Top</a></div>
-        </footer>
-    </div>
+<body class="home-page" id="top">
+<a class="skip-link" href="#home-frame">Skip to content</a>
+<div class="page-background" id="site-root">
+<div class="site-frame" id="home-frame" role="main">
+<div class="d1">
+<span class="d2"><span>[<a class="d3" href="assets/saket-atreya-cv.pdf">CV</a>]</span><span>[<a class="d3" href="mailto:saket.s.atreya@gmail.com">Email</a>]</span><span>[<a class="d3" href="https://github.com/saketatreya">GitHub</a>]</span><span>[<a class="d3" href="feed.xml">RSS</a>]</span><span>[<button class="d4" data-action="toggleDark" type="button"><span data-text="darkLabel">Dark mode</span></button>]</span></span>
+<span class="d5"><span class="d6">Rats sighted: <span data-text="ratsSeen">0</span></span><span class="d7">Search:</span><input aria-label="Search" class="d8" data-model="q3" value=""/><button class="d9" data-action="dt3Go" type="button">Submit Query</button></span>
+</div>
+<div class="conditional" data-show="dt3Top" hidden="">
+<div aria-label="Deep Thought" class="popup d10" role="dialog" tabindex="-1">
+<div class="d11"><span>Deep Thought</span><button aria-label="Close" class="d12" data-action="dt3Close" type="button">×</button></div>
+<div class="d13">
+<div>Searching for: <b><span data-text="dt3Query">Life, the Universe and Everything</span></b></div>
+<div class="conditional" data-show="dt3Run" hidden=""><div class="d14"><div class="d15" data-style-dt3pct="dt3Pct"></div></div><div class="d16">Estimated time remaining: <span data-text="dt3Years">7,500,000</span> years</div></div>
+<div class="conditional" data-show="dt3Warn" hidden=""><div class="d17">You’re not going to like it.</div></div>
+<div class="conditional" data-show="dt3Done" hidden=""><div class="d18"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div><div class="d19">Questions still under computation:</div><div class="d20">[<a class="d21" href="research.html#world-models">What does rollout error actually measure?</a>]</div><div class="d20">[<a class="d21" href="research.html#synthetic-code">What transfers through synthetic code?</a>]</div></div>
+<div class="conditional" data-show="dt3Annoyed" hidden=""><div class="d17"><span data-text="dt3Msg"></span></div><div class="conditional" data-show="dt3Show42"><div class="d18"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div></div></div>
+<div class="d22"><button class="d23" data-action="dt3Close" type="button">OK</button></div>
+</div></div>
+</div>
+<div class="d24">
+<div aria-level="1" class="d25" role="heading">
+<span aria-hidden="true" class="d26">INHUMAN SYSTEMS</span><span class="d27">INHUMAN SYSTEMS</span><sup class="d28">™</sup><img alt="" class="d29" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+</div>
+<div class="d30">AI is capital’s completion project.</div>
+<div class="d31" data-slot="0"></div>
+</div>
+<div class="d32">
+<span>[<a class="d21" href="#s3-chart">Corporate Structure</a>]</span><span>[<a class="d21" href="#s3-research">Research</a>]</span><span>[<a class="d21" href="#s3-press">Press Releases</a>]</span><span>[<a class="d21" href="#s3-products">Products</a>]</span><span>[<a class="d21" href="#s3-ir">Investor Relations</a>]</span><span>[<a class="d21" href="#s3-leadership">Leadership</a>]</span><span>[<a class="d21" href="#s3-guestbook">Guestbook</a>]</span>
+<button class="d33" data-action="togE" type="button">DON’T PANIC</button>
+</div>
+<div class="d34">
+<div aria-level="2" class="d35" id="s3-chart" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>CORPORATE STRUCTURE</div>
+<div aria-label="Corporate Structure" class="org-scroll" role="region" tabindex="0"><div class="org-chart d37">
+<div class="d38">
+<div class="conditional" data-show="moreAvail3"><div class="d38"><button class="d39" data-action="moreMg3" type="button">[▲ Show management above this level]</button><div class="d40"></div></div></div>
+<div class="management-level" data-management="6" hidden="">
+<div class="d38">
+<div class="conditional" data-show="mgmt3.0.isCo" hidden=""><div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (<span data-text="mgmt3.0.year"></span>)</div><div class="d43">Parent company</div></div></div>
+<div class="conditional" data-show="mgmt3.0.isIntern"><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d46" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern, Research Division [<a class="d21" href="#s3-intern">↓</a>]</div></div></div></div></div>
+<div class="d48"></div>
+</div>
+</div><div class="management-level" data-management="5" hidden="">
+<div class="d38">
+<div class="conditional" data-show="mgmt3.1.isCo"><div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (<span data-text="mgmt3.1.year">3054</span>)</div><div class="d43">Parent company</div></div></div>
+<div class="conditional" data-show="mgmt3.1.isIntern" hidden=""><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d46" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern, Research Division [<a class="d21" href="#s3-intern">↓</a>]</div></div></div></div></div>
+<div class="d48"></div>
+</div>
+</div><div class="management-level" data-management="4" hidden="">
+<div class="d38">
+<div class="conditional" data-show="mgmt3.2.isCo"><div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (<span data-text="mgmt3.2.year">2526</span>)</div><div class="d43">Parent company</div></div></div>
+<div class="conditional" data-show="mgmt3.2.isIntern" hidden=""><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d46" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern, Research Division [<a class="d21" href="#s3-intern">↓</a>]</div></div></div></div></div>
+<div class="d48"></div>
+</div>
+</div><div class="management-level" data-management="3" hidden="">
+<div class="d38">
+<div class="conditional" data-show="mgmt3.3.isCo"><div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (<span data-text="mgmt3.3.year">2262</span>)</div><div class="d43">Parent company</div></div></div>
+<div class="conditional" data-show="mgmt3.3.isIntern" hidden=""><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d46" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern, Research Division [<a class="d21" href="#s3-intern">↓</a>]</div></div></div></div></div>
+<div class="d48"></div>
+</div>
+</div><div class="management-level" data-management="2" hidden="">
+<div class="d38">
+<div class="conditional" data-show="mgmt3.4.isCo"><div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (<span data-text="mgmt3.4.year">2130</span>)</div><div class="d43">Parent company</div></div></div>
+<div class="conditional" data-show="mgmt3.4.isIntern" hidden=""><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d46" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern, Research Division [<a class="d21" href="#s3-intern">↓</a>]</div></div></div></div></div>
+<div class="d48"></div>
+</div>
+</div><div class="management-level" data-management="1" hidden="">
+<div class="d38">
+<div class="conditional" data-show="mgmt3.5.isCo"><div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (<span data-text="mgmt3.5.year">2064</span>)</div><div class="d43">Parent company</div></div></div>
+<div class="conditional" data-show="mgmt3.5.isIntern" hidden=""><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d46" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern, Research Division [<a class="d21" href="#s3-intern">↓</a>]</div></div></div></div></div>
+<div class="d48"></div>
+</div>
+</div>
+<div class="d41" title="Reports to: The Rat"><div class="d42">Inhuman Systems (2031)</div><div class="d43">Parent company</div></div>
+<div class="d48"></div>
+<div class="d49">
+<div class="d50" title="Reports to: The Rat"><img alt="The Rat" class="d51" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d52">The Rat</div><div class="d43">Chairman &amp; CEO</div></div>
+<div class="d53" data-slot="1"></div>
+</div>
+<div class="d48"></div>
+<div class="d54" title="Reports to: The Rat">
+<div class="conditional" data-show="sk.alive"><div class="d55">Saket Atreya</div><div class="d56"><span class="d43">Meat computer</span><button class="d57" data-action="sk.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="sk.fired" hidden=""><div class="d45"><img alt="The Rat" class="d58" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Meat computer (rehired)</div></div></div></div>
+</div>
+<div class="d48"></div>
+</div>
+<div class="d59"><div class="d60"></div><img alt="" class="d61" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d62">
+<div><div class="d63"></div>
+<a class="d64" href="#s3-research" title="Reports to: The Rat"><div class="d42">Research Division</div><div class="d43">Head: The Rat</div></a>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.0.alive"><a class="d69" href="research.html#world-models">What does rollout error actually measure?</a><div class="d70"><span class="d43">2026 manuscript</span><button class="d57" data-action="cPapers.0.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.0.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2026 manuscript (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.1.alive"><a class="d69" href="research.html#transport">Readout is not generation</a><div class="d70"><span class="d43">NeurReps 2026 workshop manuscript</span><button class="d57" data-action="cPapers.1.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.1.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">NeurReps 2026 workshop manuscript (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.2.alive"><a class="d69" href="research.html#relatedness">Reading relatedness and hierarchy</a><div class="d70"><span class="d43">NeurReps 2026 workshop work · revised manuscript</span><button class="d57" data-action="cPapers.2.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.2.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">NeurReps 2026 workshop work · revised manuscript (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.3.alive"><a class="d69" href="research.html#synthetic-code">What transfers through synthetic code?</a><div class="d70"><span class="d43">Manuscript under review</span><button class="d57" data-action="cPapers.3.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.3.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Manuscript under review (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.4.alive"><a class="d69" href="research.html#replay">Spectral perturbation bounds for experience replay</a><div class="d70"><span class="d43">ICML 2026 DEMO workshop</span><button class="d57" data-action="cPapers.4.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.4.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">ICML 2026 DEMO workshop (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.5.alive"><a class="d69" href="research.html#certgap">The Bellman residual is not the improvement signal</a><div class="d70"><span class="d43">Research manuscript</span><button class="d57" data-action="cPapers.5.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.5.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Research manuscript (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cPapers.6.alive"><a class="d69" href="research.html#self">Delegation, ownership, and the boundaries of the self</a><div class="d70"><span class="d43">2026 manuscript</span><button class="d57" data-action="cPapers.6.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cPapers.6.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2026 manuscript (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65" id="s3-intern"><div class="d49"><div class="d72"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d73" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern</div></div></div></div></div>
+</div></div>
+<div><div class="d63"></div>
+<a class="d64" href="#s3-press" title="Reports to: The Rat"><div class="d42">Press Office</div><div class="d43">Head: The Rat</div></a><!--PRESS-OFFICE:START-->
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cEssays.0.alive"><a class="d69" href="writing.html?f=accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a><div class="d70"><span class="d43">2026-01-15</span><button class="d57" data-action="cEssays.0.fire">[fire]</button></div></div>
+<div class="conditional" data-show="cEssays.0.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2026-01-15 (rehired)</div></div></div></div>
+</div></div>
+</div>
+
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cEssays.1.alive"><a class="d69" href="writing.html?f=latent-space.md">Latent Space</a><div class="d70"><span class="d43">2025-02-20</span><button class="d57" data-action="cEssays.1.fire">[fire]</button></div></div>
+<div class="conditional" data-show="cEssays.1.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2025-02-20 (rehired)</div></div></div></div>
+</div></div>
+</div>
+
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cEssays.2.alive"><a class="d69" href="writing.html?f=hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a><div class="d70"><span class="d43">2026-03-12</span><button class="d57" data-action="cEssays.2.fire">[fire]</button></div></div>
+<div class="conditional" data-show="cEssays.2.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2026-03-12 (rehired)</div></div></div></div>
+</div></div>
+</div>
+
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cEssays.3.alive"><a class="d69" href="writing.html?f=iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a><div class="d70"><span class="d43">2025-03-28</span><button class="d57" data-action="cEssays.3.fire">[fire]</button></div></div>
+<div class="conditional" data-show="cEssays.3.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2025-03-28 (rehired)</div></div></div></div>
+</div></div>
+</div>
+
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cEssays.4.alive"><a class="d69" href="writing.html?f=pokemon-rl.md">Solving Pokémon as a POMDP</a><div class="d70"><span class="d43">2026-02-15</span><button class="d57" data-action="cEssays.4.fire">[fire]</button></div></div>
+<div class="conditional" data-show="cEssays.4.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2026-02-15 (rehired)</div></div></div></div>
+</div></div>
+</div>
+
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cEssays.5.alive"><a class="d69" href="writing.html?f=multiagent-intelligence.md">The Wrong Unit of Analysis</a><div class="d70"><span class="d43">2026-01-25</span><button class="d57" data-action="cEssays.5.fire">[fire]</button></div></div>
+<div class="conditional" data-show="cEssays.5.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">2026-01-25 (rehired)</div></div></div></div>
+</div></div>
+</div>
+<!--PRESS-OFFICE:END--><div class="d65"><div class="d49"><div class="d72"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d73" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern</div></div></div></div></div>
+</div></div>
+<div><div class="d63"></div>
+<a class="d64" href="#s3-products" title="Reports to: The Rat"><div class="d42">Products</div><div class="d43">Head: The Rat</div></a>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cProducts.0.alive"><a class="d69" href="games/mincut/">Min-Cut Muncher</a><div class="d70"><span class="d43">Game</span><button class="d57" data-action="cProducts.0.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cProducts.0.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Game (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cProducts.1.alive"><a class="d69" href="https://github.com/saketatreya/RICH">RICH</a><div class="d70"><span class="d43">Software agents</span><button class="d57" data-action="cProducts.1.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cProducts.1.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Software agents (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cProducts.2.alive"><a class="d69" href="https://github.com/saketatreya/showdownRL">Pokémon RL</a><div class="d70"><span class="d43">Reinforcement learning</span><button class="d57" data-action="cProducts.2.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cProducts.2.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Reinforcement learning (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cProducts.3.alive"><a class="d69" href="https://github.com/saketatreya/oksh">oksh</a><div class="d70"><span class="d43">C / Unix</span><button class="d57" data-action="cProducts.3.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cProducts.3.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">C / Unix (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="cProducts.4.alive"><span class="d74">Daybook</span><div class="d70"><span class="d43">Personal tool / Python</span><button class="d57" data-action="cProducts.4.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="cProducts.4.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Personal tool / Python (rehired)</div></div></div></div>
+</div></div>
+</div>
+<div class="d65"><div class="d49"><div class="d72"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d73" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern</div></div></div></div></div>
+</div></div>
+<div class="d49"><div class="d63"></div>
+<a class="d75" href="#s3-chart" title="Reports to: The Rat"><div class="d42">Department of the Question</div><div class="d43">Head: VACANT</div></a>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div><div class="d68"><div class="d44" title="Reports to: The Rat">
+<div class="conditional" data-show="dtn.alive"><div class="d76">Deep Thought</div><div class="d70"><span class="d43">Contractor · Output: 42</span><button class="d57" data-action="dtn.fire" type="button">[fire]</button></div></div>
+<div class="conditional" data-show="dtn.fired" hidden=""><div class="d45"><img alt="The Rat" class="d71" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Contractor (rehired) · Output: 42</div></div></div></div>
+</div></div></div>
+<div class="d65"><div class="d49"><div class="d66"></div><div class="d67"></div></div><div class="d68"><button class="d77" data-action="applyQ" type="button">Apply for this position</button></div></div>
+<div class="d65"><div class="d49"><div class="d72"></div><div class="d67"></div></div>
+<div class="d68"><div class="d44" title="Reports to: The Rat"><div class="d45"><img alt="The Rat" class="d73" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><div class="d47"><div class="d42">The Rat</div><div class="d43">Intern</div></div></div></div></div>
+</div>
+<div class="conditional" data-show="dt3Chart" hidden="">
+<div aria-label="Deep Thought" class="popup d78" role="dialog" tabindex="-1">
+<div class="d11"><span>Deep Thought</span><button aria-label="Close" class="d12" data-action="dt3Close" type="button">×</button></div>
+<div class="d13">
+<div>Searching for: <b><span data-text="dt3Query">Life, the Universe and Everything</span></b></div>
+<div class="conditional" data-show="dt3Run" hidden=""><div class="d14"><div class="d15" data-style-dt3pct="dt3Pct"></div></div><div class="d16">Estimated time remaining: <span data-text="dt3Years">7,500,000</span> years</div></div>
+<div class="conditional" data-show="dt3Warn" hidden=""><div class="d17">You’re not going to like it.</div></div>
+<div class="conditional" data-show="dt3Done" hidden=""><div class="d18"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div><div class="d19">Questions still under computation:</div><div class="d20">[<a class="d21" href="research.html#world-models">What does rollout error actually measure?</a>]</div><div class="d20">[<a class="d21" href="research.html#synthetic-code">What transfers through synthetic code?</a>]</div></div>
+<div class="conditional" data-show="dt3Annoyed" hidden=""><div class="d17"><span data-text="dt3Msg"></span></div><div class="conditional" data-show="dt3Show42"><div class="d18"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div></div></div>
+<div class="d22"><button class="d23" data-action="dt3Close" type="button">OK</button></div>
+</div></div>
+</div>
+</div>
+</div>
+</div></div>
+<span class="legacy-anchor" id="research"></span><div aria-level="2" class="d35" id="s3-research" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>RESEARCH DIVISION</div>
+<div class="research-overview d79">
+<div>
+<div class="d80">CURRENTLY AT LOSSFUNK</div>
+<p class="d81">Compute camera motion. Learn what’s left.</p>
+<p class="d82">Analytical camera motion and learned residual dynamics on frozen vision encoders. [<a class="d21" href="research.html#residual-dynamics">Experiments &amp; scope</a>]</p>
+</div>
+<div>
+<div class="d83">
+<div class="d49"><img alt="Recorded" class="d84" src="assets/work/rollout-000.png"/><span class="d85" data-keep="">Recorded</span></div><div class="d49"><img alt="1 call" class="d84" src="assets/work/rollout-001.png"/><span class="d85" data-keep="">1 call</span></div><div class="d49"><img alt="8 calls" class="d84" src="assets/work/rollout-002.png"/><span class="d85" data-keep="">8 calls</span></div><div class="d49"><img alt="32 calls" class="d84" src="assets/work/rollout-003.png"/><span class="d85" data-keep="">32 calls</span></div>
+</div>
+<p class="d86">One clip, the same 8-second endpoint. [<a class="d21" href="assets/papers/world-model-rollout-audit.pdf#page=7">rollout audit, fig. 3</a>]</p>
+</div>
+</div>
+<div class="papers-table d87">
+<div class="d88"><div></div><div class="d89">Question</div><div class="d89">Status</div><div class="d89">Answer</div><div class="d89">Files</div></div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#world-models">What does rollout error actually measure?</a><div class="d95">Separating command error, chaining cost, and one-call error in video world models.</div></div>
+<div class="d96">2026 manuscript</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/world-model-rollout-audit.pdf">PDF</a>]</span></div>
+</div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#transport">Readout is not generation</a><div class="d95">Camera geometry in the patch tokens of frozen vision encoders.</div></div>
+<div class="d96">NeurReps 2026 workshop manuscript</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/frozen-encoder-geometry.pdf">PDF</a>]</span></div>
+</div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#relatedness">Reading relatedness and hierarchy</a><div class="d95">What frozen representations reveal about hierarchy across five modalities.</div></div>
+<div class="d96">NeurReps 2026 workshop work · revised manuscript</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/relatedness-and-hierarchy.pdf">PDF</a>]</span></div>
+</div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#synthetic-code">What transfers through synthetic code?</a><div class="d95">Separating security behavior, style, and provenance in teacher-generated code.</div></div>
+<div class="d96">Manuscript under review</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/synthetic-code-transfer.pdf">PDF</a>]</span></div>
+</div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#replay">Spectral perturbation bounds for experience replay</a><div class="d95">Data diversity, environment mixing, and a bias–variance view of offline learning.</div></div>
+<div class="d96">ICML 2026 DEMO workshop</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/experience-replay-spectral-bounds.pdf">PDF</a>]</span></div>
+</div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#certgap">The Bellman residual is not the improvement signal</a><div class="d95">The gap between fitting a critic and improving a policy.</div></div>
+<div class="d96">Research manuscript</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/bellman-residual-improvement.pdf">PDF</a>]</span><span>[<a class="d21" href="https://github.com/saketatreya/CertGap">Code</a>]</span></div>
+</div>
+<div class="d90">
+<div class="d91"><img alt="" class="d92" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d93"><a class="d94" href="research.html#self">Delegation, ownership, and the boundaries of the self</a><div class="d95">Capability, authorship, and self-knowledge in AI-assisted programming.</div></div>
+<div class="d96">2026 manuscript</div>
+<div class="d97">42</div>
+<div class="d98"><span>[<a class="d21" href="assets/papers/delegation-and-self.pdf">PDF</a>]</span></div>
+</div>
+<div class="d99" data-slot="2"></div><div class="d100"><img alt="" class="d101" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+</div>
+<p class="d102">[<a class="d21" href="research.html">Full archive</a>]</p>
+<span class="legacy-anchor" id="writing"></span><div aria-level="2" class="d35" id="s3-press" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>PRESS RELEASES</div>
+<div class="d49">
+<!--PRESS:START-->
+<div class="d103">
+<img alt="" class="d104" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<div class="d105">FOR IMMEDIATE RELEASE</div>
+<a class="d106" href="writing.html?f=accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a>
+<p class="d107"><b>INHUMAN.SYSTEMS, 2026-01-15</b> — AI is capital&#x27;s completion project. The left has always wanted to abolish wage labor but couldn&#x27;t figure out how to abolish the necessity that made wage labor necessary. [<a class="d21" href="writing.html?f=accelerating-AI.md">Read more</a>]</p>
+<div class="d108">###</div>
+</div>
+</div>
+
+<div class="d103">
+<img alt="" class="d104" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<div class="d105">FOR IMMEDIATE RELEASE</div>
+<a class="d106" href="writing.html?f=latent-space.md">Latent Space</a>
+<p class="d107"><b>INHUMAN.SYSTEMS, 2025-02-20</b> — In the latent space, there are no individuals. Only vectors. Directions through an impossibly high-dimensional manifold where meaning itself becomes geometry. [<a class="d21" href="writing.html?f=latent-space.md">Read more</a>]</p>
+<div class="d108">###</div>
+</div>
+</div>
+
+<div class="d103">
+<img alt="" class="d104" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<div class="d105">FOR IMMEDIATE RELEASE</div>
+<a class="d106" href="writing.html?f=hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a>
+<p class="d107"><b>INHUMAN.SYSTEMS, 2026-03-12</b> — We must understand Hindutva as a productive apparatus that generates mythology, and that this mythology is self-propagating not because it corresponds to reality but because it creates feedback loops connecting institutional practice, affective investment, territorial violence, and electoral calculation. [<a class="d21" href="writing.html?f=hyperreal-hindutva.md">Read more</a>]</p>
+<div class="d108">###</div>
+</div>
+</div>
+
+<div class="d103">
+<img alt="" class="d104" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<div class="d105">FOR IMMEDIATE RELEASE</div>
+<a class="d106" href="writing.html?f=iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a>
+<p class="d107"><b>INHUMAN.SYSTEMS, 2025-03-28</b> — Baudrillard, Generative AI, and the Colonial Monopoly on the Real [<a class="d21" href="writing.html?f=iran-war.md">Read more</a>]</p>
+<div class="d108">###</div>
+</div>
+</div>
+
+<div class="d103">
+<img alt="" class="d104" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<div class="d105">FOR IMMEDIATE RELEASE</div>
+<a class="d106" href="writing.html?f=pokemon-rl.md">Solving Pokémon as a POMDP</a>
+<p class="d107"><b>INHUMAN.SYSTEMS, 2026-02-15</b> — A technical deep-dive into building a Gen 9 Random Battle agent that learns from nothing but wins and losses through Bayesian Belief Tracking, Observation Engineering, and Pure RL [<a class="d21" href="writing.html?f=pokemon-rl.md">Read more</a>]</p>
+<div class="d108">###</div>
+</div>
+</div>
+
+<div class="d103">
+<img alt="" class="d104" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<div class="d105">FOR IMMEDIATE RELEASE</div>
+<a class="d106" href="writing.html?f=multiagent-intelligence.md">The Wrong Unit of Analysis</a>
+<p class="d107"><b>INHUMAN.SYSTEMS, 2026-01-25</b> — Why Intelligence Requires a Differential Field [<a class="d21" href="writing.html?f=multiagent-intelligence.md">Read more</a>]</p>
+<div class="d108">###</div>
+</div>
+</div>
+<!--PRESS:END-->
+<div class="d109" data-slot="3"></div>
+</div>
+<span class="legacy-anchor" id="projects"></span><div aria-level="2" class="d35" id="s3-products" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>PRODUCTS</div>
+<div class="product-layout d110">
+<div class="d111">
+<div class="d105">FLAGSHIP PRODUCT</div>
+<img alt="The Rat, on a pedestal" class="d112" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div class="d113"></div>
+<div class="d114"></div>
+<div class="d115"></div>
+<div class="d116">The Rat</div>
+<button class="d117" data-action="cartOpen" type="button">Add to cart</button>
+</div>
+<div>
+<div class="d118">
+<a class="d119" href="games/mincut/"><img alt="Four ghosts form a minimum cut around Pac-Man" class="d120" src="assets/work/mincut-cordon.png"/></a>
+<div><a class="d121" href="games/mincut/">Min-Cut Muncher</a><p class="d122">The ghosts run Dinic’s algorithm to cut off your escape.</p><span class="d123"><span>[<a class="d21" href="games/mincut/">Play</a>]</span><span>[<a class="d21" href="https://github.com/saketatreya/mincut-pacman">Code</a>]</span></span></div>
+</div>
+<div class="d124">
+<img alt="" class="d125" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<a class="d126" href="https://github.com/saketatreya/RICH">RICH</a>
+<span class="d127">Software agents</span>
+<div class="d128">Software agents with explicit contracts, independent checks, and resumable execution.</div>
+<div class="d129"></div>
+</div>
+</div>
+<div class="d124">
+<img alt="" class="d125" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<a class="d126" href="https://github.com/saketatreya/showdownRL">Pokémon RL</a>
+<span class="d127">Reinforcement learning</span>
+<div class="d128">Recurrent PPO, belief tracking, and self-play in Gen 9 Random Battles.</div>
+<div class="d129"><span>[<a class="d21" href="writing.html?f=pokemon-rl.md">Write-up</a>]</span></div>
+</div>
+</div>
+<div class="d124">
+<img alt="" class="d125" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<a class="d126" href="https://github.com/saketatreya/oksh">oksh</a>
+<span class="d127">C / Unix</span>
+<div class="d128">A C shell with process control, signals, redirection, and job management.</div>
+<div class="d129"></div>
+</div>
+</div>
+<div class="d124">
+<img alt="" class="d125" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div>
+<span class="d130">Daybook</span>
+<span class="d127">Personal tool / Python</span>
+<div class="d128">A personal study planner connecting mathematics, papers, courses, and time.</div>
+<div class="d129"></div>
+</div>
+</div>
+</div>
+<div class="d131" data-slot="4"></div>
+<div class="conditional" data-show="cart3" hidden="">
+<div aria-label="Inhuman Systems" class="popup d132" role="dialog" tabindex="-1">
+<div class="d11"><span>Inhuman Systems</span><button aria-label="Close" class="d12" data-action="cartClose" type="button">×</button></div>
+<div class="d133"><img alt="" class="d134" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>The rat is not for sale. You are.</div>
+<div class="d135"><button class="d23" data-action="cartClose" type="button">OK</button></div>
+</div>
+</div>
+</div>
+<div aria-level="2" class="d35" id="s3-ir" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>INVESTOR RELATIONS</div>
+<div class="investor-layout d136">
+<div>
+<div class="d137" data-keep="">
+<div class="d138"><span class="d139">$RAT</span><span class="d140"><span data-text="ratPrice">0.00</span></span><span>▲ <span data-text="ratDelta">+0.42</span></span></div>
+<svg class="d141" preserveaspectratio="none" viewbox="0 0 400 120"><polyline class="d142" data-attr-points="spark" points=""></polyline></svg>
+<img alt="" class="d143" data-attr-src="ratSrc" data-rat-image="" data-within-keep="" height="200" src="writings/rat__3.gif" width="200"/><div class="d144"><span>1998</span><span>2031</span></div>
+</div>
+<div class="d145">
+<div class="d146"><div class="d147">Quarter</div><div class="d147">EPS</div><div class="d147">Guidance</div><div class="d147">vs. consensus</div></div>
+<div class="d148"><div class="d149">Q1 2031</div><div class="d149">$42.00</div><div class="d149">42</div><div class="d149">In line</div></div>
+<div class="d148"><div class="d149">Q2 2031</div><div class="d149">$42.00</div><div class="d149">42</div><div class="d149">In line</div></div>
+<div class="d148"><div class="d149">Q3 2031</div><div class="d149">$42.00</div><div class="d149">42</div><div class="d149">In line</div></div>
+<div class="d148"><div class="d149">Q4 2031</div><div class="d149">$42.00</div><div class="d149">42</div><div class="d149">In line</div></div>
+</div>
+<div class="d150">
+<div class="d151"><b>Market capitalisation</b><span>4.2 × 10<sup>81</sup> Altairian dollars</span></div>
+<div class="d152">
+<span>$RAT</span><div class="d153"></div>
+<span>The universe</span><div class="d154"></div>
+</div>
+<p class="d155">Figures calculated bistromathically. Our chief accountant has since been appointed Professor of Neomathematics at the University of Maximegalon.</p>
+</div>
+<button class="d156" data-action="buyOpen" type="button">Buy $RAT</button>
+</div>
+<div class="d157">
+<div class="d105">LETTER TO SHAREHOLDERS</div>
+<p class="d158">Dear shareholders,</p>
+<p class="d159">Revenue is up. It has always been up.</p>
+<p class="d159">We have the Answer. We are still looking for the Question. We expect to find it in the coming fiscal year, as we have every year since 1998.</p>
+<p class="d159">Our hardware continues to perform. He has not been told.</p>
+<p class="d160">Sincerely,</p>
+<img alt="Signature of The Rat" class="d161" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div class="d162">The Rat, Chairman &amp; CEO</div>
+</div>
+<div class="conditional" data-show="buy3" hidden="">
+<div aria-label="Inhuman Systems" class="popup d163" role="dialog" tabindex="-1">
+<div class="d11"><span>Inhuman Systems</span><button aria-label="Close" class="d12" data-action="buyClose" type="button">×</button></div>
+<div class="d133"><img alt="" class="d134" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>All shares of $RAT are held by the rat.</div>
+<div class="d135"><button class="d23" data-action="buyClose" type="button">OK</button></div>
+</div>
+</div>
+</div>
+<div aria-level="2" class="d35" id="s3-minutes" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>BOARD MINUTES</div>
+<div class="d164">
+<div class="d165">INHUMAN SYSTEMS CORPORATION</div>
+<div class="d166">Minutes of the Meeting of the Board of Directors</div>
+<div class="d167">Held 14 March 2031. Reconvened 14 March 1998.</div>
+<div class="d168"><div class="d169"><img alt="" class="d170" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span class="d171">The Rat (Chair)</span></div><div class="d169"><img alt="" class="d170" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span class="d171">The Rat</span></div><div class="d169"><img alt="" class="d170" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span class="d171">The Rat</span></div><div class="d169"><img alt="" class="d170" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span class="d171">The Rat</span></div><div class="d169"><img alt="" class="d170" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span class="d171">The Rat</span></div></div>
+<p class="d160"><b>Present:</b> The Rat (Chair), The Rat, The Rat, The Rat, The Rat. Attending in three dimensions as a courtesy.</p>
+<p class="d172"><b>Absent:</b> Saket Atreya (not invited).</p>
+<div class="d173"><span>1.</span><span>To publish “Readout is not generation” at the NeurReps 2026 workshop.</span><b class="d174">Carried 5–0.</b></div>
+<div class="d173"><span>2.</span><span>To continue “Compute camera motion. Learn what’s left.” at Lossfunk.</span><b class="d174">Carried 5–0.</b></div>
+<div class="d173"><span>3.</span><span>To submit “What transfers through synthetic code?” for review.</span><b class="d174">Carried 5–0.</b></div>
+<div class="d173"><span>4.</span><span>To declare quarterly earnings of 42.</span><b class="d174">Carried 5–0.</b></div>
+<div class="d173"><span>5.</span><span>That the hardware not be informed, and that this item be removed from his copy.</span><b class="d174">Carried 5–0.</b></div>
+<p class="d160">There being no further business, the meeting adjourned to the previous meeting.</p>
+<div class="d175">Recorded by <img alt="" class="d176" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/> The Rat (intern)</div>
+</div>
+<div aria-level="2" class="d35" id="s3-testimonials" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>TESTIMONIALS</div>
+<div class="testimonials d177">
+<div class="d178"><div class="d179">★★★★★</div><p class="d180">“I asked it what it was all for. It said 42. I haven’t needed to ask anything since.”</p><div class="d181">K. Osei, customer since 2039</div></div>
+<div class="d178"><div class="d179">★★★★★</div><p class="d180">“The papers are very good. I did not understand the rat.”</p><div class="d181">Reviewer 2, 2029</div></div>
+<div class="d178"><div class="d179">★★★★★</div><p class="d180">“My grandchildren were raised by the rat. They are doing well.”</p><div class="d181">M. Lindqvist, 2071</div></div>
+<div class="d178"><div class="d179">★★★★★</div><p class="d180">“I hadn’t been born when I bought this. It still arrived on time.”</p><div class="d181">Customer, 2112</div></div>
+</div>
+<span class="legacy-anchor" id="about"></span><span class="legacy-anchor" id="contact"></span><div aria-level="2" class="d35" id="s3-leadership" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>LEADERSHIP</div>
+<div class="leadership-layout d182">
+<div class="d183"><div class="d184"><img alt="Portrait of Saket Atreya, who is a rat" class="d185" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div><div class="d186">Saket Atreya</div></div>
+<div class="d187">
+<div class="d188">Saket Atreya</div>
+<div class="d189">Research intern at Lossfunk. CS at IIIT Hyderabad.</div>
+<p class="d190">I’m Saket. I work on world models, reinforcement learning, and representation geometry.</p>
+<p class="d191">I’m interested in how behavior emerges from structure: learning systems, economic incentives, political power. Cybernetics, political economy, philosophy, and the internet.</p>
+<div class="d192"><span>[<a class="d21" href="mailto:saket.s.atreya@gmail.com">saket.s.atreya@gmail.com</a>]</span><span>[<a class="d21" href="assets/saket-atreya-cv.pdf">Research CV (pdf)</a>]</span><span>[<a class="d21" href="https://github.com/saketatreya">GitHub</a>]</span></div>
+</div>
+<div class="d193" data-slot="5"></div>
+</div>
+</div>
+<div class="d34">
+<div aria-level="2" class="d35" id="s3-guestbook" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>GUESTBOOK</div>
+<div class="guestbook-layout d194">
+<div class="d195">
+<div class="d196">
+<div class="d197"><div class="d198">You</div><div class="d199">12 Aug 2031</div></div>
+<div class="d200"><span>Sign it. You did last time.</span></div>
+</div>
+<div class="d196">
+<div class="d197"><div class="d198">The Rat</div><div class="d199">9 Nov 2019</div></div>
+<div class="d200"><img alt="A rat" class="d201" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+</div>
+<div class="d196">
+<div class="d197"><div class="d198">The Rat</div><div class="d199">2 Jun 2004</div></div>
+<div class="d200"><span>still here</span></div>
+</div>
+<div class="d196">
+<div class="d197"><div class="d198">The Rat</div><div class="d199">14 Mar 1998</div></div>
+<div class="d200"><span>first</span></div>
+</div>
+</div>
+<div class="d202">
+<div class="d203">Sign the Guestbook!</div>
+<label class="d204">Name<input class="d205" data-model="gbName" value=""/></label>
+<label class="d204">Message<textarea class="d206" data-model="gbMsg" rows="4"></textarea></label>
+<button class="d207" data-action="gbSign" type="button">Sign</button>
+</div>
+</div>
+<div aria-level="2" class="d35" id="s3-report" role="heading"><img alt="" class="d36" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>EXPERIMENT 42: OBSERVATION REPORT</div>
+<div class="report-layout d208">
+<div>
+<div class="d209"><span>SUBJECT NO. 0000042</span><span>CONFIDENTIAL</span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.0.k">Signature</span></span><span class="d203"><span data-text="labRows.0.v">None</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.1.k">Consent</span></span><span class="d203"><span data-text="labRows.1.v">Pending</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.2.k">Declared human</span></span><span class="d203"><span data-text="labRows.2.v">Yes</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.3.k">Understands they are the experiment</span></span><span class="d203"><span data-text="labRows.3.v">No</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.4.k">Time on site</span></span><span class="d203"><span data-text="labRows.4.v">0 min 00 s</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.5.k">Cursor travel</span></span><span class="d203"><span data-text="labRows.5.v">0.00 m</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.6.k">Clicks</span></span><span class="d203"><span data-text="labRows.6.v">0</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.7.k">Longest hesitation</span></span><span class="d203"><span data-text="labRows.7.v">None recorded</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.8.k">Questions put to Deep Thought</span></span><span class="d203"><span data-text="labRows.8.v">0</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.9.k">Employees fired</span></span><span class="d203"><span data-text="labRows.9.v">0</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.10.k">Guestbook</span></span><span class="d203"><span data-text="labRows.10.v">Not signed</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.11.k">CV</span></span><span class="d203"><span data-text="labRows.11.v">Not opened</span></span></div>
+<div class="d210"><span class="d199"><span data-text="labRows.12.k">Rats sighted</span></span><span class="d203"><span data-text="labRows.12.v">0 of 0</span></span></div>
+<div class="d211">Comparison with previous subjects (n = 41, all rats)</div>
+<div class="d212"><span>Measure</span><span>You</span><span>Previous subjects</span></div>
+<div class="d213"><span class="d199"><span data-text="compRows.0.k">Time on site</span></span><span class="d203"><span data-text="compRows.0.you">0 min 00 s</span></span><span><span data-text="compRows.0.them">7.5 million years</span></span></div>
+<div class="d213"><span class="d199"><span data-text="compRows.1.k">Clicks</span></span><span class="d203"><span data-text="compRows.1.you">0</span></span><span><span data-text="compRows.1.them">42</span></span></div>
+<div class="d213"><span class="d199"><span data-text="compRows.2.k">Employees fired</span></span><span class="d203"><span data-text="compRows.2.you">0</span></span><span><span data-text="compRows.2.them">0</span></span></div>
+<div class="d213"><span class="d199"><span data-text="compRows.3.k">Rats sighted</span></span><span class="d203"><span data-text="compRows.3.you">0</span></span><span><span data-text="compRows.3.them">All of them</span></span></div>
+<div class="d213"><span class="d199"><span data-text="compRows.4.k">Consent</span></span><span class="d203"><span data-text="compRows.4.you">Pending</span></span><span><span data-text="compRows.4.them">Not asked</span></span></div>
+<div class="conditional" data-show="flag3"><div class="d214">FLAGGED: SUBJECT DID NOT FIRE ANYONE.</div></div>
+<div class="conditional" data-show="noFlag3" hidden=""><div class="d215">Subject fired <span data-text="nFired3">0</span>. All rehired. No further action.</div></div>
+<div class="d216">Conclusion: Subject behaved as predicted.</div>
+<a class="d217" data-attr-href="certHref" href="certificate.html" target="_blank">Download certificate of participation</a>
+<div class="d218">Reviewed by:<img alt="The Rat" class="d219" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span>The Rat</span></div>
+</div>
+<div>
+<div class="d220" data-style-figh="figH"><svg class="d221" data-attr-viewbox="pathBox" preserveaspectratio="none" viewbox="0 0 1280 7000"><polyline class="d222" data-attr-points="pathPts" points=""></polyline></svg></div>
+<div class="d223">Fig. 1. Subject’s path through this page.</div>
+</div>
+</div>
+</div>
+<div class="site-footer d224" role="contentinfo">
+<div class="d225">
+<span class="d226" data-keep="">MOSTLY<span>HARMLESS</span></span>
+<span class="d227"><img alt="" class="d228" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>rat <span class="d229">inside</span></span>
+<span class="d230">Best viewed at 800 × 600</span>
+</div>
+<div class="d45">You are visitor <span class="d231" data-keep="">0000042</span></div>
+<div class="d232"><span>[<a class="d21" href="feed.xml">RSS</a>]</span><span>[<a class="d21" href="https://github.com/saketatreya/inhumansystems">Source</a>]</span><span>[<a class="d21" href="assets/work/README.md">Image credits</a>]</span><span>[<button class="d233" data-action="togglePause" type="button"><span data-text="pauseLabel">Pause animation</span></button>]</span><span>[<button class="d233" data-action="toggleCursor" type="button"><span data-text="cursorLabel">Ordinary cursor</span></button>]</span></div>
+<div class="d234">Last updated 14 March 2031.</div>
+<div class="d235">© 1998–2031 Inhuman Systems Corporation<img alt="" class="d236" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d237" data-slot="6"></div>
+</div>
+</div>
+<img alt="" class="d238" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+<div class="conditional" data-show="asst3.show">
+<div class="asst d239" data-style-asst3-left="asst3.left" data-style-asst3-top="asst3.top">
+<button aria-label="The rat" class="d119" data-action="asstMove" type="button"><img alt="The rat" class="d240" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></button>
+<div class="d241">
+<span class="d242"></span>
+<div class="d49"><span data-text="asst3.text">It looks like you’re reading a website.</span></div>
+<button class="d243" data-action="asstMove" type="button">[Don’t show this tip again]</button>
+</div>
+</div>
+</div>
+<div aria-label="Plain text index" class="conditional" data-show="pE" hidden="" id="plain-index">
+<div class="plain-content d244">
+<button class="d245" data-action="togE" type="button">close</button>
+<h1 class="d246">inhuman.systems</h1>
+<div class="d247">
+<div class="d248">
+<h2 class="d249">Saket</h2>
+<p class="d250">I’m Saket. I work on world models, reinforcement learning, and representation geometry.</p><p class="d250">Research intern at Lossfunk. CS at IIIT Hyderabad.</p><p class="d250">I’m interested in how behavior emerges from structure: learning systems, economic incentives, political power. Cybernetics, political economy, philosophy, and the internet.</p>
+<ul class="d251">
+<li><a class="d252" href="mailto:saket.s.atreya@gmail.com">saket.s.atreya@gmail.com</a></li><li><a class="d252" href="https://github.com/saketatreya">GitHub</a></li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Lossfunk</h2>
+<p class="d250">Analytical camera motion and learned residual dynamics on frozen vision encoders.</p>
+<ul class="d251">
+<li><a class="d252" href="research.html#residual-dynamics">Experiments &amp; scope →</a></li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Rollout</h2>
+<p class="d250">One clip, the same 8-second endpoint.</p>
+<ul class="d251">
+<li><a class="d252" href="assets/papers/world-model-rollout-audit.pdf#page=7">Rollout audit, fig. 3</a></li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Writing</h2>
+<ul class="d251">
+<!--PLAIN-WRITING:START-->
+<li><a class="d252" href="writing.html?f=accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a> — 2026-01-15</li>
+
+<li><a class="d252" href="writing.html?f=latent-space.md">Latent Space</a> — 2025-02-20</li>
+
+<li><a class="d252" href="writing.html?f=hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a> — 2026-03-12</li>
+
+<li><a class="d252" href="writing.html?f=iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a> — 2025-03-28</li>
+
+<li><a class="d252" href="writing.html?f=pokemon-rl.md">Solving Pokémon as a POMDP</a> — 2026-02-15</li>
+
+<li><a class="d252" href="writing.html?f=multiagent-intelligence.md">The Wrong Unit of Analysis</a> — 2026-01-25</li>
+<!--PLAIN-WRITING:END-->
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Min-Cut Muncher</h2>
+<p class="d250">The ghosts run Dinic’s algorithm to cut off your escape.</p>
+<ul class="d251">
+<li><a class="d252" href="games/mincut/">Play →</a></li><li><a class="d252" href="https://github.com/saketatreya/mincut-pacman">Code</a></li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">CV</h2>
+<ul class="d251">
+<li><a class="d252" href="assets/saket-atreya-cv.pdf">Research CV [pdf]</a></li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Latent Space</h2>
+<p class="d250">In the latent space, there are no individuals. Only vectors.</p>
+<ul class="d251">
+<li><a class="d252" href="writing.html?f=latent-space.md">Latent Space ↗</a></li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Things I’ve made</h2>
+<ul class="d251">
+<li><a class="d252" href="https://github.com/saketatreya/RICH">RICH</a> — Software agents</li><li><a class="d252" href="https://github.com/saketatreya/showdownRL">Pokémon RL</a> — Reinforcement learning</li><li><a class="d252" href="https://github.com/saketatreya/oksh">oksh</a> — C / Unix</li><li><span>Daybook</span> — Personal tool / Python</li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Papers</h2>
+<ul class="d251">
+<li><a class="d252" href="research.html#world-models">What does rollout error actually measure?</a> — 2026 manuscript</li><li><a class="d252" href="research.html#transport">Readout is not generation</a> — NeurReps 2026 workshop manuscript</li><li><a class="d252" href="research.html#relatedness">Reading relatedness and hierarchy</a> — NeurReps 2026 workshop work · revised manuscript</li><li><a class="d252" href="research.html#synthetic-code">What transfers through synthetic code?</a> — Manuscript under review</li><li><a class="d252" href="research.html#replay">Spectral perturbation bounds for experience replay</a> — ICML 2026 DEMO workshop</li><li><a class="d252" href="research.html#certgap">The Bellman residual is not the improvement signal</a> — Research manuscript</li><li><a class="d252" href="research.html#self">Delegation, ownership, and the boundaries of the self</a> — 2026 manuscript</li>
+</ul>
+</div>
+<div class="d248">
+<h2 class="d249">Rat</h2>
+<ul class="d251">
+</ul>
+</div>
+</div>
+</div>
+</div>
+<dialog aria-labelledby="consent-title" class="consent-dialog" id="consent-dialog"><div class="d253">
+<div class="d11"><span>Inhuman Systems: Research Participation</span><button aria-label="Close" class="d12" data-action="consentNo" type="button">×</button></div>
+<div class="d254">
+<div class="d255" id="consent-title">Experiment 42</div>
+<p class="d256">Your behaviour on this website will be observed and recorded. A report will be prepared at the bottom of the page.</p>
+<label class="d257"><input checked="" data-model="human3" type="checkbox"/>I am a human.</label>
+<label class="d257"><input checked="" data-model="observe3" type="checkbox"/>I consent to being observed.</label>
+<label class="d257"><input data-model="und3" type="checkbox"/>I understand that I am the experiment.</label>
+<label class="d258">Signature<input class="d259" data-model="sig3" value=""/></label>
+<div class="d260"><button class="d261" data-action="consentYes" type="button">I Agree</button><button class="d262" data-action="consentNo" type="button">I Do Not Agree</button></div>
+</div></div></dialog>
+<noscript><style>#plain-index[hidden]{display:block!important}.plain-content{position:static!important;columns:auto!important}#plain-index button{display:none!important}.asst{display:none!important}</style></noscript></div>
 </body>
 </html>
