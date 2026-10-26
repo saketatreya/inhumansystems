@@ -95,7 +95,7 @@ async def run_scenario(browser, base, width, theme, artifacts):
     await fits(page, popup)
     await page.screenshot(path=str(artifacts / f'deep-thought-{suffix}.png'))
     await page.keyboard.press('Escape')
-    for line in ['I have already told you.', 'It is still 42.', 'You have asked 4 times. It has not changed.', 'I am not doing this again.']:
+    for line in ['I checked. It’s still 42.', 'I can take another seven and a half million years if that helps.', 'That’s 4 questions. We were only meant to find one.', 'Seven and a half million years, and this is the long bit.']:
         await page.locator('[data-action="dt3Go"]').click()
         await expect(popup.locator('[data-text="dt3Msg"]')).to_have_text(line)
         await page.keyboard.press('Escape')
@@ -104,7 +104,7 @@ async def run_scenario(browser, base, width, theme, artifacts):
     await fits(page, page.locator('[data-show="dt3Chart"] .popup'))
     await page.keyboard.press('Escape')
     # Popup controls work with keyboard dismissal and their OK buttons.
-    for action, key, copy in [('cartOpen','cart3','The rat is not for sale. You are.'),('buyOpen','buy3','All shares of $RAT are held by the rat.')]:
+    for action, key, copy in [('cartOpen','cart3','Order declined by the item.'),('buyOpen','buy3','All shares of $RAT are held by the rat.')]:
         await page.locator(f'[data-action="{action}"]').click()
         window = page.locator(f'[data-show="{key}"] .popup')
         await expect(window).to_contain_text(copy)

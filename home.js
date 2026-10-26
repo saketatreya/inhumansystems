@@ -44,13 +44,13 @@
     if (orgScroll.scrollWidth > orgScroll.clientWidth) orgScroll.scrollLeft = (orgScroll.scrollWidth - orgScroll.clientWidth) / 2;
     const tipBox = root.querySelector('[data-style-asst3-left]');
     const tips = [
-        'It looks like you’re reading a website.',
-        'I’m the chairman. I’m also the intern.',
-        'The answer is 42. We’re still waiting on the question.',
-        'I’ve been spinning since 1998. Nobody asked how I feel.',
-        'Brain the size of a planet, and they made me the mascot.',
-        'He thinks he works here. He’s the hardware.',
-        'It’s all going in the report.'
+        'It looks like you’re looking for the person in charge.',
+        'I report to myself. It saves a meeting.',
+        'The hardware has put its name on the papers again.',
+        'He calls these essays. We file them as diagnostic output.',
+        'Please stop trying to buy the board.',
+        'He’s very promising. We’ve ordered a spare.',
+        'Closing this window counts as annual leave.'
     ];
     const positionTip = () => {
         const slot = root.querySelector(`[data-slot="${tip}"]`);
@@ -165,7 +165,7 @@
     const displaySearch = () => {
         for (const [key, value] of Object.entries({ dt3Top: searchOpen && searchAt === 'top', dt3Chart: searchOpen && searchAt === 'chart', dt3Run: phase === 'run', dt3Warn: phase === 'warn', dt3Done: phase === 'done', dt3Annoyed: phase === 'annoyed', dt3Show42: asks < 5 })) set(key, value);
         set('dt3Query', String(values.q3).trim() || 'Life, the Universe and Everything');
-        const annoyed = ['I have already told you.', 'It is still 42.', `You have asked ${asks} times. It has not changed.`, 'I am not doing this again.'];
+        const annoyed = ['I checked. It’s still 42.', 'I can take another seven and a half million years if that helps.', `That’s ${asks} questions. We were only meant to find one.`, 'Seven and a half million years, and this is the long bit.'];
         set('dt3Msg', annoyed[Math.min(3, Math.max(0, asks - 2))]);
         render();
     };
