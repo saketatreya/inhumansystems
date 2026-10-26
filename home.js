@@ -36,14 +36,13 @@
     const today = () => new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
     const lab = { start: Date.now(), distance: 0, clicks: 0, hover: new Map(), clicked: new Set(), points: [], last: null, current: null };
     const fired = new Set();
-    let consent = 'pending', asks = 0, management = 0, tip = 0, phase = 'idle', searchAt = 'top';
+    let consent = 'pending', asks = 0, management = 0, tip = 0, phase = 'idle', searchAt = 'top', searchOpen = false;
     let searchTimer, warningTimer, guestTimer;
     let plainScroll = 0, returnFocus = null;
     const consentDialog = document.querySelector('#consent-dialog');
     const orgScroll = root.querySelector('.org-scroll');
     if (orgScroll.scrollWidth > orgScroll.clientWidth) orgScroll.scrollLeft = (orgScroll.scrollWidth - orgScroll.clientWidth) / 2;
     const tipBox = root.querySelector('[data-style-asst3-left]');
-    tipBox.classList.add('asst');
     const tips = [
         'It looks like you’re reading a website.',
         'I’m the chairman. I’m also the intern.',
@@ -158,18 +157,20 @@
         });
     };
     const closeSearch = () => {
+        searchOpen = false;
         set('dt3Top', false); set('dt3Chart', false);
         render();
         returnFocus?.focus({ preventScroll: true });
     };
     const displaySearch = () => {
-        for (const [key, value] of Object.entries({ dt3Top: searchAt === 'top', dt3Chart: searchAt === 'chart', dt3Run: phase === 'run', dt3Warn: phase === 'warn', dt3Done: phase === 'done', dt3Annoyed: phase === 'annoyed', dt3Show42: asks < 5 })) set(key, value);
+        for (const [key, value] of Object.entries({ dt3Top: searchOpen && searchAt === 'top', dt3Chart: searchOpen && searchAt === 'chart', dt3Run: phase === 'run', dt3Warn: phase === 'warn', dt3Done: phase === 'done', dt3Annoyed: phase === 'annoyed', dt3Show42: asks < 5 })) set(key, value);
         set('dt3Query', String(values.q3).trim() || 'Life, the Universe and Everything');
         const annoyed = ['I have already told you.', 'It is still 42.', `You have asked ${asks} times. It has not changed.`, 'I am not doing this again.'];
         set('dt3Msg', annoyed[Math.min(3, Math.max(0, asks - 2))]);
         render();
     };
     const ask = () => {
+        searchOpen = true;
         if (phase === 'run' || phase === 'warn') { displaySearch(); return; }
         if (asks >= 1) { asks++; phase = 'annoyed'; displaySearch(); report(); return; }
         clearInterval(searchTimer); clearTimeout(warningTimer);
