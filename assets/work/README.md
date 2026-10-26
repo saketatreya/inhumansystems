@@ -12,11 +12,6 @@
   deterministic game state with the ghosts holding a minimum vertex cut.
 - The original `writings/rat__3.gif` is retained unchanged. The still and native
   pointer in `assets/` were derived from it in an earlier site revision.
-- `rat-knot.png` is original artwork generated with the built-in imagegen tool
-  for this site. The prompt is preserved in [`rat-knot.prompt.txt`](rat-knot.prompt.txt).
-  It depicts an impossible, knotted rat in an early computer-graphics style;
-  it is artwork, not a scientific illustration. The page uses `rat-knot.webp`,
-  a lossless WebP encoding with the original transparency, to reduce transfer size.
 
 The playable game at `games/mincut/index.html` is copied from the project's
 self-contained `dist/index.html`, with its document title, return/source navigation, and a no-JavaScript notice
@@ -25,4 +20,4 @@ added. Source bundle SHA-256:
 Its embedded Press Start 2P font license is retained at
 `games/mincut/FONT-LICENSE.txt`. The game engine, art, and controls are unmodified.
 
-All runtime assets are served locally.
+Illustrations and game assets are served locally. The site wordmark uses Archivo Black from Google Fonts.

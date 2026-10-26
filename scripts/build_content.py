@@ -1,124 +1,77 @@
 #!/usr/bin/env python3
-"""Refresh the checked-in writing index, Markdown fallback, and RSS feed."""
-
+"""Refresh checked-in essay lists from the manifest; hosting needs no build step."""
 import argparse
-from datetime import datetime, timezone
-from email.utils import format_datetime
+from datetime import datetime
 from html import escape
 import json
 from pathlib import Path
 import re
+from string import Template
 from urllib.parse import urlencode
-import xml.etree.ElementTree as ET
-
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://inhuman.systems/"
-
-
-def replace_section(source, name, content):
-    start = f"<!-- {name}:START -->"
-    end = f"<!-- {name}:END -->"
-    if source.count(start) != 1 or source.count(end) != 1:
-        raise ValueError(f"Expected one pair of {name} markers")
-    before, remainder = source.split(start)
-    _, after = remainder.split(end)
-    return before + start + "\n" + content + "\n                    " + end + after
 
 
 def load_entries():
-    entries = json.loads((ROOT / "writings/manifest.json").read_text())
+    entries = json.loads((ROOT / 'writings/manifest.json').read_text())
     seen = set()
     for entry in entries:
-        filename = entry["file"]
-        if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9._-]*\.md", filename):
-            raise ValueError(f"Invalid writing filename: {filename}")
-        if filename in seen:
-            raise ValueError(f"Duplicate writing: {filename}")
+        filename = entry['file']
+        if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9._-]*\.md', filename) or filename in seen:
+            raise ValueError(f'Invalid or duplicate writing filename: {filename}')
         seen.add(filename)
-        datetime.strptime(entry["date"], "%Y-%m-%d")
-        if not entry["title"] or not isinstance(entry.get("tags", []), list):
-            raise ValueError(f"Invalid metadata: {filename}")
-        if "summary" in entry and (not isinstance(entry["summary"], str) or not entry["summary"].strip()):
-            raise ValueError(f"Invalid homepage summary: {filename}")
-        if not (ROOT / "writings" / filename).is_file():
-            raise ValueError(f"Missing writing: {filename}")
-    return sorted(entries, key=lambda entry: entry["date"], reverse=True)
+        datetime.strptime(entry['date'], '%Y-%m-%d')
+        if not entry['title'] or not isinstance(entry['tags'], list):
+            raise ValueError(f'Invalid metadata: {filename}')
+        if not (ROOT / 'writings' / filename).is_file():
+            raise ValueError(f'Missing writing: {filename}')
+    return entries  # Navigation and every list follow manifest order.
 
 
-def make_index(entries):
-    items = []
-    for entry in entries:
-        link = "writing.html?" + urlencode({"f": entry["file"]})
-        tags = "".join(f"<span>{escape(tag)}</span>" for tag in entry.get("tags", []))
-        search_text = " ".join([entry["title"], entry.get("excerpt", ""), entry.get("summary", ""), *entry.get("tags", [])])
-        summary = entry.get("summary", entry.get("excerpt", ""))
-        items.append(f'''                    <li data-search="{escape(search_text, quote=True)}">
-                        <div class="article-topline">
-                            <h3><a href="{escape(link)}">{escape(entry["title"])}</a></h3>
-                            <time class="meta" datetime="{entry["date"]}">{entry["date"]}</time>
-                        </div>
-                        <p class="article-excerpt">{escape(summary)}</p>
-                        <div class="tags">{tags}</div>
-                    </li>''')
-    return "\n".join(items)
+def replace_section(source, name, content):
+    pattern = re.compile(r'<!--\s*' + re.escape(name) + r':START\s*-->[\s\S]*?<!--\s*' + re.escape(name) + r':END\s*-->')
+    if len(pattern.findall(source)) != 1:
+        raise ValueError(f'Expected one pair of {name} markers')
+    return pattern.sub(lambda _: f'<!--{name}:START-->\n{content.rstrip()}\n<!--{name}:END-->', source)
 
 
-def make_feed(entries):
-    ET.register_namespace("atom", "http://www.w3.org/2005/Atom")
-    rss = ET.Element("rss", version="2.0")
-    channel = ET.SubElement(rss, "channel")
-    for name, value in [
-        ("title", "inhuman.systems — Saket Atreya"),
-        ("link", SITE),
-        ("description", "Writing on intelligence, reinforcement learning, philosophy, and political economy."),
-        ("language", "en"),
-    ]:
-        ET.SubElement(channel, name).text = value
-    ET.SubElement(channel, "{http://www.w3.org/2005/Atom}link", {
-        "href": SITE + "feed.xml", "rel": "self", "type": "application/rss+xml"
-    })
-    for entry in entries:
-        item = ET.SubElement(channel, "item")
-        url = SITE + "writing.html?" + urlencode({"f": entry["file"]})
-        ET.SubElement(item, "title").text = entry["title"]
-        ET.SubElement(item, "link").text = url
-        ET.SubElement(item, "guid", isPermaLink="true").text = url
-        date = datetime.strptime(entry["date"], "%Y-%m-%d").replace(tzinfo=timezone.utc)
-        ET.SubElement(item, "pubDate").text = format_datetime(date, usegmt=True)
-        ET.SubElement(item, "description").text = entry.get("excerpt", "")
-        for tag in entry.get("tags", []):
-            ET.SubElement(item, "category").text = tag
-    ET.indent(rss, space="  ")
-    return '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(rss, encoding="unicode") + "\n"
+def rows(name, entries):
+    template = Template((ROOT / 'scripts/templates' / (name.lower() + '.html')).read_text())
+    output = []
+    for index, entry in enumerate(entries):
+        values = {
+            'href': 'writing.html?' + urlencode({'f': entry['file']}),
+            'title': entry['title'], 'date': entry['date'], 'excerpt': entry.get('excerpt', ''),
+            'ref': 'IS/MEM/' + entry['date'],
+            'node': ('cEssays.' if name == 'PRESS-OFFICE' else 'memoList.') + str(index),
+        }
+        output.append(template.substitute({key: escape(value, quote=True) for key, value in values.items()}))
+    return '\n'.join(output)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="Fail if generated content needs refreshing")
+    parser.add_argument('--check', action='store_true', help='Fail if checked-in lists need refreshing')
     args = parser.parse_args()
     entries = load_entries()
-    raw_links = "\n".join(
-        f'                    <li><a href="writings/{escape(entry["file"])}">{escape(entry["title"])}</a></li>'
-        for entry in entries
-    )
-    output = {
-        ROOT / "index.html": replace_section((ROOT / "index.html").read_text(), "WRITINGS", make_index(entries)),
-        ROOT / "writing.html": replace_section((ROOT / "writing.html").read_text(), "RAW-WRITINGS", raw_links),
-        ROOT / "feed.xml": make_feed(entries),
-    }
+    outputs = {}
+    home = (ROOT / 'index.html').read_text()
+    for name in ('PRESS', 'PRESS-OFFICE', 'PLAIN-WRITING'):
+        home = replace_section(home, name, rows(name, entries))
+    outputs[ROOT / 'index.html'] = home.rstrip() + '\n'
+    reader = replace_section((ROOT / 'writing.html').read_text(), 'MEMOS', rows('MEMOS', entries))
+    raw = '\n'.join(f'<li><a href="writings/{escape(entry["file"], quote=True)}">{escape(entry["title"])}</a></li>' for entry in entries)
+    outputs[ROOT / 'writing.html'] = replace_section(reader, 'RAW-WRITINGS', raw).rstrip() + '\n'
     stale = []
-    for path, content in output.items():
-        if not path.exists() or path.read_text() != content:
-            if args.check:
-                stale.append(path.name)
+    for path, content in outputs.items():
+        if path.read_text() != content:
+            if args.check: stale.append(path.name)
             else:
                 path.write_text(content)
-                print(f"Updated {path.name}")
-    if stale:
-        parser.exit(1, "Refresh generated content: " + ", ".join(stale) + "\n")
-    print(f"Verified {len(entries)} essays and their generated index, fallback, and feed.")
+                print(f'Updated {path.name}')
+    if stale: parser.exit(1, 'Refresh generated content: ' + ', '.join(stale) + '\n')
+    print(f'Verified {len(entries)} essays in manifest order. RSS and Markdown are untouched.')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

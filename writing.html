@@ -1,61 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html data-theme="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writing — Saket Atreya — inhuman.systems</title>
-    <meta name="description" content="Essays by Saket Atreya on intelligence, reinforcement learning, philosophy, and political economy.">
-    <meta name="theme-color" content="#090909">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="alternate" type="application/rss+xml" title="inhuman.systems — writing" href="feed.xml">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/vendor/katex-0.16.11/katex.min.css">
-    <script defer src="assets/vendor/marked-15.0.7/marked.min.js"></script>
-    <script defer src="assets/vendor/katex-0.16.11/katex.min.js"></script>
-    <script defer src="assets/vendor/katex-0.16.11/contrib/auto-render.min.js"></script>
-    <script defer src="site.js"></script>
-    <script defer src="writing.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Writing — inhuman.systems</title>
+<meta content="Saket Atreya — inhuman.systems" name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="feed.xml" rel="alternate" title="inhuman.systems" type="application/rss+xml"/>
+<script src="preferences.js"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="assets/vendor/katex-0.16.11/katex.min.css" rel="stylesheet"/>
+<script defer="" src="assets/vendor/marked-15.0.7/marked.min.js"></script>
+<script defer="" src="assets/vendor/katex-0.16.11/katex.min.js"></script>
+<script defer="" src="assets/vendor/katex-0.16.11/contrib/auto-render.min.js"></script>
+<script defer="" src="site.js"></script>
+<script defer="" src="writing.js"></script>
 </head>
-<body id="top" class="reader-page">
-    <a class="skip-link" href="#main">Skip to essay</a>
-    <div class="progress" id="progress" aria-hidden="true"></div>
-    <div class="site-shell reader-shell">
-        <header class="site-header">
-            <a class="wordmark" href="index.html">inhuman.systems</a>
-            <nav class="site-nav" aria-label="Main navigation">
-                <a href="research.html">Research</a>
-                <a href="index.html#writing">Writing</a>
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#about">About</a>
-                <a href="mailto:saket.s.atreya@gmail.com">Email</a>
-                <a href="assets/saket-atreya-cv.pdf">CV <span class="link-format">[pdf]</span></a>
-                <a href="feed.xml">RSS</a>
-            </nav>
-        </header>
-        <main class="reader-main" id="main">
-            <a class="reader-back section-label" href="index.html#writing">← All writing</a>
-            <article id="article" aria-busy="true">
-                <p class="loading" role="status">Loading the essay…</p>
-            </article>
-            <noscript>
-                <style>#article { display: none; }</style>
-                <p>The formatted reader needs JavaScript. Every essay is also available as plain Markdown:</p>
-                <ul>
-                    <!-- RAW-WRITINGS:START -->
-                    <li><a href="writings/hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a></li>
-                    <li><a href="writings/pokemon-rl.md">Solving Pokémon as a POMDP</a></li>
-                    <li><a href="writings/multiagent-intelligence.md">The Wrong Unit of Analysis</a></li>
-                    <li><a href="writings/accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a></li>
-                    <li><a href="writings/iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a></li>
-                    <li><a href="writings/latent-space.md">Latent Space</a></li>
-                    <!-- RAW-WRITINGS:END -->
-                </ul>
-            </noscript>
-        </main>
-        <footer class="site-footer">
-            <p>No analytics. No tracking cookies.</p>
-            <div class="footer-links"><a href="feed.xml">RSS</a><a href="https://github.com/saketatreya/inhumansystems">Source</a><button class="cursor-toggle text-button" type="button" hidden>Use ordinary cursor</button><a href="#top">↑ Top</a></div>
-        </footer>
-    </div>
+<body class="reader-page" id="top">
+<a class="skip-link" href="#main">Skip to essay</a>
+<div class="page-background" id="site-root">
+<div class="site-frame" id="reader-frame">
+<div class="d1">
+<span class="d2"><span>[<a class="d3" href="index.html">Home</a>]</span><span>[<a class="d3" href="assets/saket-atreya-cv.pdf">CV</a>]</span><span>[<a class="d3" href="mailto:saket.s.atreya@gmail.com">Email</a>]</span><span>[<a class="d3" href="feed.xml">RSS</a>]</span><span>[<button class="d4" data-action="toggleDark" type="button"><span data-text="darkLabel">Dark mode</span></button>]</span></span>
+<span class="d6">Rats sighted: <span data-text="ratsSeen">0</span></span>
+</div>
+<div class="d263"><img alt="" class="d264" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/><span class="d265">INHUMAN SYSTEMS<sup class="d266">™</sup></span><span class="d267">MEMO ARCHIVE</span></div>
+<div class="memo-layout d268">
+<div aria-label="Memo archive" class="memo-sidebar d269" role="navigation">
+<!--MEMOS:START-->
+<div class="d270"><img alt="" class="d271" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div><div class="conditional" data-show="memoList.0.isCurrent" hidden=""><span class="d272">Let Capital Win: The Case for Accelerating through Automation</span></div><div class="conditional" data-show="memoList.0.notCurrent"><a class="d273" href="writing.html?f=accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a></div><div class="d274">IS/MEM/2026-01-15</div></div></div>
+
+<div class="d270"><img alt="" class="d271" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div><div class="conditional" data-show="memoList.1.isCurrent" hidden=""><span class="d272">Latent Space</span></div><div class="conditional" data-show="memoList.1.notCurrent"><a class="d273" href="writing.html?f=latent-space.md">Latent Space</a></div><div class="d274">IS/MEM/2025-02-20</div></div></div>
+
+<div class="d270"><img alt="" class="d271" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div><div class="conditional" data-show="memoList.2.isCurrent" hidden=""><span class="d272">Hindutva and the Production of Hyperreal Hinduism</span></div><div class="conditional" data-show="memoList.2.notCurrent"><a class="d273" href="writing.html?f=hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a></div><div class="d274">IS/MEM/2026-03-12</div></div></div>
+
+<div class="d270"><img alt="" class="d271" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div><div class="conditional" data-show="memoList.3.isCurrent" hidden=""><span class="d272">The Iran War Did Not Take Place (And Is Killing People)</span></div><div class="conditional" data-show="memoList.3.notCurrent"><a class="d273" href="writing.html?f=iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a></div><div class="d274">IS/MEM/2025-03-28</div></div></div>
+
+<div class="d270"><img alt="" class="d271" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div><div class="conditional" data-show="memoList.4.isCurrent" hidden=""><span class="d272">Solving Pokémon as a POMDP</span></div><div class="conditional" data-show="memoList.4.notCurrent"><a class="d273" href="writing.html?f=pokemon-rl.md">Solving Pokémon as a POMDP</a></div><div class="d274">IS/MEM/2026-02-15</div></div></div>
+
+<div class="d270"><img alt="" class="d271" data-attr-src="ratSrc" height="200" src="writings/rat__3.gif" width="200"/><div><div class="conditional" data-show="memoList.5.isCurrent" hidden=""><span class="d272">The Wrong Unit of Analysis</span></div><div class="conditional" data-show="memoList.5.notCurrent"><a class="d273" href="writing.html?f=multiagent-intelligence.md">The Wrong Unit of Analysis</a></div><div class="d274">IS/MEM/2026-01-25</div></div></div>
+<!--MEMOS:END-->
+</div>
+<div class="memo-main d275" id="main" role="main">
+<div class="memo-sheet d276" id="article">
+<div class="memo-heading d277"><span class="d278">MEMORANDUM</span><span class="d279">INHUMAN SYSTEMS CORPORATION · INTERNAL</span></div>
+<div class="memo-fields d280">
+<span>TO:</span><span>All staff (The Rat)</span>
+<span>FROM:</span><span>Saket Atreya, Meat computer</span>
+<span>CC:</span><span aria-label="Redacted"><span class="d281"></span></span>
+<span>DATE:</span><span id="memo-date"></span>
+<span>RE:</span><span aria-level="1" class="d203" id="memo-title" role="heading">MEMORANDUM</span>
+<span>REF:</span><span id="memo-ref"></span>
+<span>FILED UNDER:</span><span id="memo-tags"></span>
+<span>CLEARANCE:</span><span aria-label="Redacted"><span class="d282"></span></span>
+</div>
+<div class="received-stamp d283"><div>RECEIVED</div><div class="d284"><img alt="" class="d285" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>THE RAT</div><div id="received-date"></div></div>
+<hr class="d286"/>
+<div aria-busy="true" class="prose d287" id="essay-body"><noscript><p>Every essay is also available as plain Markdown:</p><ul><!--RAW-WRITINGS:START-->
+<li><a href="writings/accelerating-AI.md">Let Capital Win: The Case for Accelerating through Automation</a></li>
+<li><a href="writings/latent-space.md">Latent Space</a></li>
+<li><a href="writings/hyperreal-hindutva.md">Hindutva and the Production of Hyperreal Hinduism</a></li>
+<li><a href="writings/iran-war.md">The Iran War Did Not Take Place (And Is Killing People)</a></li>
+<li><a href="writings/pokemon-rl.md">Solving Pokémon as a POMDP</a></li>
+<li><a href="writings/multiagent-intelligence.md">The Wrong Unit of Analysis</a></li>
+<!--RAW-WRITINGS:END--></ul></noscript></div>
+<div class="d288"><span>ATTACHMENTS:</span><span>[<a class="d21" href="writings/manifest.json" id="attachment"></a>]</span></div>
+</div>
+<div class="memo-navigation d289"><span>[<a class="d21" href="index.html">← Home</a>]</span><span hidden="">[<a href="index.html#s3-press" id="newer-memo">Newer memo →</a>]</span><span hidden="">[<a href="index.html#s3-press" id="older-memo">← Older memo</a>]</span></div>
+</div>
+</div>
+<div class="site-footer d224" role="contentinfo">
+<div class="d225">
+<span class="d226" data-keep="">MOSTLY<span>HARMLESS</span></span>
+<span class="d227"><img alt="" class="d228" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>rat <span class="d229">inside</span></span>
+<span class="d230">Best viewed at 800 × 600</span>
+</div>
+<div class="d45">You are visitor <span class="d231" data-keep="">0000042</span></div>
+<div class="d232"><span>[<a class="d21" href="feed.xml">RSS</a>]</span><span>[<a class="d21" href="https://github.com/saketatreya/inhumansystems">Source</a>]</span><span>[<a class="d21" href="assets/work/README.md">Image credits</a>]</span><span>[<button class="d233" data-action="togglePause" type="button"><span data-text="pauseLabel">Pause animation</span></button>]</span><span>[<button class="d233" data-action="toggleCursor" type="button"><span data-text="cursorLabel">Ordinary cursor</span></button>]</span></div>
+<div class="d234">Last updated 14 March 2031.</div>
+<div class="d235">© 1998–2031 Inhuman Systems Corporation<img alt="" class="d236" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/></div>
+<div class="d237" data-slot="6"></div>
+</div></div>
+<img alt="" class="d290" data-attr-src="ratSrc" data-rat-image="" height="200" src="writings/rat__3.gif" width="200"/>
+</div>
 </body>
 </html>
