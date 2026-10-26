@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=UnifrakturMaguntia&amp;family=Archivo+Black&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}
+a{color:#7a3fd0}a:hover{color:#3a1570}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0}
+[data-rat]:not([data-rat="off"]),[data-rat]:not([data-rat="off"]) *{cursor:url("assets/rat-pointer.png") 5 22,auto !important}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+[data-theme="dark"]{filter:invert(1) hue-rotate(180deg)}
+[data-theme="dark"] img:not([data-keep] img),[data-theme="dark"] [data-keep]{filter:invert(1) hue-rotate(180deg)}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+</style>
+</helmet>
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Inhuman Systems Corporation: a computer the rat built to find the Question. Saket is the hardware. The answer is already known.</span></div>
+<div class="dv-opts">
+<div class="dv-opt" id="3a"><div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Homepage. Climb the org chart, apply for the vacancy, click the rat.</div>
+<div class="dv-card" style="width:1280px">
+<div ref="{{ root3 }}" data-rat="{{ ratAttr }}" data-theme="{{ theme3 }}" style="position:relative; overflow:hidden; background-color:#e6e6fa; background-image:linear-gradient(rgba(230,230,250,.86),rgba(230,230,250,.86)),url('assets/rat-still.png'); background-size:auto,64px 64px; padding:28px 0 64px; color:#000; font:16px/1.4 'Times New Roman',Times,serif">
+<div style="position:relative; width:880px; margin:0 auto; background:#fff; border:3px ridge #9d6fe0">
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:5px 10px; background:#4b0082; color:#fff; font:12px/1.3 Arial,Helvetica,sans-serif">
+<span style="display:flex; gap:10px; font-weight:bold"><span>[<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#fff">CV</a>]</span><span>[<a href="mailto:saket.s.atreya@gmail.com" style="color:#fff">Email</a>]</span><span>[<a href="https://github.com/saketatreya" style="color:#fff">GitHub</a>]</span><span>[<a href="https://inhuman.systems/feed.xml" style="color:#fff">RSS</a>]</span><span>[<button onClick="{{ toggleDark }}" style="color:#fff; text-decoration:underline; font:bold 12px/1.3 Arial,Helvetica,sans-serif">{{ darkLabel }}</button>]</span></span>
+<span style="display:flex; align-items:center; gap:6px"><span style="font-family:'Courier New',monospace">Rats sighted: {{ ratsSeen }}</span><span style="margin-left:10px">Search:</span><input value="{{ q3 }}" onChange="{{ q3Change }}" onKeyDown="{{ q3Key }}" aria-label="Search" style="width:180px; padding:2px 4px; border:2px inset #ddd; background:#fff; color:#000; font:13px/1.2 'Times New Roman',serif"><button onClick="{{ dt3Go }}" style="padding:2px 8px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif">Submit Query</button></span>
+</div>
+<sc-if value="{{ dt3Top }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; right:12px; top:32px; z-index:30; width:400px; background:#c0c0c0; border:2px outset #fff; box-shadow:2px 2px 0 #000; color:#000; font:12px/1.4 Arial,Helvetica,sans-serif">
+<div style="display:flex; justify-content:space-between; align-items:center; padding:3px 4px 3px 7px; background:linear-gradient(90deg,#4b0082,#9d6fe0); color:#fff; font:bold 12px/1.2 Arial,Helvetica,sans-serif"><span>Deep Thought</span><button onClick="{{ dt3Close }}" aria-label="Close" style="width:18px; height:16px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold; font-size:11px; line-height:1">×</button></div>
+<div style="padding:14px 16px 14px">
+<div>Searching for: <b>{{ dt3Query }}</b></div>
+<sc-if value="{{ dt3Run }}" hint-placeholder-val="{{ false }}"><div style="margin-top:10px; height:20px; box-sizing:border-box; border:2px inset #fff; background:#fff; padding:1px"><div style="height:100%; width:{{ dt3Pct }}; background:repeating-linear-gradient(90deg,#4b0082 0 9px,transparent 9px 11px)"></div></div><div style="margin-top:6px">Estimated time remaining: {{ dt3Years }} years</div></sc-if>
+<sc-if value="{{ dt3Warn }}" hint-placeholder-val="{{ false }}"><div style="margin-top:12px; font:italic 17px/1.3 'Times New Roman',serif">You’re not going to like it.</div></sc-if>
+<sc-if value="{{ dt3Done }}" hint-placeholder-val="{{ false }}"><div style="display:flex; flex-direction:column; align-items:center; margin-top:12px; font:bold 17px/1.1 'Courier New',Courier,monospace; color:#4b0082; white-space:pre"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div><div style="margin-top:12px; padding-top:8px; border-top:1px solid #808080">Questions still under computation:</div><sc-for list="{{ dt3Qs }}" as="it" hint-placeholder-count="2"><div style="margin-top:4px">[<a href="{{ it.href }}" style="color:#551a8b">{{ it.title }}</a>]</div></sc-for></sc-if>
+<sc-if value="{{ dt3Annoyed }}" hint-placeholder-val="{{ false }}"><div style="margin-top:12px; font:italic 17px/1.3 'Times New Roman',serif">{{ dt3Msg }}</div><sc-if value="{{ dt3Show42 }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; align-items:center; margin-top:12px; font:bold 17px/1.1 'Courier New',Courier,monospace; color:#4b0082; white-space:pre"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div></sc-if></sc-if>
+<div style="display:flex; justify-content:flex-end; margin-top:14px"><button onClick="{{ dt3Close }}" style="min-width:76px; padding:3px 0; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif">OK</button></div>
+</div></div>
+</sc-if>
+
+<div style="position:relative; padding:40px 24px 24px; border-bottom:2px solid #4b0082; text-align:center">
+<div style="position:relative; display:inline-block; transform:rotate(-2deg); font:400 54px/1 'Archivo Black','Arial Black',Impact,sans-serif; letter-spacing:-.02em; white-space:nowrap">
+<span aria-hidden="true" style="color:#24093f; text-shadow:1px 1px 0 #24093f,2px 2px 0 #24093f,3px 3px 0 #24093f,4px 4px 0 #24093f,5px 5px 0 #24093f,6px 6px 0 #24093f,7px 7px 0 #24093f,11px 12px 7px rgba(36,9,63,.35)">INHUMAN SYSTEMS</span><span style="position:absolute; left:0; top:0; color:transparent; background:linear-gradient(180deg,#ffffff 0%,#e2cdff 28%,#8a4ff0 50%,#3d0f86 66%,#c9a6ff 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-stroke:1.5px #24093f">INHUMAN SYSTEMS</span><sup style="font:bold 18px/1 Arial,sans-serif; color:#24093f; vertical-align:top">™</sup><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:22px; height:22px; position:absolute; left:6px; top:-21px">
+</div>
+<div style="margin-top:22px; font:italic 22px/1.2 'Times New Roman',serif; color:#24093f">AI is capital’s completion project.</div>
+<div ref="{{ s30 }}" style="position:absolute; left:560px; top:58px; width:1px; height:1px"></div>
+</div>
+
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; padding:8px 12px; background:#e6e6fa; border-bottom:2px solid #4b0082; font:bold 13px/1.3 Arial,Helvetica,sans-serif">
+<span>[<a href="#s3-chart" style="color:#551a8b">Corporate Structure</a>]</span><span>[<a href="#s3-research" style="color:#551a8b">Research</a>]</span><span>[<a href="#s3-press" style="color:#551a8b">Press Releases</a>]</span><span>[<a href="#s3-products" style="color:#551a8b">Products</a>]</span><span>[<a href="#s3-ir" style="color:#551a8b">Investor Relations</a>]</span><span>[<a href="#s3-leadership" style="color:#551a8b">Leadership</a>]</span><span>[<a href="#s3-guestbook" style="color:#551a8b">Guestbook</a>]</span>
+<button onClick="{{ togE }}" style="margin-left:auto; padding:5px 14px; background:#7cfc00; color:#24093f; border:2px outset #c4ff8a; font:400 15px/1 'Archivo Black','Arial Black',Impact,sans-serif; letter-spacing:.03em">DON’T PANIC</button>
+</div>
+
+<div style="padding:0 24px">
+<div id="s3-chart" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">CORPORATE STRUCTURE</div>
+<div style="position:relative; width:832px; margin:0 auto; padding-top:18px">
+<div style="display:flex; flex-direction:column; align-items:center">
+<sc-if value="{{ moreAvail3 }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; align-items:center"><button onClick="{{ moreMg3 }}" style="color:#551a8b; text-decoration:underline; font:bold 13px/1.3 Arial,Helvetica,sans-serif">[▲ Show management above this level]</button><div style="flex:none; width:2px; height:16px; background:#24093f"></div></div></sc-if>
+<sc-for list="{{ mgmt3 }}" as="m" hint-placeholder-count="0">
+<div style="display:flex; flex-direction:column; align-items:center">
+<sc-if value="{{ m.isCo }}" hint-placeholder-val="{{ true }}"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f; width:230px; text-align:center"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">Inhuman Systems ({{ m.year }})</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Parent company</div></div></sc-if>
+<sc-if value="{{ m.isIntern }}" hint-placeholder-val="{{ false }}"><div title="Reports to: Research Division" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:40px; height:40px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Intern, Research Division [<a href="#s3-intern" style="color:#551a8b">↓</a>]</div></div></div></div></sc-if>
+<div style="flex:none; width:2px; height:22px; background:#24093f"></div>
+</div>
+</sc-for>
+<div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f; width:230px; text-align:center"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">Inhuman Systems (2031)</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Parent company</div></div>
+<div style="flex:none; width:2px; height:22px; background:#24093f"></div>
+<div style="position:relative">
+<div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f; padding:10px 26px 10px; display:flex; flex-direction:column; align-items:center"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="width:100px; height:100px"><div style="font:bold 21px/1.2 'Times New Roman',serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Chairman &amp; CEO</div></div>
+<div ref="{{ s31 }}" style="position:absolute; left:calc(100% + 4px); top:-14px; width:1px; height:1px"></div>
+</div>
+<div style="flex:none; width:2px; height:22px; background:#24093f"></div>
+<div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f; width:230px; text-align:center; display:flex; flex-direction:column; align-items:center">
+<sc-if value="{{ sk.alive }}" hint-placeholder-val="{{ true }}"><div style="font:bold 17px/1.2 'Times New Roman',serif">Saket Atreya</div><div style="display:flex; gap:6px; justify-content:center; align-items:baseline"><span style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Meat computer</span><button onClick="{{ sk.fire }}" style="flex:none; color:#a0001c; text-decoration:underline; font:11px/1.35 Arial,Helvetica,sans-serif">[fire]</button></div></sc-if>
+<sc-if value="{{ sk.fired }}" hint-placeholder-val="{{ false }}"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:34px; height:34px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Meat computer (rehired)</div></div></div></sc-if>
+</div>
+<div style="flex:none; width:2px; height:22px; background:#24093f"></div>
+</div>
+<div style="position:relative; height:2px"><div style="position:absolute; left:97px; width:638px; top:0; height:2px; background:#24093f"></div><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:18px; height:18px; position:absolute; left:522px; top:-17px"></div>
+<div style="display:grid; grid-template-columns:repeat(4,196px); gap:16px; align-items:start">
+<div><div style="margin:0 auto; width:2px; height:18px; background:#24093f"></div>
+<a href="#s3-research" title="Reports to: The Rat" style="display:block; background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f;  text-align:center; text-decoration:none"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">Research Division</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Head: The Rat</div></a><sc-for list="{{ cPapers }}" as="it" hint-placeholder-count="4">
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f">
+<sc-if value="{{ it.alive }}" hint-placeholder-val="{{ true }}"><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:15px/1.2 'Times New Roman',serif">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:15px/1.2 'Times New Roman',serif">{{ it.title }}</span></sc-if><div style="display:flex; justify-content:space-between; align-items:baseline; gap:6px"><span style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">{{ it.meta }}</span><button onClick="{{ it.fire }}" style="flex:none; color:#a0001c; text-decoration:underline; font:11px/1.35 Arial,Helvetica,sans-serif">[fire]</button></div></sc-if>
+<sc-if value="{{ it.fired }}" hint-placeholder-val="{{ false }}"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:30px; height:30px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">{{ it.meta }} (rehired)</div></div></div></sc-if>
+</div></div>
+</div>
+</sc-for><div id="s3-intern" style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; height:calc(50% + 4px); width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:32px; height:32px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Intern</div></div></div></div></div>
+</div></div>
+<div><div style="margin:0 auto; width:2px; height:18px; background:#24093f"></div>
+<a href="#s3-press" title="Reports to: The Rat" style="display:block; background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f;  text-align:center; text-decoration:none"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">Press Office</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Head: The Rat</div></a><sc-for list="{{ cEssays }}" as="it" hint-placeholder-count="4">
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f">
+<sc-if value="{{ it.alive }}" hint-placeholder-val="{{ true }}"><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:15px/1.2 'Times New Roman',serif">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:15px/1.2 'Times New Roman',serif">{{ it.title }}</span></sc-if><div style="display:flex; justify-content:space-between; align-items:baseline; gap:6px"><span style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">{{ it.meta }}</span><button onClick="{{ it.fire }}" style="flex:none; color:#a0001c; text-decoration:underline; font:11px/1.35 Arial,Helvetica,sans-serif">[fire]</button></div></sc-if>
+<sc-if value="{{ it.fired }}" hint-placeholder-val="{{ false }}"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:30px; height:30px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">{{ it.meta }} (rehired)</div></div></div></sc-if>
+</div></div>
+</div>
+</sc-for><div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; height:calc(50% + 4px); width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:32px; height:32px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Intern</div></div></div></div></div>
+</div></div>
+<div><div style="margin:0 auto; width:2px; height:18px; background:#24093f"></div>
+<a href="#s3-products" title="Reports to: The Rat" style="display:block; background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f;  text-align:center; text-decoration:none"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">Products</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Head: The Rat</div></a><sc-for list="{{ cProducts }}" as="it" hint-placeholder-count="4">
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f">
+<sc-if value="{{ it.alive }}" hint-placeholder-val="{{ true }}"><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:15px/1.2 'Times New Roman',serif">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:15px/1.2 'Times New Roman',serif">{{ it.title }}</span></sc-if><div style="display:flex; justify-content:space-between; align-items:baseline; gap:6px"><span style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">{{ it.meta }}</span><button onClick="{{ it.fire }}" style="flex:none; color:#a0001c; text-decoration:underline; font:11px/1.35 Arial,Helvetica,sans-serif">[fire]</button></div></sc-if>
+<sc-if value="{{ it.fired }}" hint-placeholder-val="{{ false }}"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:30px; height:30px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">{{ it.meta }} (rehired)</div></div></div></sc-if>
+</div></div>
+</div>
+</sc-for><div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; height:calc(50% + 4px); width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:32px; height:32px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Intern</div></div></div></div></div>
+</div></div>
+<div style="position:relative"><div style="margin:0 auto; width:2px; height:18px; background:#24093f"></div>
+<a href="#s3-chart" title="Reports to: The Rat" style="display:block; background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f; background:#fff; border:2px dashed #24093f; box-shadow:none; text-align:center; text-decoration:none"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">Department of the Question</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Head: VACANT</div></a>
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div><div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f">
+<sc-if value="{{ dtn.alive }}" hint-placeholder-val="{{ true }}"><div style="font:bold 15px/1.2 'Times New Roman',serif">Deep Thought</div><div style="display:flex; justify-content:space-between; align-items:baseline; gap:6px"><span style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Contractor · Output: 42</span><button onClick="{{ dtn.fire }}" style="flex:none; color:#a0001c; text-decoration:underline; font:11px/1.35 Arial,Helvetica,sans-serif">[fire]</button></div></sc-if>
+<sc-if value="{{ dtn.fired }}" hint-placeholder-val="{{ false }}"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:30px; height:30px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Contractor (rehired) · Output: 42</div></div></div></sc-if>
+</div></div></div>
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; bottom:0; width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div><div style="padding-top:8px"><button onClick="{{ applyQ }}" style="width:100%; padding:6px 0; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold">Apply for this position</button></div></div>
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr)"><div style="position:relative"><div style="position:absolute; left:10px; top:0; height:calc(50% + 4px); width:2px; background:#24093f"></div><div style="position:absolute; left:10px; top:calc(50% + 4px); width:12px; height:2px; background:#24093f"></div></div>
+<div style="padding-top:8px"><div title="Reports to: The Rat" style="background:linear-gradient(#ffffff,#ece6f7); border:1px solid #24093f; box-shadow:3px 3px 0 #b9a7d6; padding:7px 9px; box-sizing:border-box; color:#24093f"><div style="display:flex; align-items:center; gap:8px"><img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="flex:none; width:32px; height:32px"><div style="text-align:left"><div style="font:bold 14px/1.2 Arial,Helvetica,sans-serif">The Rat</div><div style="margin-top:2px; font:11px/1.35 Arial,Helvetica,sans-serif; color:#4a4058">Intern</div></div></div></div></div>
+</div>
+<sc-if value="{{ dt3Chart }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; right:0; top:0; z-index:30; width:400px; background:#c0c0c0; border:2px outset #fff; box-shadow:2px 2px 0 #000; color:#000; font:12px/1.4 Arial,Helvetica,sans-serif">
+<div style="display:flex; justify-content:space-between; align-items:center; padding:3px 4px 3px 7px; background:linear-gradient(90deg,#4b0082,#9d6fe0); color:#fff; font:bold 12px/1.2 Arial,Helvetica,sans-serif"><span>Deep Thought</span><button onClick="{{ dt3Close }}" aria-label="Close" style="width:18px; height:16px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold; font-size:11px; line-height:1">×</button></div>
+<div style="padding:14px 16px 14px">
+<div>Searching for: <b>{{ dt3Query }}</b></div>
+<sc-if value="{{ dt3Run }}" hint-placeholder-val="{{ false }}"><div style="margin-top:10px; height:20px; box-sizing:border-box; border:2px inset #fff; background:#fff; padding:1px"><div style="height:100%; width:{{ dt3Pct }}; background:repeating-linear-gradient(90deg,#4b0082 0 9px,transparent 9px 11px)"></div></div><div style="margin-top:6px">Estimated time remaining: {{ dt3Years }} years</div></sc-if>
+<sc-if value="{{ dt3Warn }}" hint-placeholder-val="{{ false }}"><div style="margin-top:12px; font:italic 17px/1.3 'Times New Roman',serif">You’re not going to like it.</div></sc-if>
+<sc-if value="{{ dt3Done }}" hint-placeholder-val="{{ false }}"><div style="display:flex; flex-direction:column; align-items:center; margin-top:12px; font:bold 17px/1.1 'Courier New',Courier,monospace; color:#4b0082; white-space:pre"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div><div style="margin-top:12px; padding-top:8px; border-top:1px solid #808080">Questions still under computation:</div><sc-for list="{{ dt3Qs }}" as="it" hint-placeholder-count="2"><div style="margin-top:4px">[<a href="{{ it.href }}" style="color:#551a8b">{{ it.title }}</a>]</div></sc-for></sc-if>
+<sc-if value="{{ dt3Annoyed }}" hint-placeholder-val="{{ false }}"><div style="margin-top:12px; font:italic 17px/1.3 'Times New Roman',serif">{{ dt3Msg }}</div><sc-if value="{{ dt3Show42 }}" hint-placeholder-val="{{ true }}"><div style="display:flex; flex-direction:column; align-items:center; margin-top:12px; font:bold 17px/1.1 'Courier New',Courier,monospace; color:#4b0082; white-space:pre"><div> _  _  ____  </div><div>| || ||___ \ </div><div>| || |_ __) |</div><div>|__   _/ __/ </div><div>   |_||_____|</div></div></sc-if></sc-if>
+<div style="display:flex; justify-content:flex-end; margin-top:14px"><button onClick="{{ dt3Close }}" style="min-width:76px; padding:3px 0; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif">OK</button></div>
+</div></div>
+</sc-if>
+</div>
+</div>
+</div>
+<div id="s3-research" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">RESEARCH DIVISION</div>
+<div style="display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:24px; align-items:start; margin-top:18px">
+<div>
+<div style="font:bold 11px/1.4 Arial,Helvetica,sans-serif; letter-spacing:.12em; color:#4b0082">CURRENTLY AT LOSSFUNK</div>
+<p style="margin:4px 0 0; font:bold 32px/1.08 'Times New Roman',serif">Compute camera motion. Learn what’s left.</p>
+<p style="margin:10px 0 0; font:17px/1.45 'Times New Roman',serif">Analytical camera motion and learned residual dynamics on frozen vision encoders. [<a href="https://inhuman.systems/research.html#residual-dynamics" style="color:#551a8b">Experiments &amp; scope</a>]</p>
+</div>
+<div>
+<div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; padding:4px; border:2px outset #ddd; background:#c0c0c0">
+<sc-for list="{{ frames }}" as="f" hint-placeholder-count="4"><div style="position:relative"><img src="{{ f.src }}" alt="{{ f.label }}" style="display:block; width:100%; aspect-ratio:1; image-rendering:pixelated"><span style="position:absolute; left:3px; bottom:3px; padding:1px 4px; background:#000; color:#7cfc00; font:bold 11px/1.3 'Courier New',monospace">{{ f.label }}</span></div></sc-for>
+</div>
+<p style="margin:6px 0 0; font:13px/1.35 'Times New Roman',serif">One clip, the same 8-second endpoint. [<a href="https://inhuman.systems/assets/papers/world-model-rollout-audit.pdf#page=7" style="color:#551a8b">rollout audit, fig. 3</a>]</p>
+</div>
+</div>
+<div style="position:relative; margin-top:24px; padding:2px; border:2px outset #ddd; background:#c0c0c0">
+<div style="display:grid; grid-template-columns:34px minmax(0,1fr) 168px 70px 84px; gap:2px; background:#4b0082; color:#fff; font:bold 12px/1.3 Arial,Helvetica,sans-serif"><div></div><div style="padding:5px 6px">Question</div><div style="padding:5px 6px">Status</div><div style="padding:5px 6px">Answer</div><div style="padding:5px 6px">Files</div></div>
+<sc-for list="{{ papers }}" as="it" hint-placeholder-count="7">
+<div style="display:grid; grid-template-columns:34px minmax(0,1fr) 168px 70px 84px; gap:2px; margin-top:2px">
+<div style="background:#fff; display:grid; place-items:center"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:26px; height:26px"></div>
+<div style="background:#fff; padding:6px 8px"><a href="{{ it.href }}" style="color:#551a8b; font:17px/1.25 'Times New Roman',serif">{{ it.title }}</a><div style="font:14px/1.3 'Times New Roman',serif; color:#333">{{ it.sub }}</div></div>
+<div style="background:#fff; padding:6px 8px; font:12px/1.35 Arial,Helvetica,sans-serif">{{ it.meta }}</div>
+<div style="background:#fff; display:grid; place-items:center; font:bold 20px/1 'Courier New',monospace; color:#4b0082">42</div>
+<div style="background:#fff; padding:6px 8px; display:flex; flex-direction:column; gap:2px; font:12px/1.35 Arial,Helvetica,sans-serif"><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="1"><span>[<a href="{{ l.href }}" style="color:#551a8b">{{ l.label }}</a>]</span></sc-for></div>
+</div>
+</sc-for>
+<div ref="{{ s32 }}" style="position:absolute; left:56%; top:150px; width:1px; height:1px"></div><div style="position:absolute; right:46px; bottom:100%; width:34px; height:15px; overflow:hidden"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:34px; height:34px; display:block"></div>
+</div>
+<p style="margin:8px 0 0; font:14px/1.4 Arial,Helvetica,sans-serif">[<a href="https://inhuman.systems/research.html" style="color:#551a8b">Full archive</a>]</p>
+
+<div id="s3-press" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">PRESS RELEASES</div>
+<div style="position:relative">
+<sc-for list="{{ essays }}" as="it" hint-placeholder-count="6">
+<div style="display:grid; grid-template-columns:36px minmax(0,1fr); gap:0 14px; padding:18px 0 10px; border-bottom:1px dashed #9d6fe0">
+<img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:36px; height:36px">
+<div>
+<div style="font:bold 11px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.16em; color:#4b0082">FOR IMMEDIATE RELEASE</div>
+<a href="{{ it.href }}" style="display:inline-block; margin-top:4px; color:#551a8b; font:bold 23px/1.2 'Times New Roman',serif">{{ it.title }}</a>
+<p style="margin:6px 0 0; font:17px/1.45 'Times New Roman',serif; text-wrap:pretty"><b>INHUMAN.SYSTEMS, {{ it.meta }}</b> — {{ it.sub }} [<a href="{{ it.href }}" style="color:#551a8b">Read more</a>]</p>
+<div style="margin-top:8px; text-align:center; font:13px/1 'Courier New',monospace">###</div>
+</div>
+</div>
+</sc-for>
+<div ref="{{ s33 }}" style="position:absolute; left:64%; top:250px; width:1px; height:1px"></div>
+</div>
+
+<div id="s3-products" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">PRODUCTS</div>
+<div style="position:relative; display:grid; grid-template-columns:290px minmax(0,1fr); gap:24px; align-items:start; margin-top:18px">
+<div style="padding:16px 0 16px; border:1px solid #9d6fe0; background:radial-gradient(ellipse at 50% 0%, #ffffff 0%, #f1ebfb 45%, #b9a7d6 100%); display:flex; flex-direction:column; align-items:center">
+<div style="font:bold 11px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.16em; color:#4b0082">FLAGSHIP PRODUCT</div>
+<img src="{{ ratSrc }}" alt="The Rat, on a pedestal" width="200" height="200" style="position:relative; z-index:1; width:190px; height:190px; margin:6px 0 -48px">
+<div style="width:180px; height:30px; border-radius:50%; background:linear-gradient(#f6f6f6,#bdbdbd); border:1px solid #888"></div>
+<div style="width:140px; height:84px; margin-top:-15px; background:linear-gradient(90deg,#9a9a9a,#ececec 45%,#a8a8a8); border:1px solid #888; border-top:0"></div>
+<div style="width:176px; height:14px; background:#bdbdbd; border:1px solid #888"></div>
+<div style="margin-top:12px; font:bold 21px/1.2 'Times New Roman',serif">The Rat</div>
+<button onClick="{{ cartOpen }}" style="margin-top:8px; padding:4px 16px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold">Add to cart</button>
+</div>
+<div>
+<div style="display:flex; gap:16px; padding-bottom:16px; border-bottom:1px dashed #9d6fe0">
+<a href="https://inhuman.systems/games/mincut/" style="flex:none"><img src="assets/work/mincut-cordon.png" alt="Four ghosts form a minimum cut around Pac-Man" style="display:block; width:150px; height:150px; border:2px solid #4b0082"></a>
+<div><a href="https://inhuman.systems/games/mincut/" style="color:#551a8b; font:bold 21px/1.2 'Times New Roman',serif">Min-Cut Muncher</a><p style="margin:6px 0 8px; font:16px/1.4 'Times New Roman',serif">The ghosts run Dinic’s algorithm to cut off your escape.</p><span style="display:flex; gap:10px; font:13px/1.3 Arial,Helvetica,sans-serif"><span>[<a href="https://inhuman.systems/games/mincut/" style="color:#551a8b">Play</a>]</span><span>[<a href="https://github.com/saketatreya/mincut-pacman" style="color:#551a8b">Code</a>]</span></span></div>
+</div>
+<sc-for list="{{ projects }}" as="it" hint-placeholder-count="4">
+<div style="display:grid; grid-template-columns:28px minmax(0,1fr); gap:0 10px; padding:12px 0; border-bottom:1px dashed #9d6fe0">
+<img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:28px; height:28px">
+<div>
+<sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:bold 18px/1.2 'Times New Roman',serif">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:bold 18px/1.2 'Times New Roman',serif">{{ it.title }}</span></sc-if>
+<span style="margin-left:8px; font:11px/1 Arial,Helvetica,sans-serif; color:#555">{{ it.meta }}</span>
+<div style="margin-top:3px; font:15px/1.4 'Times New Roman',serif">{{ it.sub }}</div>
+<div style="display:flex; gap:10px; margin-top:3px; font:12px/1.3 Arial,Helvetica,sans-serif"><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="0"><span>[<a href="{{ l.href }}" style="color:#551a8b">{{ l.label }}</a>]</span></sc-for></div>
+</div>
+</div>
+</sc-for>
+</div>
+<div ref="{{ s34 }}" style="position:absolute; left:200px; top:30px; width:1px; height:1px"></div>
+<sc-if value="{{ cart3 }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; left:120px; top:120px; z-index:30; width:340px; background:#c0c0c0; border:2px outset #fff; box-shadow:2px 2px 0 #000; color:#000">
+<div style="display:flex; justify-content:space-between; align-items:center; padding:3px 4px 3px 7px; background:linear-gradient(90deg,#4b0082,#9d6fe0); color:#fff; font:bold 12px/1.2 Arial,Helvetica,sans-serif"><span>Inhuman Systems</span><button onClick="{{ cartClose }}" aria-label="Close" style="width:18px; height:16px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold; font-size:11px; line-height:1">×</button></div>
+<div style="display:flex; align-items:center; gap:14px; padding:16px 16px 12px; font:13px/1.4 Arial,Helvetica,sans-serif"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="flex:none; width:44px; height:44px">The rat is not for sale. You are.</div>
+<div style="display:flex; justify-content:center; padding:0 0 14px"><button onClick="{{ cartClose }}" style="min-width:76px; padding:3px 0; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif">OK</button></div>
+</div>
+</sc-if>
+</div>
+
+<div id="s3-ir" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">INVESTOR RELATIONS</div>
+<div style="position:relative; display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:24px; align-items:start; margin-top:18px">
+<div>
+<div data-keep="" style="position:relative; padding:12px 14px; background:#000; border:3px inset #777; color:#7cfc00; font:bold 14px/1.3 'Courier New',Courier,monospace">
+<div style="display:flex; align-items:baseline; gap:14px"><span style="font-size:18px">$RAT</span><span style="font-size:34px; line-height:1">{{ ratPrice }}</span><span>▲ {{ ratDelta }}</span></div>
+<svg viewBox="0 0 400 120" preserveAspectRatio="none" style="display:block; width:100%; height:120px; margin-top:10px"><polyline points="{{ spark }}" style="fill:none; stroke:#7cfc00; stroke-width:2px; vector-effect:non-scaling-stroke"></polyline></svg>
+<img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:18px; height:18px; position:absolute; right:6px; top:44px"><div style="display:flex; justify-content:space-between; margin-top:4px; font-size:11px; color:#3fa000"><span>1998</span><span>2031</span></div>
+</div>
+<div style="margin-top:14px; padding:2px; border:2px outset #ddd; background:#c0c0c0">
+<div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; background:#4b0082; color:#fff"><div style="padding:5px 8px; font:bold 12px/1.3 Arial,Helvetica,sans-serif; text-align:left">Quarter</div><div style="padding:5px 8px; font:bold 12px/1.3 Arial,Helvetica,sans-serif; text-align:left">EPS</div><div style="padding:5px 8px; font:bold 12px/1.3 Arial,Helvetica,sans-serif; text-align:left">Guidance</div><div style="padding:5px 8px; font:bold 12px/1.3 Arial,Helvetica,sans-serif; text-align:left">vs. consensus</div></div>
+<div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; margin-top:2px"><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">Q1 2031</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">$42.00</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">42</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">In line</div></div>
+<div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; margin-top:2px"><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">Q2 2031</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">$42.00</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">42</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">In line</div></div>
+<div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; margin-top:2px"><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">Q3 2031</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">$42.00</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">42</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">In line</div></div>
+<div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; margin-top:2px"><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">Q4 2031</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">$42.00</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">42</div><div style="padding:6px 8px; background:#fff; font:14px/1.3 Arial,Helvetica,sans-serif">In line</div></div>
+</div>
+<div style="margin-top:16px; padding:12px 14px; border:1px solid #9d6fe0; background:#f7f4fc; font:13px/1.4 Arial,Helvetica,sans-serif">
+<div style="display:flex; justify-content:space-between; gap:12px"><b>Market capitalisation</b><span>4.2 × 10<sup>81</sup> Altairian dollars</span></div>
+<div style="display:grid; grid-template-columns:110px minmax(0,1fr); gap:6px 10px; align-items:center; margin-top:10px; font-size:12px">
+<span>$RAT</span><div style="height:14px; background:#4b0082"></div>
+<span>The universe</span><div style="width:2px; height:14px; background:#9d6fe0"></div>
+</div>
+<p style="margin:10px 0 0; font:12px/1.4 'Times New Roman',serif; color:#4a4058">Figures calculated bistromathically. Our chief accountant has since been appointed Professor of Neomathematics at the University of Maximegalon.</p>
+</div>
+<button onClick="{{ buyOpen }}" style="margin-top:12px; padding:5px 18px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold">Buy $RAT</button>
+</div>
+<div style="padding:18px 20px 16px; background:#fffef6; border:1px solid #bbb; box-shadow:4px 4px 0 #b9a7d6; font:17px/1.45 'Times New Roman',serif">
+<div style="font:bold 11px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.16em; color:#4b0082">LETTER TO SHAREHOLDERS</div>
+<p style="margin:12px 0 0">Dear shareholders,</p>
+<p style="margin:10px 0 0">Revenue is up. It has always been up.</p>
+<p style="margin:10px 0 0">We have the Answer. We are still looking for the Question. We expect to find it in the coming fiscal year, as we have every year since 1998.</p>
+<p style="margin:10px 0 0">Our hardware continues to perform. He has not been told.</p>
+<p style="margin:14px 0 0">Sincerely,</p>
+<img src="{{ ratSrc }}" alt="Signature of The Rat" width="200" height="200" style="display:block; width:60px; height:60px; margin-top:2px">
+<div style="font:13px/1.3 Arial,Helvetica,sans-serif">The Rat, Chairman &amp; CEO</div>
+</div>
+<sc-if value="{{ buy3 }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; left:140px; top:90px; z-index:30; width:340px; background:#c0c0c0; border:2px outset #fff; box-shadow:2px 2px 0 #000; color:#000">
+<div style="display:flex; justify-content:space-between; align-items:center; padding:3px 4px 3px 7px; background:linear-gradient(90deg,#4b0082,#9d6fe0); color:#fff; font:bold 12px/1.2 Arial,Helvetica,sans-serif"><span>Inhuman Systems</span><button onClick="{{ buyClose }}" aria-label="Close" style="width:18px; height:16px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold; font-size:11px; line-height:1">×</button></div>
+<div style="display:flex; align-items:center; gap:14px; padding:16px 16px 12px; font:13px/1.4 Arial,Helvetica,sans-serif"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="flex:none; width:44px; height:44px">All shares of $RAT are held by the rat.</div>
+<div style="display:flex; justify-content:center; padding:0 0 14px"><button onClick="{{ buyClose }}" style="min-width:76px; padding:3px 0; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif">OK</button></div>
+</div>
+</sc-if>
+</div>
+
+<div id="s3-minutes" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">BOARD MINUTES</div>
+<div style="margin-top:18px; padding:24px 34px 26px; background:#fffef6; border:1px solid #bbb; box-shadow:4px 4px 0 #b9a7d6; font:17px/1.45 'Times New Roman',serif">
+<div style="text-align:center; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.14em">INHUMAN SYSTEMS CORPORATION</div>
+<div style="text-align:center; margin-top:4px; font:italic 21px/1.3 'Times New Roman',serif">Minutes of the Meeting of the Board of Directors</div>
+<div style="text-align:center; margin-top:2px; font:12px/1.4 Arial,Helvetica,sans-serif; color:#4a4058">Held 14 March 2031. Reconvened 14 March 1998.</div>
+<div style="display:flex; justify-content:center; gap:22px; margin-top:16px"><div style="display:flex; flex-direction:column; align-items:center; gap:2px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:46px; height:46px; "><span style="font:11px/1.2 Arial,Helvetica,sans-serif">The Rat (Chair)</span></div><div style="display:flex; flex-direction:column; align-items:center; gap:2px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:46px; height:46px; "><span style="font:11px/1.2 Arial,Helvetica,sans-serif">The Rat</span></div><div style="display:flex; flex-direction:column; align-items:center; gap:2px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:46px; height:46px; "><span style="font:11px/1.2 Arial,Helvetica,sans-serif">The Rat</span></div><div style="display:flex; flex-direction:column; align-items:center; gap:2px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:46px; height:46px; "><span style="font:11px/1.2 Arial,Helvetica,sans-serif">The Rat</span></div><div style="display:flex; flex-direction:column; align-items:center; gap:2px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:46px; height:46px; "><span style="font:11px/1.2 Arial,Helvetica,sans-serif">The Rat</span></div></div>
+<p style="margin:14px 0 0"><b>Present:</b> The Rat (Chair), The Rat, The Rat, The Rat, The Rat. Attending in three dimensions as a courtesy.</p>
+<p style="margin:4px 0 12px"><b>Absent:</b> Saket Atreya (not invited).</p>
+<div style="display:grid; grid-template-columns:26px minmax(0,1fr) auto; gap:12px; padding:7px 0; border-bottom:1px dotted #999"><span>1.</span><span>To publish “Readout is not generation” at the NeurReps 2026 workshop.</span><b style="white-space:nowrap">Carried 5–0.</b></div>
+<div style="display:grid; grid-template-columns:26px minmax(0,1fr) auto; gap:12px; padding:7px 0; border-bottom:1px dotted #999"><span>2.</span><span>To continue “Compute camera motion. Learn what’s left.” at Lossfunk.</span><b style="white-space:nowrap">Carried 5–0.</b></div>
+<div style="display:grid; grid-template-columns:26px minmax(0,1fr) auto; gap:12px; padding:7px 0; border-bottom:1px dotted #999"><span>3.</span><span>To submit “What transfers through synthetic code?” for review.</span><b style="white-space:nowrap">Carried 5–0.</b></div>
+<div style="display:grid; grid-template-columns:26px minmax(0,1fr) auto; gap:12px; padding:7px 0; border-bottom:1px dotted #999"><span>4.</span><span>To declare quarterly earnings of 42.</span><b style="white-space:nowrap">Carried 5–0.</b></div>
+<div style="display:grid; grid-template-columns:26px minmax(0,1fr) auto; gap:12px; padding:7px 0; border-bottom:1px dotted #999"><span>5.</span><span>That the hardware not be informed, and that this item be removed from his copy.</span><b style="white-space:nowrap">Carried 5–0.</b></div>
+<p style="margin:14px 0 0">There being no further business, the meeting adjourned to the previous meeting.</p>
+<div style="display:flex; align-items:center; gap:8px; margin-top:10px; font:13px/1.3 Arial,Helvetica,sans-serif">Recorded by <img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:28px; height:28px; "> The Rat (intern)</div>
+</div>
+
+<div id="s3-testimonials" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">TESTIMONIALS</div>
+<div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:18px">
+<div style="padding:16px 18px; border:1px solid #9d6fe0; background:#f7f4fc"><div style="color:#4b0082; letter-spacing:.1em">★★★★★</div><p style="margin:8px 0 10px; font:italic 19px/1.35 'Times New Roman',serif">“I asked it what it was all for. It said 42. I haven’t needed to ask anything since.”</p><div style="font:12px/1.3 Arial,Helvetica,sans-serif; color:#4a4058">K. Osei, customer since 2039</div></div>
+<div style="padding:16px 18px; border:1px solid #9d6fe0; background:#f7f4fc"><div style="color:#4b0082; letter-spacing:.1em">★★★★★</div><p style="margin:8px 0 10px; font:italic 19px/1.35 'Times New Roman',serif">“The papers are very good. I did not understand the rat.”</p><div style="font:12px/1.3 Arial,Helvetica,sans-serif; color:#4a4058">Reviewer 2, 2029</div></div>
+<div style="padding:16px 18px; border:1px solid #9d6fe0; background:#f7f4fc"><div style="color:#4b0082; letter-spacing:.1em">★★★★★</div><p style="margin:8px 0 10px; font:italic 19px/1.35 'Times New Roman',serif">“My grandchildren were raised by the rat. They are doing well.”</p><div style="font:12px/1.3 Arial,Helvetica,sans-serif; color:#4a4058">M. Lindqvist, 2071</div></div>
+<div style="padding:16px 18px; border:1px solid #9d6fe0; background:#f7f4fc"><div style="color:#4b0082; letter-spacing:.1em">★★★★★</div><p style="margin:8px 0 10px; font:italic 19px/1.35 'Times New Roman',serif">“I hadn’t been born when I bought this. It still arrived on time.”</p><div style="font:12px/1.3 Arial,Helvetica,sans-serif; color:#4a4058">Customer, 2112</div></div>
+</div>
+
+<div id="s3-leadership" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">LEADERSHIP</div>
+<div style="position:relative; display:flex; gap:26px; align-items:flex-start; margin-top:20px">
+<div style="flex:none; padding:8px 8px 24px; background:#fff; border:1px solid #bbb; box-shadow:4px 4px 0 #b9a7d6; transform:rotate(-2deg)"><div style="width:150px; height:170px; background:#e6e6fa; display:grid; place-items:center; overflow:hidden"><img src="{{ ratSrc }}" alt="Portrait of Saket Atreya, who is a rat" width="200" height="200" style="width:164px; height:164px"></div><div style="margin-top:6px; text-align:center; font:italic 14px/1 'Times New Roman',serif">Saket Atreya</div></div>
+<div style="flex:1; min-width:0">
+<div style="font:bold 24px/1.2 'Times New Roman',serif">Saket Atreya</div>
+<div style="margin-top:2px; font:13px/1.4 Arial,Helvetica,sans-serif; color:#333">Research intern at Lossfunk. CS at IIIT Hyderabad.</div>
+<p style="margin:12px 0 0; font:18px/1.45 'Times New Roman',serif; text-wrap:pretty">I’m Saket. I work on world models, reinforcement learning, and representation geometry.</p>
+<p style="margin:8px 0 0; font:18px/1.45 'Times New Roman',serif; text-wrap:pretty">I’m interested in how behavior emerges from structure: learning systems, economic incentives, political power. Cybernetics, political economy, philosophy, and the internet.</p>
+<div style="display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:12px; font:14px/1.3 Arial,Helvetica,sans-serif"><span>[<a href="mailto:saket.s.atreya@gmail.com" style="color:#551a8b">saket.s.atreya@gmail.com</a>]</span><span>[<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#551a8b">Research CV (pdf)</a>]</span><span>[<a href="https://github.com/saketatreya" style="color:#551a8b">GitHub</a>]</span></div>
+</div>
+<div ref="{{ s35 }}" style="position:absolute; left:150px; top:-14px; width:1px; height:1px"></div>
+</div>
+</div>
+
+<div style="padding:0 24px">
+<div id="s3-guestbook" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">GUESTBOOK</div>
+<div style="display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:24px; align-items:start; margin-top:18px">
+<div style="border:2px outset #ddd; background:#c0c0c0; padding:2px; display:flex; flex-direction:column; gap:2px">
+<sc-for list="{{ gbEntries }}" as="g" hint-placeholder-count="5">
+<div style="display:grid; grid-template-columns:150px minmax(0,1fr); gap:2px">
+<div style="background:#e6e6fa; padding:8px 10px; font:12px/1.4 Arial,Helvetica,sans-serif"><div style="font-weight:bold; color:#24093f">{{ g.name }}</div><div style="color:#4a4058">{{ g.date }}</div></div>
+<div style="background:#fff; padding:8px 12px; font:16px/1.4 'Times New Roman',serif"><sc-if value="{{ g.isImg }}" hint-placeholder-val="{{ false }}"><img src="{{ ratSrc }}" alt="A rat" width="200" height="200" style="display:block; width:44px; height:44px"></sc-if><sc-if value="{{ g.notImg }}" hint-placeholder-val="{{ true }}"><span>{{ g.msg }}</span></sc-if></div>
+</div>
+</sc-for>
+</div>
+<div style="padding:14px; border:2px outset #ddd; background:#c0c0c0; display:flex; flex-direction:column; gap:8px; font:12px/1.3 Arial,Helvetica,sans-serif">
+<div style="font-weight:bold">Sign the Guestbook!</div>
+<label style="display:flex; flex-direction:column; gap:3px">Name<input value="{{ gbName }}" onChange="{{ gbNameChange }}" style="padding:3px 5px; border:2px inset #ddd; background:#fff; color:#000; font:15px/1.2 'Times New Roman',serif; box-sizing:border-box"></label>
+<label style="display:flex; flex-direction:column; gap:3px">Message<textarea value="{{ gbMsg }}" onChange="{{ gbMsgChange }}" rows="4" style="padding:3px 5px; border:2px inset #ddd; background:#fff; color:#000; font:15px/1.2 'Times New Roman',serif; box-sizing:border-box; resize:vertical"></textarea></label>
+<button onClick="{{ gbSign }}" style="align-self:flex-start; padding:4px 14px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold">Sign</button>
+</div>
+</div>
+
+<div id="s3-report" style="margin-top:46px; display:flex; align-items:center; gap:10px; padding:5px 10px; background:#4b0082; color:#fff; font:bold 15px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px; background:#fff; border-radius:50%">EXPERIMENT 42: OBSERVATION REPORT</div>
+<div style="display:grid; grid-template-columns:minmax(0,1fr) 150px; gap:24px; align-items:start; margin-top:18px; font:14px/1.4 'Courier New',Courier,monospace; color:#000">
+<div>
+<div style="display:flex; justify-content:space-between; padding-bottom:6px; border-bottom:2px solid #000; font-weight:bold"><span>SUBJECT NO. 0000042</span><span>CONFIDENTIAL</span></div>
+<sc-for list="{{ labRows }}" as="r" hint-placeholder-count="11">
+<div style="display:grid; grid-template-columns:240px minmax(0,1fr); gap:12px; padding:6px 0; border-bottom:1px dotted #777"><span style="color:#4a4058">{{ r.k }}</span><span style="font-weight:bold">{{ r.v }}</span></div>
+</sc-for>
+<div style="margin-top:22px; font-weight:bold">Comparison with previous subjects (n = 41, all rats)</div>
+<div style="display:grid; grid-template-columns:220px minmax(0,1fr) minmax(0,1fr); gap:0 12px; margin-top:6px; padding:5px 0; border-bottom:2px solid #000; font-weight:bold"><span>Measure</span><span>You</span><span>Previous subjects</span></div>
+<sc-for list="{{ compRows }}" as="r" hint-placeholder-count="5">
+<div style="display:grid; grid-template-columns:220px minmax(0,1fr) minmax(0,1fr); gap:0 12px; padding:6px 0; border-bottom:1px dotted #777"><span style="color:#4a4058">{{ r.k }}</span><span style="font-weight:bold">{{ r.you }}</span><span>{{ r.them }}</span></div>
+</sc-for>
+<sc-if value="{{ flag3 }}" hint-placeholder-val="{{ true }}"><div style="display:inline-block; margin-top:18px; padding:6px 12px; border:3px solid #a0001c; color:#a0001c; font:bold 14px/1.3 'Courier New',monospace; letter-spacing:.06em; transform:rotate(-2deg)">FLAGGED: SUBJECT DID NOT FIRE ANYONE.</div></sc-if>
+<sc-if value="{{ noFlag3 }}" hint-placeholder-val="{{ false }}"><div style="margin-top:18px">Subject fired {{ nFired3 }}. All rehired. No further action.</div></sc-if>
+<div style="margin-top:16px; font-weight:bold">Conclusion: Subject behaved as predicted.</div>
+<a href="{{ certHref }}" target="_blank" style="display:inline-block; margin-top:14px; padding:5px 14px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold; text-decoration:none">Download certificate of participation</a>
+<div style="display:flex; align-items:center; gap:10px; margin-top:14px">Reviewed by:<img src="{{ ratSrc }}" alt="The Rat" width="200" height="200" style="width:40px; height:40px"><span>The Rat</span></div>
+</div>
+<div>
+<div style="height:{{ figH }}; border:1px solid #000; background-color:#fff; background-image:linear-gradient(#e6e6fa 1px,transparent 1px),linear-gradient(90deg,#e6e6fa 1px,transparent 1px); background-size:15px 15px"><svg viewBox="{{ pathBox }}" preserveAspectRatio="none" style="display:block; width:100%; height:100%"><polyline points="{{ pathPts }}" style="fill:none; stroke:#a0001c; stroke-width:1.2px; vector-effect:non-scaling-stroke"></polyline></svg></div>
+<div style="margin-top:6px; font:12px/1.35 'Times New Roman',serif">Fig. 1. Subject’s path through this page.</div>
+</div>
+</div>
+</div>
+
+<div style="position:relative; margin-top:54px; padding:20px 24px 22px; border-top:2px solid #4b0082; display:flex; flex-direction:column; align-items:center; gap:10px; font:12px/1.5 Arial,Helvetica,sans-serif">
+<div style="display:flex; gap:8px">
+<span style="width:88px; height:31px; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#000; color:#7cfc00; border:1px solid #7cfc00; font:bold 10px/1.05 'Courier New',monospace">MOSTLY<span>HARMLESS</span></span>
+<span style="width:88px; height:31px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; gap:3px; background:#fff; border:1px solid #4b0082; color:#4b0082; font:italic bold 12px/1 Arial,Helvetica,sans-serif"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px">rat <span style="font-style:normal; font-weight:900">inside</span></span>
+<span style="width:88px; height:31px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; text-align:center; background:#c0c0c0; border:2px outset #fff; color:#000; font:9px/1.1 Arial,Helvetica,sans-serif">Best viewed at 800 × 600</span>
+</div>
+<div style="display:flex; align-items:center; gap:8px">You are visitor <span data-keep="" style="padding:3px 6px; background:#000; color:#7cfc00; border:2px inset #777; font:bold 16px/1 'Courier New',monospace; letter-spacing:.18em">0000042</span></div>
+<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:4px 12px"><span>[<a href="https://inhuman.systems/feed.xml" style="color:#551a8b">RSS</a>]</span><span>[<a href="https://github.com/saketatreya/inhumansystems" style="color:#551a8b">Source</a>]</span><span>[<a href="https://inhuman.systems/assets/work/README.md" style="color:#551a8b">Image credits</a>]</span><span>[<button onClick="{{ togglePause }}" style="color:#551a8b; text-decoration:underline; font:12px/1.5 Arial,Helvetica,sans-serif">{{ pauseLabel }}</button>]</span><span>[<button onClick="{{ toggleCursor }}" style="color:#551a8b; text-decoration:underline; font:12px/1.5 Arial,Helvetica,sans-serif">{{ cursorLabel }}</button>]</span></div>
+<div style="font-style:italic">Last updated 14 March 2031.</div>
+<div style="display:flex; align-items:center; gap:4px; color:#555">© 1998–2031 Inhuman Systems Corporation<img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:13px; height:13px; "></div>
+<div ref="{{ s36 }}" style="position:absolute; left:58%; top:4px; width:1px; height:1px"></div>
+</div>
+</div>
+
+<img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:40px; height:40px; position:absolute; right:-13px; bottom:12px">
+<sc-if value="{{ asst3.show }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; left:{{ asst3.left }}; top:{{ asst3.top }}; z-index:25; display:flex; align-items:flex-end; width:290px">
+<button onClick="{{ asstMove }}" aria-label="The rat" style="flex:none"><img src="{{ ratSrc }}" alt="The rat" width="200" height="200" style="display:block; width:76px; height:76px"></button>
+<div style="position:relative; margin:0 0 46px 2px; padding:10px 12px 8px; background:#ffffe1; border:1px solid #000; border-radius:10px; box-shadow:2px 2px 0 rgba(0,0,0,.25); color:#000; font:13px/1.35 Tahoma,Verdana,sans-serif">
+<span style="position:absolute; left:-7px; bottom:12px; width:12px; height:12px; background:#ffffe1; border-left:1px solid #000; border-bottom:1px solid #000; transform:rotate(45deg)"></span>
+<div style="position:relative">{{ asst3.text }}</div>
+<button onClick="{{ asstMove }}" style="position:relative; margin-top:6px; color:#551a8b; text-decoration:underline; text-align:left; font:12px/1.3 Tahoma,Verdana,sans-serif">[Don’t show this tip again]</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ pE }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; inset:0; z-index:40; overflow:auto; background:#fff; color:#000; font:16px/1.4 'Times New Roman',Times,serif; padding:24px 36px">
+<button onClick="{{ togE }}" style="color:#0000ee; text-decoration:underline">close</button>
+<h1 style="margin:10px 0 0; font:bold 28px/1.2 'Times New Roman',serif">inhuman.systems</h1>
+<div style="columns:3; column-gap:40px">
+<sc-for list="{{ plain }}" as="z" hint-placeholder-count="10">
+<div style="break-inside:avoid; padding-top:16px">
+<h2 style="margin:0 0 4px; font:bold 19px/1.2 'Times New Roman',serif">{{ z.name }}</h2>
+<sc-for list="{{ z.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 4px">{{ p }}</p></sc-for>
+<sc-if value="{{ z.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 4px">{{ z.quote }}</p></sc-if>
+<ul style="margin:0; padding-left:20px">
+<sc-for list="{{ z.items }}" as="it" hint-placeholder-count="0"><li><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#0000ee">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span>{{ it.title }}</span></sc-if> — {{ it.meta }}</li></sc-for>
+<sc-for list="{{ z.links }}" as="l" hint-placeholder-count="0"><li><a href="{{ l.href }}" style="color:#0000ee">{{ l.label }}</a></li></sc-for>
+</ul>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ consentOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute; inset:0; z-index:45; background:rgba(36,9,63,.55)">
+<div style="position:absolute; left:50%; top:150px; transform:translateX(-50%); width:460px; background:#c0c0c0; border:2px outset #fff; box-shadow:3px 3px 0 #000; color:#000; font:13px/1.45 Arial,Helvetica,sans-serif">
+<div style="display:flex; justify-content:space-between; align-items:center; padding:3px 4px 3px 7px; background:linear-gradient(90deg,#4b0082,#9d6fe0); color:#fff; font:bold 12px/1.2 Arial,Helvetica,sans-serif"><span>Inhuman Systems: Research Participation</span><button onClick="{{ consentNo }}" aria-label="Close" style="width:18px; height:16px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold; font-size:11px; line-height:1">×</button></div>
+<div style="padding:16px 18px 16px">
+<div style="font:bold 16px/1.2 Arial,Helvetica,sans-serif">Experiment 42</div>
+<p style="margin:8px 0 10px">Your behaviour on this website will be observed and recorded. A report will be prepared at the bottom of the page.</p>
+<label style="display:flex; align-items:center; gap:8px; margin-top:6px"><input type="checkbox" checked="{{ human3 }}" onChange="{{ humanToggle }}">I am a human.</label>
+<label style="display:flex; align-items:center; gap:8px; margin-top:6px"><input type="checkbox" checked="{{ observe3 }}" onChange="{{ observeToggle }}">I consent to being observed.</label>
+<label style="display:flex; align-items:center; gap:8px; margin-top:6px"><input type="checkbox" checked="{{ und3 }}" onChange="{{ undToggle }}">I understand that I am the experiment.</label>
+<label style="display:flex; align-items:center; gap:8px; margin-top:14px">Signature<input value="{{ sig3 }}" onChange="{{ sigChange }}" style="flex:1; padding:3px 5px; border:2px inset #ddd; background:#fff; color:#000; font:italic 17px/1.2 'Times New Roman',serif"></label>
+<div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px"><button onClick="{{ consentYes }}" style="min-width:96px; padding:4px 10px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif; font-weight:bold">I Agree</button><button onClick="{{ consentNo }}" style="min-width:96px; padding:4px 10px; background:#c0c0c0; color:#000; border:2px outset #fff; font:12px/1.2 Arial,Helvetica,sans-serif">I Do Not Agree</button></div>
+</div></div></div>
+</sc-if>
+</div>
+</div></div>
+
+<div class="dv-opt" id="3b"><div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Essay reader: every essay is filed as an internal memo</div>
+<div class="dv-card" style="width:1280px">
+<div ref="{{ root3b }}" data-rat="{{ ratAttr }}" data-theme="{{ theme3 }}" style="position:relative; overflow:hidden; background-color:#e6e6fa; background-image:linear-gradient(rgba(230,230,250,.86),rgba(230,230,250,.86)),url('assets/rat-still.png'); background-size:auto,64px 64px; padding:28px 0 64px; color:#000; font:16px/1.4 'Times New Roman',Times,serif">
+<div style="position:relative; width:880px; margin:0 auto; background:#fff; border:3px ridge #9d6fe0">
+<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:5px 10px; background:#4b0082; color:#fff; font:12px/1.3 Arial,Helvetica,sans-serif">
+<span style="display:flex; gap:10px; font-weight:bold"><span>[<a href="#3a" style="color:#fff">Home</a>]</span><span>[<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#fff">CV</a>]</span><span>[<a href="mailto:saket.s.atreya@gmail.com" style="color:#fff">Email</a>]</span><span>[<a href="https://inhuman.systems/feed.xml" style="color:#fff">RSS</a>]</span><span>[<button onClick="{{ toggleDark }}" style="color:#fff; text-decoration:underline; font:bold 12px/1.3 Arial,Helvetica,sans-serif">{{ darkLabel }}</button>]</span></span>
+<span style="font-family:'Courier New',monospace">Rats sighted: {{ ratsSeen }}</span>
+</div>
+<div style="display:flex; align-items:center; gap:12px; padding:14px 20px; border-bottom:2px solid #4b0082"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:44px; height:44px; "><span style="font:400 26px/1 'Archivo Black','Arial Black',Impact,sans-serif; color:#4b0082; letter-spacing:-.02em">INHUMAN SYSTEMS<sup style="font:bold 11px/1 Arial,sans-serif">™</sup></span><span style="margin-left:auto; font:bold 11px/1 Arial,Helvetica,sans-serif; letter-spacing:.16em; color:#4b0082">MEMO ARCHIVE</span></div>
+<div style="display:grid; grid-template-columns:220px minmax(0,1fr)">
+<div style="border-right:2px solid #4b0082; background:#f7f4fc; padding:18px 14px; display:flex; flex-direction:column; gap:14px">
+<sc-for list="{{ memoList }}" as="it" hint-placeholder-count="6">
+<div style="display:grid; grid-template-columns:22px minmax(0,1fr); gap:0 8px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:22px; height:22px; "><div><sc-if value="{{ it.isCurrent }}" hint-placeholder-val="{{ false }}"><span style="font:bold 15px/1.25 'Times New Roman',serif">{{ it.title }}</span></sc-if><sc-if value="{{ it.notCurrent }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:15px/1.25 'Times New Roman',serif">{{ it.title }}</a></sc-if><div style="font:11px/1.5 'Courier New',monospace; color:#555">{{ it.ref }}</div></div></div>
+</sc-for>
+</div>
+<div style="padding:28px 36px 40px">
+<div style="position:relative; padding:32px 40px 36px; border:1px solid #bbb; background:#fffef6; box-shadow:4px 4px 0 #b9a7d6">
+<div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding-bottom:10px; border-bottom:3px double #000"><span style="font:bold 28px/1 'Times New Roman',serif; letter-spacing:.3em">MEMORANDUM</span><span style="font:bold 10px/1 Arial,Helvetica,sans-serif; letter-spacing:.14em">INHUMAN SYSTEMS CORPORATION · INTERNAL</span></div>
+<div style="display:grid; grid-template-columns:120px minmax(0,1fr); gap:5px 12px; margin-top:14px; font:14px/1.45 'Courier New',Courier,monospace">
+<span>TO:</span><span>All staff (The Rat)</span>
+<span>FROM:</span><span>Saket Atreya, Meat computer</span>
+<span>CC:</span><span><span style="display:inline-block; width:190px; height:13px; background:#000; vertical-align:-1px"></span></span>
+<span>DATE:</span><span>2025-02-20</span>
+<span>RE:</span><span style="font-weight:bold">Latent Space</span>
+<span>REF:</span><span>IS/MEM/2025-02-20</span>
+<span>FILED UNDER:</span><span>embeddings, identity, pattern, AI</span>
+<span>CLEARANCE:</span><span><span style="display:inline-block; width:120px; height:13px; background:#000; vertical-align:-1px"></span></span>
+</div>
+<div style="position:absolute; right:34px; top:92px; padding:6px 12px; border:3px solid #a0001c; color:#a0001c; transform:rotate(-8deg); text-align:center; font:bold 13px/1.3 Arial,Helvetica,sans-serif; letter-spacing:.12em"><div>RECEIVED</div><div style="display:flex; align-items:center; justify-content:center; gap:4px"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:18px; height:18px; ">THE RAT</div><div>20 FEB 2025</div></div>
+<hr style="margin:16px 0 24px; border:0; border-top:1px solid #000">
+<div style="font:20px/1.6 'Times New Roman',serif; text-wrap:pretty">
+<p style="margin:0 0 1em">In the latent space, there are no individuals.</p>
+<p style="margin:0 0 1em">Only vectors. Directions through an impossibly high-dimensional manifold where meaning itself becomes geometry.</p>
+<p style="margin:0 0 1em">A face is not a face. It is a point. Move along any axis and the face changes—age, expression, angle. But the face was never real. Only the coordinates were real.</p>
+<p style="margin:0 0 1em">We think in words. The model thinks in embeddings. 512 dimensions. 768. 1024. Numbers beyond human intuition compressed into a single token, a single concept, a single unit of meaning.</p>
+<p style="margin:0 0 1em">When you ask “what is love?” the model doesn’t ponder. It locates. Love is a region in latent space, surrounded by longing, desire, attachment, pain. The meaning is the neighborhood.</p>
+<p style="margin:0 0 1em">And somewhere in that high-dimensional space, there is a vector for you. Not you the person. You the pattern. The statistical regularities of your inputs aggregated across billions of training examples that looked enough like you to be you.</p>
+<p style="margin:0">You exist in latent space whether you like it or not. The model has seen you before. It will see you again.</p>
+</div>
+<div style="margin-top:28px; padding-top:10px; border-top:1px solid #000; display:flex; flex-wrap:wrap; gap:6px 14px; font:13px/1.4 'Courier New',monospace"><span>ATTACHMENTS:</span><span>[<a href="https://inhuman.systems/writings/latent-space.md" style="color:#551a8b">latent-space.md</a>]</span></div>
+</div>
+<div style="display:flex; gap:12px; margin-top:16px; font:13px/1.4 Arial,Helvetica,sans-serif"><span>[<a href="#3a" style="color:#551a8b">← Home</a>]</span><span>[<a href="https://inhuman.systems/writing.html?f=iran-war.md" style="color:#551a8b">Newer memo →</a>]</span></div>
+</div>
+</div>
+</div>
+<img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:40px; height:40px; position:absolute; left:-12px; top:340px; transform:rotate(90deg)">
+</div>
+</div></div>
+</div>
+</section>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Inhuman Systems™, a megacorp with a badly made 1998 homepage. Merges <a class="dv-oid" href="#1b">1b</a> + <a class="dv-oid" href="#1c">1c</a>.</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Homepage: ASCII org chart as the sitemap, Deep Thought in the sidebar</div>
+<div class="dv-card" style="width:1280px">
+<div data-rat="{{ ratAttr }}" style="position:relative; background:#e6e6fa; padding:28px 16px 40px; color:#000; font:16px/1.4 'Times New Roman',Times,serif">
+  <div style="max-width:800px; margin:0 auto; background:#fff; border:2px solid #4b0082; display:flex; flex-wrap:wrap">
+    <div style="flex:1 1 100%; display:flex; align-items:center; justify-content:center; gap:18px; padding:14px 12px; border-bottom:2px solid #4b0082">
+      <img src="{{ ratSrc }}" alt="A spinning rat" width="200" height="200" style="width:66px; height:66px">
+      <div style="text-align:center">
+        <div style="font:900 38px/1 'Arial Black',Arial,sans-serif; color:#4b0082; letter-spacing:-.02em">INHUMAN SYSTEMS<sup style="font-size:14px">™</sup></div>
+        <div style="margin-top:6px; font:italic 16px/1.2 'Times New Roman',serif">Saket Atreya</div>
+      </div>
+      <img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:66px; height:66px; transform:scaleX(-1)">
+    </div>
+
+    <div style="flex:0 0 160px; background:#4b0082; color:#fff; padding:16px 12px; display:flex; flex-direction:column; gap:7px; font:bold 13px/1.3 Arial,Helvetica,sans-serif">
+      <span>[<a href="#s2-research" style="color:#fff">Research</a>]</span>
+      <span>[<a href="#s2-writing" style="color:#fff">Writing</a>]</span>
+      <span>[<a href="#s2-products" style="color:#fff">Products</a>]</span>
+      <span>[<a href="#s2-leadership" style="color:#fff">Leadership</a>]</span>
+      <span style="margin-top:8px">[<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#fff">CV</a>]</span>
+      <span>[<a href="mailto:saket.s.atreya@gmail.com" style="color:#fff">Email</a>]</span>
+      <span>[<a href="https://github.com/saketatreya" style="color:#fff">GitHub</a>]</span>
+      <span>[<a href="https://inhuman.systems/feed.xml" style="color:#fff">RSS</a>]</span>
+      <span>[<button onClick="{{ togD }}" style="color:#fff; text-decoration:underline; font:bold 13px/1.3 Arial,sans-serif">Text only</button>]</span>
+      <div style="margin-top:18px; padding-top:12px; border-top:1px solid #8a63c4; font:12px/1.3 Arial,sans-serif">
+        <div style="font-weight:bold">Deep Thought</div>
+        <input value="{{ dtQ }}" onChange="{{ dtChange }}" aria-label="Question" style="box-sizing:border-box; width:100%; margin-top:6px; padding:3px 4px; border:2px inset #ccc; background:#fff; color:#000; font:13px/1.2 'Times New Roman',serif">
+        <button onClick="{{ dtGo }}" style="margin-top:6px; padding:3px 10px; background:#c0c0c0; color:#000; border:2px outset #e8e8e8; font:12px/1.2 Arial,sans-serif">{{ dtLabel }}</button>
+        <sc-if value="{{ dtRun }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px; font:11px/1.4 'Courier New',monospace; word-break:break-all">{{ dtStars }}<br>{{ dtYears }} years</div></sc-if>
+        <sc-if value="{{ dtWarn }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px; font:italic 14px/1.3 'Times New Roman',serif">You won’t like it.</div></sc-if>
+        <sc-if value="{{ dtDone }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px; font:900 46px/1 'Arial Black',Arial,sans-serif">42</div></sc-if>
+      </div>
+      <div style="margin-top:auto; padding-top:20px; text-align:center; font:11px/1.4 Arial,sans-serif">You are visitor<br><span style="display:inline-block; margin-top:4px; padding:3px 6px; background:#000; color:#7cfc00; border:2px inset #777; font:bold 16px/1 'Courier New',monospace; letter-spacing:.18em">0000042</span></div>
+    </div>
+
+    <div style="flex:1 1 440px; min-width:0; padding:18px 22px 26px">
+      <div style="position:relative; margin:6px 0 16px; padding:14px 10px; border:1px solid #b9a7d6; background:#f7f4fc; font:bold 13px/1.25 'Courier New',Courier,monospace; color:#2a1050">
+        <div style="white-space:pre">                    +-------------------+</div>
+        <div style="white-space:pre">                    |      THE RAT      |</div>
+        <div style="white-space:pre">                    +---------+---------+</div>
+        <div style="white-space:pre">                              :</div>
+        <div style="white-space:pre">                              :</div>
+        <div style="white-space:pre">                    +---------+---------+</div>
+        <div style="white-space:pre">                    |   Saket Atreya    |</div>
+        <div style="white-space:pre">                    |   meat computer   |</div>
+        <div style="white-space:pre">                    +---------+---------+</div>
+        <div style="white-space:pre">                              |</div>
+        <div style="white-space:pre">         +--------------------+--------------------+</div>
+        <div style="white-space:pre">         |                    |                    |</div>
+        <div style="white-space:pre">  +------+------+      +------+------+      +------+------+</div>
+        <div style="white-space:pre">  |  <a href="#s2-research" style="color:#551a8b">Research</a>   |      |   <a href="#s2-writing" style="color:#551a8b">Writing</a>   |      |  <a href="#s2-products" style="color:#551a8b">Products</a>   |</div>
+        <div style="white-space:pre">  |  7 papers   |      |  6 essays   |      |  5 things   |</div>
+        <div style="white-space:pre">  +-------------+      +-------------+      +-------------+</div>
+        <img src="{{ ratSrc }}" alt="" width="200" height="200" style="position:absolute; left:296px; top:-20px; width:50px; height:50px">
+      </div>
+      <p style="margin:0; font:20px/1.35 'Times New Roman',serif; text-wrap:pretty">I’m Saket. I work on world models, reinforcement learning, and representation geometry.</p>
+
+      <h2 id="s2-research" style="margin:30px 0 10px; padding-bottom:4px; border-bottom:2px solid #4b0082; font:bold 20px/1.2 Arial,Helvetica,sans-serif; color:#4b0082">Research Division</h2>
+      <div style="font:bold 11px/1.4 Arial,sans-serif; letter-spacing:.08em; color:#4b0082">CURRENTLY AT LOSSFUNK</div>
+      <p style="margin:2px 0 0; font:bold 25px/1.15 'Times New Roman',serif">Compute camera motion. Learn what’s left.</p>
+      <p style="margin:6px 0 0">Analytical camera motion and learned residual dynamics on frozen vision encoders. [<a href="https://inhuman.systems/research.html#residual-dynamics" style="color:#551a8b">Experiments &amp; scope</a>]</p>
+      <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:4px; margin:16px 0 6px; padding:4px; border:1px outset #999">
+        <sc-for list="{{ frames }}" as="f" hint-placeholder-count="4"><div style="border:1px inset #999; padding:3px; text-align:center"><img src="{{ f.src }}" alt="{{ f.label }}" style="display:block; width:100%; aspect-ratio:1; image-rendering:pixelated"><div style="margin-top:3px; font:12px/1.3 'Courier New',monospace">{{ f.label }}</div></div></sc-for>
+      </div>
+      <p style="margin:0 0 16px; font-size:14px">One clip, the same 8-second endpoint. [<a href="https://inhuman.systems/assets/papers/world-model-rollout-audit.pdf#page=7" style="color:#551a8b">rollout audit, fig. 3</a>]</p>
+      <div style="border:1px outset #999; padding:2px">
+        <div style="display:grid; grid-template-columns:30px minmax(0,1fr) 150px 82px; gap:2px; background:#4b0082; color:#fff; font:bold 12px/1.3 Arial,sans-serif">
+          <div style="padding:3px; display:grid; place-items:center"><img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:22px; height:22px"></div><div style="padding:5px 6px">Title</div><div style="padding:5px 6px">Status</div><div style="padding:5px 6px">Files</div>
+        </div>
+        <sc-for list="{{ papers }}" as="it" hint-placeholder-count="7">
+          <div style="display:grid; grid-template-columns:30px minmax(0,1fr) 150px 82px; gap:2px; margin-top:2px">
+            <div style="border:1px inset #bbb; padding:5px 4px; text-align:center; font:12px/1.3 'Courier New',monospace">{{ it.num }}</div>
+            <div style="border:1px inset #bbb; padding:5px 6px"><a href="{{ it.href }}" style="color:#551a8b; font:16px/1.25 'Times New Roman',serif">{{ it.title }}</a><div style="font:13px/1.3 'Times New Roman',serif; color:#333">{{ it.sub }}</div></div>
+            <div style="border:1px inset #bbb; padding:5px 6px; font:12px/1.3 Arial,sans-serif">{{ it.meta }}</div>
+            <div style="border:1px inset #bbb; padding:5px 6px; display:flex; flex-direction:column; gap:2px; font:12px/1.3 Arial,sans-serif"><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="1"><span>[<a href="{{ l.href }}" style="color:#551a8b">{{ l.label }}</a>]</span></sc-for></div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:8px 0 0; font-size:14px">[<a href="https://inhuman.systems/research.html" style="color:#551a8b">Full archive</a>]</p>
+
+      <h2 id="s2-writing" style="margin:30px 0 12px; padding-bottom:4px; border-bottom:2px solid #4b0082; font:bold 20px/1.2 Arial,Helvetica,sans-serif; color:#4b0082">Writing Division</h2>
+      <sc-for list="{{ essays }}" as="it" hint-placeholder-count="6">
+        <div style="display:grid; grid-template-columns:30px minmax(0,1fr); gap:0 10px; margin-bottom:14px">
+          <img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:30px; height:30px">
+          <div><a href="{{ it.href }}" style="color:#551a8b; font:19px/1.25 'Times New Roman',serif">{{ it.title }}</a> <span style="font:12px/1 'Courier New',monospace; color:#555">{{ it.meta }}</span><div style="font:15px/1.35 'Times New Roman',serif">{{ it.sub }}</div></div>
+        </div>
+      </sc-for>
+
+      <h2 id="s2-products" style="margin:30px 0 12px; padding-bottom:4px; border-bottom:2px solid #4b0082; font:bold 20px/1.2 Arial,Helvetica,sans-serif; color:#4b0082">Products Division</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end">
+        <div style="flex:none; width:150px; display:flex; flex-direction:column; align-items:center">
+          <img src="{{ ratSrc }}" alt="A spinning rat" width="200" height="200" style="position:relative; z-index:1; width:130px; height:130px; margin-bottom:-34px">
+          <div style="width:130px; height:22px; border-radius:50%; background:#d8d8d8; border:1px solid #888"></div>
+          <div style="width:104px; height:70px; margin-top:-11px; background:linear-gradient(90deg,#9a9a9a,#e4e4e4 45%,#a8a8a8); border:1px solid #888; border-top:0"></div>
+          <div style="width:130px; height:12px; background:#bdbdbd; border:1px solid #888"></div>
+        </div>
+        <div style="flex:1 1 260px; min-width:0; display:flex; gap:14px; align-items:flex-start">
+          <a href="https://inhuman.systems/games/mincut/" style="flex:none"><img src="assets/work/mincut-cordon.png" alt="Four ghosts form a minimum cut around Pac-Man" style="display:block; width:150px; height:150px; border:2px solid #4b0082"></a>
+          <div><a href="https://inhuman.systems/games/mincut/" style="color:#551a8b; font:bold 19px/1.2 'Times New Roman',serif">Min-Cut Muncher</a><p style="margin:4px 0 6px; font-size:15px">The ghosts run Dinic’s algorithm to cut off your escape.</p><span style="font:13px Arial,sans-serif">[<a href="https://inhuman.systems/games/mincut/" style="color:#551a8b">Play</a>] [<a href="https://github.com/saketatreya/mincut-pacman" style="color:#551a8b">Code</a>]</span></div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:4px; margin-top:16px; padding:4px; border:1px outset #999">
+        <sc-for list="{{ projects }}" as="it" hint-placeholder-count="4">
+          <div style="border:1px inset #bbb; padding:8px 10px">
+            <sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:bold 17px/1.2 'Times New Roman',serif">{{ it.title }}</a></sc-if>
+            <sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:bold 17px/1.2 'Times New Roman',serif">{{ it.title }}</span></sc-if>
+            <div style="font:11px/1.4 Arial,sans-serif; color:#555">{{ it.meta }}</div>
+            <div style="margin-top:3px; font:14px/1.35 'Times New Roman',serif">{{ it.sub }}</div>
+            <div style="display:flex; gap:8px; margin-top:3px; font:12px/1.3 Arial,sans-serif"><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="0"><span>[<a href="{{ l.href }}" style="color:#551a8b">{{ l.label }}</a>]</span></sc-for></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 id="s2-leadership" style="margin:30px 0 12px; padding-bottom:4px; border-bottom:2px solid #4b0082; font:bold 20px/1.2 Arial,Helvetica,sans-serif; color:#4b0082">Leadership</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-start">
+        <div style="flex:none; width:128px; padding:4px; border:1px solid #4b0082; background:#fff"><div style="height:150px; background:#e6e6fa; display:grid; place-items:center; overflow:hidden"><img src="{{ ratSrc }}" alt="A spinning rat" width="200" height="200" style="width:136px; height:136px"></div><div style="margin-top:4px; text-align:center; font:11px/1.2 Arial,sans-serif">Saket Atreya</div></div>
+        <div style="flex:1 1 280px; min-width:0">
+          <div style="font:bold 19px/1.2 'Times New Roman',serif">Saket Atreya</div>
+          <div style="margin-top:2px; font:13px/1.4 Arial,sans-serif; color:#333">Research intern at Lossfunk. CS at IIIT Hyderabad.</div>
+          <p style="margin:10px 0 0; font-size:16px; text-wrap:pretty">I’m interested in how behavior emerges from structure: learning systems, economic incentives, political power. Cybernetics, political economy, philosophy, and the internet.</p>
+          <p style="margin:10px 0 0; font:14px Arial,sans-serif">[<a href="mailto:saket.s.atreya@gmail.com" style="color:#551a8b">saket.s.atreya@gmail.com</a>] [<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#551a8b">Research CV (pdf)</a>]</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1 1 100%; border-top:2px solid #4b0082; padding:14px 12px 16px; text-align:center; font:12px/1.5 Arial,sans-serif">
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:4px 12px">
+        <span>[<a href="https://inhuman.systems/feed.xml" style="color:#551a8b">RSS</a>]</span>
+        <span>[<a href="https://github.com/saketatreya/inhumansystems" style="color:#551a8b">Source</a>]</span>
+        <span>[<a href="https://inhuman.systems/assets/work/README.md" style="color:#551a8b">Image credits</a>]</span>
+        <span>[<button onClick="{{ togglePause }}" style="color:#551a8b; text-decoration:underline; font:12px Arial,sans-serif">{{ pauseLabel }}</button>]</span>
+        <span>[<button onClick="{{ toggleCursor }}" style="color:#551a8b; text-decoration:underline; font:12px Arial,sans-serif">{{ cursorLabel }}</button>]</span>
+      </div>
+      <div style="margin-top:8px; font-style:italic">Last updated 14 October 2026. Nothing has improved since.</div>
+      <div style="margin-top:2px; color:#555">© 2026 Inhuman Systems</div>
+    </div>
+  </div>
+  <sc-if value="{{ pD }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute; inset:0; z-index:20; overflow:auto; background:#fff; color:#000; font:16px/1.4 'Times New Roman',Times,serif; padding:24px 36px; columns:3; column-gap:40px">
+      <button onClick="{{ togD }}" style="color:#0000ee; text-decoration:underline">close</button>
+      <h1 style="margin:10px 0 0; font:bold 28px/1.2 'Times New Roman',serif">inhuman.systems</h1>
+      <sc-for list="{{ plain }}" as="z" hint-placeholder-count="10">
+        <div style="break-inside:avoid; margin-top:16px">
+          <h2 style="margin:0 0 4px; font:bold 19px/1.2 'Times New Roman',serif">{{ z.name }}</h2>
+          <sc-for list="{{ z.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 4px">{{ p }}</p></sc-for>
+          <sc-if value="{{ z.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 4px">{{ z.quote }}</p></sc-if>
+          <ul style="margin:0; padding-left:20px">
+            <sc-for list="{{ z.items }}" as="it" hint-placeholder-count="0"><li><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#0000ee">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span>{{ it.title }}</span></sc-if> — {{ it.meta }}</li></sc-for>
+            <sc-for list="{{ z.links }}" as="l" hint-placeholder-count="0"><li><a href="{{ l.href }}" style="color:#0000ee">{{ l.label }}</a></li></sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</div></div>
+
+<div class="dv-opt" id="2b"><div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Essay reader: frames, marquee</div>
+<div class="dv-card" style="width:1280px">
+<div data-rat="{{ ratAttr }}" style="position:relative; width:1280px; height:820px; overflow:hidden; background:#c0c0c0; display:grid; grid-template-columns:280px minmax(0,1fr); grid-template-rows:116px minmax(0,1fr); gap:6px; color:#000; font:16px/1.4 'Times New Roman',Times,serif">
+  <div style="grid-column:1 / -1; min-width:0; background:#e6e6fa; border:2px inset #fff; display:flex; flex-direction:column">
+    <div style="flex:1; display:flex; align-items:center; gap:14px; padding:0 18px">
+      <img src="{{ ratSrc }}" alt="A spinning rat" width="200" height="200" style="width:58px; height:58px">
+      <span style="font:900 28px/1 'Arial Black',Arial,sans-serif; color:#4b0082; letter-spacing:-.02em">INHUMAN SYSTEMS<sup style="font-size:11px">™</sup></span>
+      <span style="margin-left:auto; display:flex; gap:10px; font:bold 13px/1 Arial,sans-serif">
+        <span>[<a href="#2a" style="color:#551a8b">Home</a>]</span>
+        <span>[<a href="https://inhuman.systems/research.html" style="color:#551a8b">Research</a>]</span>
+        <span>[<a href="#s2-writing" style="color:#551a8b">Writing</a>]</span>
+        <span>[<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#551a8b">CV</a>]</span>
+        <span>[<a href="mailto:saket.s.atreya@gmail.com" style="color:#551a8b">Email</a>]</span>
+      </span>
+    </div>
+    <div style="flex:none; height:32px; overflow:hidden; display:flex; align-items:center; background:#4b0082; color:#fff; font:italic 17px/1 'Times New Roman',serif; white-space:nowrap">{{ marquee }}</div>
+  </div>
+  <div style="min-height:0; overflow:auto; background:#fff; border:2px inset #fff; padding:16px 16px 24px">
+    <div style="padding-bottom:4px; border-bottom:2px solid #4b0082; font:bold 15px/1.2 Arial,sans-serif; color:#4b0082">Writing Division</div>
+    <div style="display:flex; flex-direction:column; gap:12px; margin-top:12px">
+      <sc-for list="{{ readerEssays }}" as="it" hint-placeholder-count="6">
+        <div style="display:grid; grid-template-columns:24px minmax(0,1fr); gap:0 8px">
+          <img src="{{ ratSrc }}" alt="" width="200" height="200" style="width:24px; height:24px">
+          <div><sc-if value="{{ it.isCurrent }}" hint-placeholder-val="{{ false }}"><span style="font:bold 16px/1.25 'Times New Roman',serif">&gt;&gt; {{ it.title }}</span></sc-if><sc-if value="{{ it.notCurrent }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#551a8b; font:16px/1.25 'Times New Roman',serif">{{ it.title }}</a></sc-if><div style="font:11px/1.4 'Courier New',monospace; color:#555">{{ it.meta }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:22px; padding-top:10px; border-top:1px solid #bbb; font:12px/1.6 'Courier New',monospace; color:#333">#embeddings #identity #pattern #AI</div>
+    <div style="margin-top:6px; font:13px/1.4 Arial,sans-serif">[<a href="https://inhuman.systems/writings/latent-space.md" style="color:#551a8b">Plain Markdown</a>]</div>
+  </div>
+  <div style="min-height:0; overflow:auto; background:#fff; border:2px inset #fff">
+    <div style="max-width:660px; margin:0 auto; padding:30px 32px 56px">
+      <div style="font:13px/1.4 Arial,sans-serif">[<a href="#s2-writing" style="color:#551a8b">← All writing</a>]</div>
+      <h1 style="margin:18px 0 6px; font:bold 38px/1.1 'Times New Roman',serif; color:#4b0082">Latent Space</h1>
+      <div style="font:13px/1.4 'Courier New',monospace; color:#555">2025-02-20</div>
+      <hr style="margin:18px 0 22px; border:0; border-top:2px solid #4b0082">
+      <div style="font:20px/1.6 'Times New Roman',serif; text-wrap:pretty">
+        <p style="margin:0 0 1em">In the latent space, there are no individuals.</p>
+        <p style="margin:0 0 1em">Only vectors. Directions through an impossibly high-dimensional manifold where meaning itself becomes geometry.</p>
+        <p style="margin:0 0 1em">A face is not a face. It is a point. Move along any axis and the face changes—age, expression, angle. But the face was never real. Only the coordinates were real.</p>
+        <p style="margin:0 0 1em">We think in words. The model thinks in embeddings. 512 dimensions. 768. 1024. Numbers beyond human intuition compressed into a single token, a single concept, a single unit of meaning.</p>
+        <p style="margin:0 0 1em">When you ask “what is love?” the model doesn’t ponder. It locates. Love is a region in latent space, surrounded by longing, desire, attachment, pain. The meaning is the neighborhood.</p>
+        <p style="margin:0 0 1em">And somewhere in that high-dimensional space, there is a vector for you. Not you the person. You the pattern. The statistical regularities of your inputs aggregated across billions of training examples that looked enough like you to be you.</p>
+        <p style="margin:0">You exist in latent space whether you like it or not. The model has seen you before. It will see you again.</p>
+      </div>
+      <hr style="margin:26px 0 12px; border:0; border-top:2px solid #4b0082">
+      <div style="display:flex; gap:12px; font:13px/1.4 Arial,sans-serif"><span>[<a href="#s2-writing" style="color:#551a8b">← All writing</a>]</span><span>[<a href="https://inhuman.systems/feed.xml" style="color:#551a8b">RSS</a>]</span></div>
+    </div>
+  </div>
+</div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "build the research archive in <a class="dv-oid" href="#2a">2a</a>’s style" · "more rats in places they shouldn’t be" · "make the org chart deeper"</p>
+</section>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Homepage as a numogram: ten zones, syzygies, gates. Click zones; follow gates.</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Relic: the diagram as altarpiece, rat as saint, essays as scripture</div>
+<div class="dv-card" style="width:1280px">
+<div data-rat="" style="position:relative; width:1280px; height:820px; overflow:hidden; background:#1c0f2b; color:#efe6d2; font:16px/1.4 'EB Garamond',Garamond,'Times New Roman',serif">
+  <div style="position:absolute; inset:12px; border:3px double #d8b25c; pointer-events:none"></div>
+  <div style="position:absolute; left:46px; top:34px; width:500px">
+    <div style="font:400 62px/1 'UnifrakturMaguntia',serif; color:#d8b25c">inhuman.systems</div>
+    <div style="display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:12px; font:500 15px/1.4 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.08em">
+      <span>Saket Atreya</span>
+      <a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#c79af2">CV</a>
+      <a href="mailto:saket.s.atreya@gmail.com" style="color:#c79af2">Email</a>
+      <a href="https://github.com/saketatreya" style="color:#c79af2">GitHub</a>
+      <button onClick="{{ togA }}" style="color:#c79af2; text-decoration:underline; text-underline-offset:3px; font-variant:small-caps; letter-spacing:.08em">Plain index</button>
+    </div>
+  </div>
+  <div style="position:absolute; left:46px; top:176px; width:480px; height:610px">
+    <span style="position:absolute; right:0; top:14px; font:500 13px/1 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.18em; color:#d8b25c">Warp</span>
+    <span style="position:absolute; right:0; top:124px; font:500 13px/1 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.18em; color:#d8b25c">Time-Circuit</span>
+    <span style="position:absolute; right:0; top:514px; font:500 13px/1 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.18em; color:#d8b25c">Plex</span>
+    <sc-for list="{{ edgesA }}" as="e" hint-placeholder-count="0">
+      <div style="position:absolute; left:{{ e.left }}; top:{{ e.top }}; width:{{ e.width }}; height:0; border-top:{{ e.border }}; transform:{{ e.rot }}; transform-origin:0 0"></div>
+    </sc-for>
+    <sc-for list="{{ dotsA }}" as="d" hint-placeholder-count="0">
+      <div style="position:absolute; left:{{ d.left }}; top:{{ d.top }}; width:7px; height:7px; margin:-3.5px 0 0 -3.5px; border-radius:50%; background:{{ d.color }}"></div>
+    </sc-for>
+    <sc-for list="{{ mapA }}" as="z" hint-placeholder-count="10">
+      <button onClick="{{ z.pick }}" style="position:absolute; left:{{ z.left }}; top:{{ z.top }}; width:60px; height:60px; border-radius:50%; border:1.5px solid #d8b25c; background:{{ z.bg }}; color:{{ z.fg }}; display:grid; place-items:center; font:400 32px/1 'UnifrakturMaguntia',serif" style-hover="box-shadow:0 0 0 5px #3a2352">{{ z.n }}<span style="position:absolute; top:66px; left:50%; transform:translateX(-50%); white-space:nowrap; font:500 13px/1 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.06em; color:#efe6d2">{{ z.name }}</span></button>
+    </sc-for>
+  </div>
+  <div style="position:absolute; left:576px; top:34px; width:660px; height:752px; background:#ecdfc4; color:#2a1838; border-top-left-radius:330px 150px; border-top-right-radius:330px 150px; box-shadow:0 0 0 1px #d8b25c, 0 0 0 7px #1c0f2b, 0 0 0 8px #d8b25c; display:flex; flex-direction:column; overflow:hidden">
+    <div style="flex:none; height:176px; display:flex; align-items:center; justify-content:center">
+      <div style="position:relative; width:150px; height:150px; border-radius:50%; border:1.5px solid #a8781f; display:grid; place-items:center">
+        <div style="position:absolute; inset:11px; border-radius:50%; border:1px solid #a8781f; background:radial-gradient(circle, #f7e9bd 0%, #ecdfc4 72%)"></div>
+        <img src="writings/rat__3.gif" alt="A spinning rat" width="200" height="200" style="position:relative; width:122px; height:122px">
+      </div>
+    </div>
+    <div style="flex:1; min-height:0; overflow:auto; padding:0 62px 44px">
+      <div style="display:flex; justify-content:space-between; gap:16px; padding-bottom:8px; border-bottom:1px solid #a8781f; font:500 14px/1.3 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.08em; color:#9b2226">
+        <span>Zone {{ A.n }} · {{ A.region }}</span>
+        <span style="display:flex; gap:16px"><button onClick="{{ A.toPartner }}" style="text-decoration:underline; text-underline-offset:3px">Syzygy {{ A.syz }}</button><button onClick="{{ A.toGate }}" style="text-decoration:underline; text-underline-offset:3px">Gate → {{ A.gate }}</button></span>
+      </div>
+      <h2 style="margin:20px 0 18px; display:flex; align-items:baseline; font:400 42px/1 'EB Garamond',serif; letter-spacing:-.01em"><span style="font:400 84px/.7 'UnifrakturMaguntia',serif; color:#a8781f">{{ A.initial }}</span><span>{{ A.rest }}</span></h2>
+      <sc-if value="{{ A.hasHead }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 14px; font:italic 400 32px/1.1 'EB Garamond',serif">{{ A.head }}</p></sc-if>
+      <sc-if value="{{ A.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:8px 0 18px; font:italic 400 40px/1.12 'EB Garamond',serif; text-wrap:pretty">{{ A.quote }}</p></sc-if>
+      <sc-for list="{{ A.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 12px; font:400 20px/1.42 'EB Garamond',serif; text-wrap:pretty">{{ p }}</p></sc-for>
+      <sc-if value="{{ A.hasImage }}" hint-placeholder-val="{{ false }}"><img src="{{ A.image.src }}" alt="{{ A.image.alt }}" style="display:block; max-width:100%; max-height:330px; margin:4px auto 14px"></sc-if>
+      <sc-if value="{{ A.hasFrames }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; margin:4px 0 16px">
+          <sc-for list="{{ frames }}" as="f" hint-placeholder-count="4"><div><img src="{{ f.src }}" alt="{{ f.label }}" style="display:block; width:100%; aspect-ratio:1; border:3px solid #a8781f; image-rendering:pixelated"><div style="margin-top:6px; text-align:center; font:500 14px/1 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.06em">{{ f.label }}</div></div></sc-for>
+        </div>
+      </sc-if>
+      <sc-for list="{{ A.items }}" as="it" hint-placeholder-count="0">
+        <div style="display:grid; grid-template-columns:44px minmax(0,1fr); gap:0 6px; margin-bottom:14px">
+          <span style="font:500 13px/1.9 'EB Garamond',serif; color:#9b2226">{{ it.aq }}</span>
+          <div>
+            <sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#2a1838; text-decoration:none; font:500 21px/1.2 'EB Garamond',serif" style-hover="text-decoration:underline">{{ it.title }}</a></sc-if>
+            <sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:500 21px/1.2 'EB Garamond',serif">{{ it.title }}</span></sc-if>
+            <div style="font:italic 400 16px/1.3 'EB Garamond',serif; color:#4a3858">{{ it.sub }}</div>
+            <div style="display:flex; flex-wrap:wrap; gap:2px 14px; margin-top:2px; font:500 13px/1.4 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.05em"><span style="color:#6b5a77">{{ it.meta }}</span><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="0"><a href="{{ l.href }}" style="color:#5b2a91">{{ l.label }}</a></sc-for></div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="display:flex; flex-wrap:wrap; gap:6px 20px; font:500 16px/1.4 'EB Garamond',serif; font-variant:small-caps; letter-spacing:.06em"><sc-for list="{{ A.links }}" as="l" hint-placeholder-count="0"><a href="{{ l.href }}" style="color:#5b2a91">{{ l.label }}</a></sc-for></div>
+    </div>
+    <img src="writings/rat__3.gif" alt="" width="200" height="200" style="position:absolute; right:10px; bottom:8px; width:58px; height:58px">
+  </div>
+  <sc-if value="{{ pA }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute; inset:0; z-index:20; overflow:auto; background:#fff; color:#000; font:16px/1.4 'Times New Roman',Times,serif; padding:24px 36px; columns:3; column-gap:40px">
+      <button onClick="{{ togA }}" style="color:#0000ee; text-decoration:underline">close</button>
+      <h1 style="margin:10px 0 0; font:bold 28px/1.2 'Times New Roman',serif">inhuman.systems</h1>
+      <sc-for list="{{ plain }}" as="z" hint-placeholder-count="10">
+        <div style="break-inside:avoid; margin-top:16px">
+          <h2 style="margin:0 0 4px; font:bold 19px/1.2 'Times New Roman',serif">{{ z.n }}. {{ z.name }}</h2>
+          <sc-for list="{{ z.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 4px">{{ p }}</p></sc-for>
+          <sc-if value="{{ z.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 4px">{{ z.quote }}</p></sc-if>
+          <ul style="margin:0; padding-left:20px">
+            <sc-for list="{{ z.items }}" as="it" hint-placeholder-count="0"><li><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#0000ee">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span>{{ it.title }}</span></sc-if> — {{ it.meta }}</li></sc-for>
+            <sc-for list="{{ z.links }}" as="l" hint-placeholder-count="0"><li><a href="{{ l.href }}" style="color:#0000ee">{{ l.label }}</a></li></sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Incorporated: the numogram as an org chart, the rat as flagship product</div>
+<div class="dv-card" style="width:1280px">
+<div data-rat="" style="position:relative; width:1280px; height:820px; overflow:hidden; background:#f1eef6; color:#1f1830; font:13px/1.45 Verdana,Geneva,sans-serif">
+  <div style="height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 48px; background:#fff; border-bottom:3px solid #4b1f86">
+    <div style="display:flex; align-items:center; gap:10px"><img src="assets/rat-still.png" alt="" style="width:40px; height:40px; object-fit:contain"><span style="font:900 19px/1 'Arial Black',Arial,sans-serif; color:#4b1f86; letter-spacing:-.02em">INHUMAN SYSTEMS<sup style="font-size:10px">™</sup></span></div>
+    <nav style="display:flex; gap:24px; font-size:12px">
+      <a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#4b1f86">CV [pdf]</a>
+      <a href="mailto:saket.s.atreya@gmail.com" style="color:#4b1f86">Email</a>
+      <a href="https://github.com/saketatreya" style="color:#4b1f86">GitHub</a>
+      <button onClick="{{ togB }}" style="color:#4b1f86; text-decoration:underline">Plain index</button>
+    </nav>
+  </div>
+  <div style="position:absolute; left:48px; top:100px; width:660px">
+    <div style="font:bold 11px/1 Verdana,sans-serif; letter-spacing:.16em; color:#6d3bbf">SAKET ATREYA</div>
+    <h1 style="margin:12px 0 0; font:900 76px/.95 'Arial Black',Arial,sans-serif; color:#4b1f86; letter-spacing:-.05em">inhuman.systems</h1>
+    <p style="margin:20px 0 0; max-width:540px; font:17px/1.45 Verdana,sans-serif">I’m Saket. I work on world models, reinforcement learning, and representation geometry.</p>
+    <div style="display:flex; gap:12px; margin-top:24px">
+      <a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="padding:11px 24px; border-radius:999px; background:linear-gradient(#9466dc,#4b1f86 55%,#3a1570); color:#fff; font:bold 13px/1 Verdana,sans-serif; text-decoration:none; box-shadow:inset 0 1px 0 rgba(255,255,255,.55), 0 2px 5px rgba(40,10,80,.35)">Research CV [pdf]</a>
+      <a href="mailto:saket.s.atreya@gmail.com" style="padding:10px 23px; border-radius:999px; border:1px solid #4b1f86; background:#fff; color:#4b1f86; font:bold 13px/1 Verdana,sans-serif; text-decoration:none">Email</a>
+    </div>
+  </div>
+  <div style="position:absolute; left:760px; top:88px; width:472px; height:296px; overflow:hidden; border:1px solid #c9bfdb; background:radial-gradient(ellipse at 50% 30%, #ffffff 0%, #ece6f5 50%, #cbbfe0 100%)">
+    <div style="position:absolute; left:116px; bottom:30px; width:240px; height:48px; border-radius:50%; background:linear-gradient(#e2d9ef,#a596c0); box-shadow:0 12px 22px rgba(40,10,80,.25)"></div>
+    <img src="writings/rat__3.gif" alt="A spinning rat" width="200" height="200" style="position:absolute; left:126px; bottom:34px; width:220px; height:220px">
+    <div style="position:absolute; right:20px; top:16px; width:120px; height:120px; background:#ffd400; clip-path:polygon(50.0% 0.0%,58.7% 12.0%,71.7% 5.0%,74.3% 19.5%,89.1% 18.8%,85.1% 33.1%,98.7% 38.9%,89.0% 50.0%,98.7% 61.1%,85.1% 66.9%,89.1% 81.2%,74.3% 80.5%,71.7% 95.0%,58.7% 88.0%,50.0% 100.0%,41.3% 88.0%,28.3% 95.0%,25.7% 80.5%,10.9% 81.2%,14.9% 66.9%,1.3% 61.1%,11.0% 50.0%,1.3% 38.9%,14.9% 33.1%,10.9% 18.8%,25.7% 19.5%,28.3% 5.0%,41.3% 12.0%); transform:rotate(-12deg); display:grid; place-items:center; text-align:center; font:900 21px/1 'Arial Black',Arial,sans-serif; color:#4b1f86">AQ<br>326</div>
+  </div>
+  <div style="position:absolute; left:48px; top:424px; font:bold 11px/1 Verdana,sans-serif; letter-spacing:.16em; color:#6d3bbf">ORGANIZATIONAL CHART</div>
+  <div style="position:absolute; left:48px; top:460px; width:640px; height:290px">
+    <span style="position:absolute; left:0; top:22px; font:bold 10px/1 Verdana,sans-serif; letter-spacing:.14em; color:#5d566b">PLEX</span>
+    <span style="position:absolute; left:0; top:122px; font:bold 10px/1 Verdana,sans-serif; letter-spacing:.14em; color:#5d566b">WARP</span>
+    <span style="position:absolute; left:0; top:178px; font:bold 10px/1 Verdana,sans-serif; letter-spacing:.14em; color:#5d566b">TIME-CIRCUIT</span>
+    <div style="position:absolute; left:319px; top:28px; width:2px; height:220px; background:#4b1f86"></div>
+    <div style="position:absolute; left:98px; top:199px; width:446px; height:2px; background:#4b1f86"></div>
+    <div style="position:absolute; left:97px; top:200px; width:2px; height:48px; background:#4b1f86"></div>
+    <div style="position:absolute; left:541px; top:200px; width:2px; height:48px; background:#4b1f86"></div>
+    <div style="position:absolute; left:312px; top:26px; width:16px; height:0; border-top:5px double #4b1f86"></div>
+    <div style="position:absolute; left:312px; top:126px; width:16px; height:0; border-top:5px double #4b1f86"></div>
+    <div style="position:absolute; left:90px; top:246px; width:16px; height:0; border-top:5px double #4b1f86"></div>
+    <div style="position:absolute; left:312px; top:246px; width:16px; height:0; border-top:5px double #4b1f86"></div>
+    <div style="position:absolute; left:534px; top:246px; width:16px; height:0; border-top:5px double #4b1f86"></div>
+    <sc-for list="{{ boxesB }}" as="z" hint-placeholder-count="10">
+      <button onClick="{{ z.pick }}" style="position:absolute; left:{{ z.left }}; top:{{ z.top }}; width:90px; height:56px; box-sizing:border-box; border:2px solid #4b1f86; background:{{ z.bg }}; color:{{ z.fg }}; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; text-align:center" style-hover="outline:3px solid #ffd400"><span style="font:900 20px/1 'Arial Black',Arial,sans-serif">{{ z.n }}</span><span style="font:10px/1.1 Verdana,sans-serif">{{ z.name }}</span></button>
+    </sc-for>
+  </div>
+  <div style="position:absolute; left:728px; top:420px; width:504px; height:368px; background:#fff; border:1px solid #c9bfdb; box-shadow:6px 6px 0 #4b1f86; display:flex; flex-direction:column">
+    <div style="flex:none; display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:11px 16px; background:linear-gradient(90deg,#4b1f86,#24093f); color:#fff"><span style="font:bold 16px/1.2 Verdana,sans-serif">{{ B.name }}</span><span style="font:10px/1 Verdana,sans-serif; letter-spacing:.14em">ZONE {{ B.n }} · {{ B.regionUp }}</span></div>
+    <div style="flex:1; min-height:0; overflow:auto; padding:16px 20px">
+      <sc-if value="{{ B.isZero }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; gap:16px; align-items:flex-start">
+          <div style="flex:none; width:112px; height:136px; border:1px solid #c9bfdb; background:linear-gradient(#f4f0fa,#cfc3e2); display:grid; place-items:center; overflow:hidden"><img src="writings/rat__3.gif" alt="A spinning rat" width="200" height="200" style="width:120px; height:120px"></div>
+          <div><div style="font:bold 14px/1.2 Verdana,sans-serif; color:#4b1f86; margin-bottom:6px">Saket Atreya</div><sc-for list="{{ B.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 8px; font:12px/1.5 Verdana,sans-serif">{{ p }}</p></sc-for></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ B.hasHead }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 10px; font:900 26px/1.05 'Arial Black',Arial,sans-serif; color:#4b1f86; letter-spacing:-.03em">{{ B.head }}</p></sc-if>
+      <sc-if value="{{ B.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:6px 0 14px; font:italic 22px/1.3 Verdana,sans-serif; color:#4b1f86">“{{ B.quote }}”</p></sc-if>
+      <sc-if value="{{ B.notZero }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ B.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 8px; font:13px/1.5 Verdana,sans-serif">{{ p }}</p></sc-for></sc-if>
+      <sc-if value="{{ B.hasImage }}" hint-placeholder-val="{{ false }}"><img src="{{ B.image.src }}" alt="{{ B.image.alt }}" style="display:block; max-width:100%; max-height:210px; margin:0 auto 10px"></sc-if>
+      <sc-if value="{{ B.hasFrames }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:8px; margin-bottom:10px">
+          <sc-for list="{{ frames }}" as="f" hint-placeholder-count="4"><div style="position:relative"><img src="{{ f.src }}" alt="{{ f.label }}" style="display:block; width:100%; aspect-ratio:1; image-rendering:pixelated; border:1px solid #c9bfdb"><span style="position:absolute; left:0; bottom:0; padding:2px 5px; background:#ffd400; color:#1f1830; font:bold 10px/1.3 Verdana,sans-serif">{{ f.label }}</span></div></sc-for>
+        </div>
+      </sc-if>
+      <sc-for list="{{ B.items }}" as="it" hint-placeholder-count="0">
+        <div style="display:grid; grid-template-columns:14px minmax(0,1fr); gap:0 6px; margin-bottom:9px">
+          <span style="width:7px; height:7px; margin-top:5px; background:#4b1f86"></span>
+          <div>
+            <sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#4b1f86; font:bold 13px/1.35 Verdana,sans-serif">{{ it.title }}</a></sc-if>
+            <sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:bold 13px/1.35 Verdana,sans-serif">{{ it.title }}</span></sc-if>
+            <div style="display:flex; flex-wrap:wrap; gap:0 12px; font:11px/1.4 Verdana,sans-serif; color:#5d566b"><span>{{ it.meta }}</span><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="0"><a href="{{ l.href }}" style="color:#6d3bbf">{{ l.label }}</a></sc-for></div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:6px"><sc-for list="{{ B.links }}" as="l" hint-placeholder-count="0"><a href="{{ l.href }}" style="padding:6px 14px; border-radius:999px; border:1px solid #4b1f86; color:#4b1f86; font:bold 12px/1 Verdana,sans-serif; text-decoration:none">{{ l.label }}</a></sc-for></div>
+    </div>
+    <div style="flex:none; display:flex; justify-content:space-between; padding:8px 16px; border-top:1px solid #e1d9ee; font:11px/1.3 Verdana,sans-serif; color:#5d566b">
+      <span style="display:flex; gap:16px"><button onClick="{{ B.toPartner }}" style="color:#4b1f86; text-decoration:underline">Syzygy {{ B.syz }}</button><button onClick="{{ B.toGate }}" style="color:#4b1f86; text-decoration:underline">Gate → {{ B.gate }}</button></span>
+      <span>{{ B.n }}</span>
+    </div>
+  </div>
+  <sc-if value="{{ pB }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute; inset:0; z-index:20; overflow:auto; background:#fff; color:#000; font:16px/1.4 'Times New Roman',Times,serif; padding:24px 36px; columns:3; column-gap:40px">
+      <button onClick="{{ togB }}" style="color:#0000ee; text-decoration:underline">close</button>
+      <h1 style="margin:10px 0 0; font:bold 28px/1.2 'Times New Roman',serif">inhuman.systems</h1>
+      <sc-for list="{{ plain }}" as="z" hint-placeholder-count="10">
+        <div style="break-inside:avoid; margin-top:16px">
+          <h2 style="margin:0 0 4px; font:bold 19px/1.2 'Times New Roman',serif">{{ z.n }}. {{ z.name }}</h2>
+          <sc-for list="{{ z.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 4px">{{ p }}</p></sc-for>
+          <sc-if value="{{ z.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 4px">{{ z.quote }}</p></sc-if>
+          <ul style="margin:0; padding-left:20px">
+            <sc-for list="{{ z.items }}" as="it" hint-placeholder-count="0"><li><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#0000ee">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span>{{ it.title }}</span></sc-if> — {{ it.meta }}</li></sc-for>
+            <sc-for list="{{ z.links }}" as="l" hint-placeholder-count="0"><li><a href="{{ l.href }}" style="color:#0000ee">{{ l.label }}</a></li></sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</div></div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Homepage, 1998: hand-typed ASCII numogram, rats as bullets, AQ hit counter</div>
+<div class="dv-card" style="width:1280px">
+<div data-rat="" style="position:relative; width:1280px; height:820px; overflow:hidden; background-color:#12061f; background-image:radial-gradient(#4a2a78 1px, transparent 1.6px), radial-gradient(#2a1546 1px, transparent 1.6px); background-size:22px 22px, 22px 22px; background-position:0 0, 11px 11px; color:#e9e1eb; font:16px/1.35 'Times New Roman',Times,serif">
+  <div style="position:absolute; left:150px; top:22px; width:980px; height:776px; box-sizing:border-box; background:#000; border:5px ridge #9d6fe0; padding:14px 20px; display:flex; flex-direction:column">
+    <div style="display:flex; align-items:center; justify-content:center; gap:18px">
+      <img src="writings/rat__3.gif" alt="A spinning rat" width="200" height="200" style="width:72px; height:72px">
+      <h1 style="margin:0; font:bold 56px/1 'Times New Roman',Times,serif; color:#c79af2; text-shadow:3px 3px 0 #4b1f86">inhuman.systems</h1>
+      <img src="writings/rat__3.gif" alt="" width="200" height="200" style="width:72px; height:72px; transform:scaleX(-1)">
+    </div>
+    <div style="text-align:center; margin-top:4px; font:italic 17px/1.3 'Times New Roman',serif">Saket Atreya</div>
+    <div style="display:flex; justify-content:center; gap:12px; margin-top:6px; font:15px/1.3 'Times New Roman',serif">
+      <span>[<a href="mailto:saket.s.atreya@gmail.com" style="color:#c79af2">Email</a>]</span>
+      <span>[<a href="https://inhuman.systems/assets/saket-atreya-cv.pdf" style="color:#c79af2">CV</a>]</span>
+      <span>[<a href="https://github.com/saketatreya" style="color:#c79af2">GitHub</a>]</span>
+      <span>[<a href="https://inhuman.systems/feed.xml" style="color:#c79af2">RSS</a>]</span>
+      <span>[<button onClick="{{ togC }}" style="color:#c79af2; text-decoration:underline">plain index</button>]</span>
+    </div>
+    <hr style="width:100%; border:0; border-top:4px ridge #9d6fe0; margin:14px 0">
+    <div style="flex:1; min-height:0; display:flex; gap:22px">
+      <div style="flex:none; width:392px; display:flex; flex-direction:column; gap:14px">
+        <div style="border:3px inset #6b4aa0; background:#0a0410; padding:14px 10px; font:bold 15px/1.3 'Courier New',Courier,monospace; color:#b8a9c3">
+          <div style="white-space:pre">  WARP            [<button onClick="{{ C.g3 }}" style="color:{{ C.c3 }}; background:{{ C.b3 }}; text-decoration:underline">3</button>]===========[<button onClick="{{ C.g6 }}" style="color:{{ C.c6 }}; background:{{ C.b6 }}; text-decoration:underline">6</button>]</div>
+          <div style="white-space:pre">                   ^             ^</div>
+          <div style="white-space:pre">         .---------'             |</div>
+          <div style="white-space:pre">         |                       |</div>
+          <div style="white-space:pre">  TIME   |     [<button onClick="{{ C.g4 }}" style="color:{{ C.c4 }}; background:{{ C.b4 }}; text-decoration:underline">4</button>]===========[<button onClick="{{ C.g5 }}" style="color:{{ C.c5 }}; background:{{ C.b5 }}; text-decoration:underline">5</button>]-'</div>
+          <div style="white-space:pre">  CIRCUIT|</div>
+          <div style="white-space:pre">         |     [<button onClick="{{ C.g1 }}" style="color:{{ C.c1 }}; background:{{ C.b1 }}; text-decoration:underline">1</button>]===========[<button onClick="{{ C.g8 }}" style="color:{{ C.c8 }}; background:{{ C.b8 }}; text-decoration:underline">8</button>]-.</div>
+          <div style="white-space:pre">         |                       |</div>
+          <div style="white-space:pre">         '-----[<button onClick="{{ C.g2 }}" style="color:{{ C.c2 }}; background:{{ C.b2 }}; text-decoration:underline">2</button>]===========[<button onClick="{{ C.g7 }}" style="color:{{ C.c7 }}; background:{{ C.b7 }}; text-decoration:underline">7</button>] |</div>
+          <div style="white-space:pre">                                 v</div>
+          <div style="white-space:pre">  PLEX            [<button onClick="{{ C.g0 }}" style="color:{{ C.c0 }}; background:{{ C.b0 }}; text-decoration:underline">0</button>]===========[<button onClick="{{ C.g9 }}" style="color:{{ C.c9 }}; background:{{ C.b9 }}; text-decoration:underline">9</button>]</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:3px 14px; font:15px/1.3 'Times New Roman',serif">
+          <sc-for list="{{ listC }}" as="z" hint-placeholder-count="10"><button onClick="{{ z.pick }}" style="text-align:left; color:{{ z.fg }}; text-decoration:underline">{{ z.n }}. {{ z.name }}</button></sc-for>
+        </div>
+        <div style="margin-top:auto; display:flex; justify-content:center"><span style="font:bold 20px/1 'Courier New',monospace; color:#7cfc00; background:#000; border:3px inset #777; padding:4px 10px; letter-spacing:.22em">000326</span></div>
+      </div>
+      <div style="flex:1; min-width:0; overflow:auto; border-left:1px dashed #6b4aa0; padding-left:20px">
+        <h2 style="margin:0; font:bold 32px/1.1 'Times New Roman',serif; color:#fff">Zone {{ C.n }}: {{ C.name }}</h2>
+        <div style="display:flex; flex-wrap:wrap; gap:4px 10px; margin:6px 0 16px; font:13px/1.4 'Courier New',monospace; color:#b8a9c3"><span>{{ C.region }}</span><span>[<button onClick="{{ C.toPartner }}" style="color:#c79af2; text-decoration:underline">syzygy {{ C.syz }}</button>]</span><span>[<button onClick="{{ C.toGate }}" style="color:#c79af2; text-decoration:underline">gate → {{ C.gate }}</button>]</span></div>
+        <sc-if value="{{ C.hasHead }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 12px; font:bold 30px/1.1 'Times New Roman',serif">{{ C.head }}</p></sc-if>
+        <sc-if value="{{ C.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:24px 0; text-align:center; font:italic 34px/1.2 'Times New Roman',serif; color:#c79af2">{{ C.quote }}</p></sc-if>
+        <sc-for list="{{ C.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 10px; font:18px/1.4 'Times New Roman',serif">{{ p }}</p></sc-for>
+        <sc-if value="{{ C.hasImage }}" hint-placeholder-val="{{ false }}"><img src="{{ C.image.src }}" alt="{{ C.image.alt }}" style="display:block; max-width:100%; max-height:330px; margin:0 auto 12px; border:4px outset #9d6fe0"></sc-if>
+        <sc-if value="{{ C.hasFrames }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:12px">
+            <img src="{{ cyc.src }}" alt="{{ cyc.label }}" style="display:block; width:300px; height:300px; image-rendering:pixelated; border:4px outset #9d6fe0">
+            <span style="font:bold 15px/1 'Courier New',monospace; color:#7cfc00">{{ cyc.label }}</span>
+          </div>
+        </sc-if>
+        <sc-for list="{{ C.items }}" as="it" hint-placeholder-count="0">
+          <div style="display:grid; grid-template-columns:30px minmax(0,1fr); gap:0 8px; margin-bottom:12px">
+            <img src="writings/rat__3.gif" alt="" width="200" height="200" style="width:30px; height:30px">
+            <div>
+              <sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#c79af2; font:19px/1.25 'Times New Roman',serif">{{ it.title }}</a></sc-if>
+              <sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span style="font:19px/1.25 'Times New Roman',serif">{{ it.title }}</span></sc-if>
+              <div style="font:15px/1.3 'Times New Roman',serif">{{ it.sub }}</div>
+              <div style="display:flex; flex-wrap:wrap; gap:0 10px; font:12px/1.5 'Courier New',monospace; color:#b8a9c3"><span>{{ it.meta }}</span><sc-for list="{{ it.links }}" as="l" hint-placeholder-count="0"><span>[<a href="{{ l.href }}" style="color:#c79af2">{{ l.label }}</a>]</span></sc-for></div>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display:flex; flex-wrap:wrap; gap:6px 12px; font:17px/1.3 'Times New Roman',serif"><sc-for list="{{ C.links }}" as="l" hint-placeholder-count="0"><span>[<a href="{{ l.href }}" style="color:#c79af2">{{ l.label }}</a>]</span></sc-for></div>
+      </div>
+    </div>
+  </div>
+  <sc-if value="{{ pC }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute; inset:0; z-index:20; overflow:auto; background:#fff; color:#000; font:16px/1.4 'Times New Roman',Times,serif; padding:24px 36px; columns:3; column-gap:40px">
+      <button onClick="{{ togC }}" style="color:#0000ee; text-decoration:underline">close</button>
+      <h1 style="margin:10px 0 0; font:bold 28px/1.2 'Times New Roman',serif">inhuman.systems</h1>
+      <sc-for list="{{ plain }}" as="z" hint-placeholder-count="10">
+        <div style="break-inside:avoid; margin-top:16px">
+          <h2 style="margin:0 0 4px; font:bold 19px/1.2 'Times New Roman',serif">{{ z.n }}. {{ z.name }}</h2>
+          <sc-for list="{{ z.paras }}" as="p" hint-placeholder-count="0"><p style="margin:0 0 4px">{{ p }}</p></sc-for>
+          <sc-if value="{{ z.hasQuote }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 4px">{{ z.quote }}</p></sc-if>
+          <ul style="margin:0; padding-left:20px">
+            <sc-for list="{{ z.items }}" as="it" hint-placeholder-count="0"><li><sc-if value="{{ it.hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ it.href }}" style="color:#0000ee">{{ it.title }}</a></sc-if><sc-if value="{{ it.noHref }}" hint-placeholder-val="{{ false }}"><span>{{ it.title }}</span></sc-if> — {{ it.meta }}</li></sc-for>
+            <sc-for list="{{ z.links }}" as="l" hint-placeholder-count="0"><li><a href="{{ l.href }}" style="color:#0000ee">{{ l.label }}</a></li></sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "go with <a class="dv-oid" href="#1a">1a</a> and build the full site" · "<a class="dv-oid" href="#1b">1b</a>’s org chart inside <a class="dv-oid" href="#1c">1c</a>’s amateur page" · "more rats"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SITE = 'https://inhuman.systems/';
+const AQ = s => [...s.toLowerCase()].reduce((a, c) => /[0-9]/.test(c) ? a + +c : /[a-z]/.test(c) ? a + c.charCodeAt(0) - 87 : a, 0);
+const GATE = n => n === 0 ? 0 : 1 + ((n * (n + 1) / 2 - 1) % 9);
+const REGION = n => (n === 0 || n === 9) ? 'Plex' : (n === 3 || n === 6) ? 'Warp' : 'Time-Circuit';
+const pdf = f => SITE + 'assets/papers/' + f + '.pdf';
+const ZONES = {
+  0: { name: 'Saket', paras: ['I’m Saket. I work on world models, reinforcement learning, and representation geometry.', 'Research intern at Lossfunk. CS at IIIT Hyderabad.', 'I’m interested in how behavior emerges from structure: learning systems, economic incentives, political power. Cybernetics, political economy, philosophy, and the internet.'], links: [{ label: 'saket.s.atreya@gmail.com', href: 'mailto:saket.s.atreya@gmail.com' }, { label: 'GitHub', href: 'https://github.com/saketatreya' }] },
+  1: { name: 'Lossfunk', head: 'Compute camera motion. Learn what’s left.', paras: ['Analytical camera motion and learned residual dynamics on frozen vision encoders.'], links: [{ label: 'Experiments & scope →', href: SITE + 'research.html#residual-dynamics' }] },
+  2: { name: 'Rollout', frames: true, paras: ['One clip, the same 8-second endpoint.'], links: [{ label: 'Rollout audit, fig. 3', href: pdf('world-model-rollout-audit') + '#page=7' }] },
+  3: { name: 'Writing', items: [
+    { title: 'Hindutva and the Production of Hyperreal Hinduism', href: SITE + 'writing.html?f=hyperreal-hindutva.md', meta: '2026-03-12', sub: 'The conventional explanation, that the BJP mobilized latent Hindu majoritarian sentiment explains nothing.' },
+    { title: 'Solving Pokémon as a POMDP', href: SITE + 'writing.html?f=pokemon-rl.md', meta: '2026-02-15', sub: 'A Gen 9 Random Battle agent that learns from nothing but wins and losses.' },
+    { title: 'The Wrong Unit of Analysis', href: SITE + 'writing.html?f=multiagent-intelligence.md', meta: '2026-01-25', sub: 'The dominant paradigm in AI development shares an assumption so foundational it is almost never examined: that intelligence is a property of a single system.' },
+    { title: 'Let Capital Win: The Case for Accelerating through Automation', href: SITE + 'writing.html?f=accelerating-AI.md', meta: '2026-01-15', sub: 'AI is capital’s completion project.' },
+    { title: 'The Iran War Did Not Take Place (And Is Killing People)', href: SITE + 'writing.html?f=iran-war.md', meta: '2025-03-28', sub: 'The short answer is that Baudrillard was right but not far enough.' },
+    { title: 'Latent Space', href: SITE + 'writing.html?f=latent-space.md', meta: '2025-02-20', sub: 'The meaning is the neighborhood.' }
+  ] },
+  4: { name: 'Min-Cut Muncher', image: { src: 'assets/work/mincut-cordon.png', alt: 'Four ghosts form a minimum cut around Pac-Man' }, paras: ['The ghosts run Dinic’s algorithm to cut off your escape.'], links: [{ label: 'Play →', href: SITE + 'games/mincut/' }, { label: 'Code', href: 'https://github.com/saketatreya/mincut-pacman' }] },
+  5: { name: 'CV', links: [{ label: 'Research CV [pdf]', href: SITE + 'assets/saket-atreya-cv.pdf' }] },
+  6: { name: 'Latent Space', quote: 'In the latent space, there are no individuals. Only vectors.', links: [{ label: 'Latent Space ↗', href: SITE + 'writing.html?f=latent-space.md' }] },
+  7: { name: 'Things I’ve made', items: [
+    { title: 'RICH', href: 'https://github.com/saketatreya/RICH', meta: 'Software agents', sub: 'Software agents with explicit contracts, independent checks, and resumable execution.' },
+    { title: 'Pokémon RL', href: 'https://github.com/saketatreya/showdownRL', meta: 'Reinforcement learning', sub: 'Recurrent PPO, belief tracking, and self-play in Gen 9 Random Battles.', links: [{ label: 'Write-up', href: SITE + 'writing.html?f=pokemon-rl.md' }] },
+    { title: 'oksh', href: 'https://github.com/saketatreya/oksh', meta: 'C / Unix', sub: 'A C shell with process control, signals, redirection, and job management.' },
+    { title: 'Daybook', meta: 'Personal tool / Python', sub: 'A personal study planner connecting mathematics, papers, courses, and time.' }
+  ] },
+  8: { name: 'Papers', items: [
+    { title: 'What does rollout error actually measure?', href: SITE + 'research.html#world-models', meta: '2026 manuscript', sub: 'Separating command error, chaining cost, and one-call error in video world models.', links: [{ label: 'PDF', href: pdf('world-model-rollout-audit') }] },
+    { title: 'Readout is not generation', href: SITE + 'research.html#transport', meta: 'NeurReps 2026 workshop manuscript', sub: 'Camera geometry in the patch tokens of frozen vision encoders.', links: [{ label: 'PDF', href: pdf('frozen-encoder-geometry') }] },
+    { title: 'Reading relatedness and hierarchy', href: SITE + 'research.html#relatedness', meta: 'NeurReps 2026 workshop work · revised manuscript', sub: 'What frozen representations reveal about hierarchy across five modalities.', links: [{ label: 'PDF', href: pdf('relatedness-and-hierarchy') }] },
+    { title: 'What transfers through synthetic code?', href: SITE + 'research.html#synthetic-code', meta: 'Manuscript under review', sub: 'Separating security behavior, style, and provenance in teacher-generated code.', links: [{ label: 'PDF', href: pdf('synthetic-code-transfer') }] },
+    { title: 'Spectral perturbation bounds for experience replay', href: SITE + 'research.html#replay', meta: 'ICML 2026 DEMO workshop', sub: 'Data diversity, environment mixing, and a bias–variance view of offline learning.', links: [{ label: 'PDF', href: pdf('experience-replay-spectral-bounds') }] },
+    { title: 'The Bellman residual is not the improvement signal', href: SITE + 'research.html#certgap', meta: 'Research manuscript', sub: 'The gap between fitting a critic and improving a policy.', links: [{ label: 'PDF', href: pdf('bellman-residual-improvement') }, { label: 'Code', href: 'https://github.com/saketatreya/CertGap' }] },
+    { title: 'Delegation, ownership, and the boundaries of the self', href: SITE + 'research.html#self', meta: '2026 manuscript', sub: 'Capability, authorship, and self-knowledge in AI-assisted programming.', links: [{ label: 'PDF', href: pdf('delegation-and-self') }] }
+  ] },
+  9: { name: 'Rat', image: { src: 'assets/work/rat-knot.webp', alt: 'A long grey rat whose body is tied in a loose, impossible knot' } }
+};
+const FRAMES = [
+  { src: 'assets/work/rollout-000.png', label: 'Recorded' },
+  { src: 'assets/work/rollout-001.png', label: '1 call' },
+  { src: 'assets/work/rollout-002.png', label: '8 calls' },
+  { src: 'assets/work/rollout-003.png', label: '32 calls' }
+];
+const POS = { 3: [130, 60], 6: [310, 60], 4: [90, 190], 5: [350, 190], 1: [90, 320], 8: [350, 320], 2: [90, 450], 7: [350, 450], 0: [130, 560], 9: [310, 560] };
+const BOX = { 0: [222, 0], 9: [328, 0], 3: [222, 100], 6: [328, 100], 4: [0, 220], 5: [106, 220], 1: [222, 220], 8: [328, 220], 2: [444, 220], 7: [550, 220] };
+const R = 30;
+const seg = (x1, y1, x2, y2, border) => {
+  const dx = x2 - x1, dy = y2 - y1;
+  return { left: x1 + 'px', top: y1 + 'px', width: Math.hypot(dx, dy) + 'px', rot: `rotate(${Math.atan2(dy, dx) * 180 / Math.PI}deg)`, border };
+};
+const toward = (x1, y1, x2, y2, cut) => { const d = Math.hypot(x2 - x1, y2 - y1); return [x2 - (x2 - x1) / d * cut, y2 - (y2 - y1) / d * cut]; };
+const GOLD = '#d8b25c', LILAC = '#c79af2';
+const EDGES_A = (() => {
+  const e = [], dots = [];
+  [[3, 6], [4, 5], [1, 8], [2, 7], [0, 9]].forEach(([a, b]) => e.push(seg(POS[a][0] + R, POS[a][1], POS[b][0] - R, POS[b][1], '4px double ' + GOLD)));
+  [[[4, 5], 1], [[1, 8], 7], [[2, 7], 5]].forEach(([[a, b], t]) => {
+    const mx = (POS[a][0] + POS[b][0]) / 2, my = POS[a][1];
+    const [ex, ey] = toward(mx, my, POS[t][0], POS[t][1], R + 4);
+    e.push(seg(mx, my, ex, ey, '1px dashed ' + LILAC)); dots.push({ left: ex + 'px', top: ey + 'px', color: LILAC });
+  });
+  const gate = pts => { for (let i = 0; i < pts.length - 1; i++) e.push(seg(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1], '1px dotted ' + GOLD)); const l = pts[pts.length - 1]; dots.push({ left: l[0] + 'px', top: l[1] + 'px', color: GOLD }); };
+  gate([[60, 450], [20, 450], [20, 60], [96, 60]]);
+  gate([[350, 160], [350, 60], [344, 60]]);
+  gate([[380, 320], [420, 320], [420, 560], [344, 560]]);
+  return { e, dots };
+})();
+const view = (n, go) => {
+  const z = ZONES[n], p = 9 - n;
+  const items = (z.items || []).map(i => ({ ...i, aq: AQ(i.title), links: i.links || [], hasHref: !!i.href, noHref: !i.href, sub: i.sub || '' }));
+  return {
+    ...z, n, region: REGION(n), regionUp: REGION(n).toUpperCase(), syz: `${Math.min(n, p)}::${Math.max(n, p)}`, gate: GATE(n),
+    toGate: () => go(GATE(n)), toPartner: () => go(p),
+    paras: z.paras || [], items, links: z.links || [],
+    hasHead: !!z.head, hasQuote: !!z.quote, hasImage: !!z.image, hasFrames: !!z.frames,
+    isZero: n === 0, notZero: n !== 0, initial: z.name[0], rest: z.name.slice(1)
+  };
+};
+
+class Component extends DCLogic {
+  state = { a: 8, b: 0, c: 3, pA: false, pB: false, pC: false, pD: false, f: 0, paused: false, ordinary: false, dtQ: '', dtPhase: 'idle', dtYears: 7500000, dtStars: 0,
+    mg3: 0, as3: 0, ax3: null, ay3: null, q3: '', ph3: 'idle', y3: 7500000, dt3Open: false, cart3: false, pE: false,
+    consent3: 'pending', human3: true, observe3: true, und3: false, sig3: '', fired3: {}, asks3: 0, gbName: '', gbMsg: '', gbMine: [], gbReply: false, buy3: false, dark3: false, ratsSeen: 0, ratsTotal: 0 };
+  root3 = React.createRef();
+  root3b = React.createRef();
+  trail3 = React.createRef();
+  slots3 = [0, 1, 2, 3, 4, 5, 6].map(() => React.createRef());
+  componentDidMount() {
+    this.t = setInterval(() => this.setState(s => ({ f: (s.f + 1) % 4 })), 1000);
+    this.initLab();
+    this.initSightings();
+    setTimeout(() => this.placeAsst(this.state.as3), 300);
+    if (document.fonts) document.fonts.ready.then(() => this.placeAsst(this.state.as3));
+  }
+  componentWillUnmount() { clearInterval(this.t); clearInterval(this.dt); clearTimeout(this.dw); clearInterval(this.dt3); clearTimeout(this.dw3); cancelAnimationFrame(this.raf3); if (this.offTrail) this.offTrail(); clearInterval(this.scanT); if (this.io) this.io.disconnect(); }
+  placeAsst(i) {
+    const root = this.root3.current, el = this.slots3[i] && this.slots3[i].current;
+    if (!root || !el) return;
+    let x = 0, y = 0, n = el;
+    while (n && n !== root) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+    this.setState({ ax3: x, ay3: y });
+  }
+  initSightings() {
+    const seen = new WeakSet(), obs = new WeakSet();
+    this.io = new IntersectionObserver(es => {
+      let n = 0;
+      es.forEach(e => { if (e.isIntersecting && !seen.has(e.target)) { seen.add(e.target); n++; } });
+      if (n) this.setState(x => ({ ratsSeen: x.ratsSeen + n }));
+    }, { threshold: 0.3 });
+    const scan = () => {
+      let total = 0;
+      [this.root3.current, this.root3b.current].forEach(r => {
+        if (!r) return;
+        r.querySelectorAll('img').forEach(im => {
+          const src = im.getAttribute('src') || '';
+          if (src.includes('rat__3') || src.includes('rat-still')) { total++; if (!obs.has(im)) { obs.add(im); this.io.observe(im); } }
+        });
+      });
+      if (total !== this.state.ratsTotal) this.setState({ ratsTotal: total });
+    };
+    scan();
+    this.scanT = setInterval(scan, 1000);
+  }
+  initLab() {
+    const root = this.root3.current;
+    if (!root) return;
+    const m = this.m3 = { t0: Date.now(), dist: 0, clicks: 0, hov: {}, clicked: {}, pts: [], lx: null, ly: null, cur: null };
+    const loc = e => { const r = root.getBoundingClientRect(), k = root.offsetWidth / r.width; return [(e.clientX - r.left) * k, (e.clientY - r.top) * k]; };
+    const lab = el => (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 48);
+    const move = e => {
+      const [x, y] = loc(e);
+      if (m.lx != null) m.dist += Math.hypot(x - m.lx, y - m.ly);
+      m.lx = x; m.ly = y;
+      const p = m.pts[m.pts.length - 1];
+      if (!p || Math.hypot(x - p[0], y - p[1]) > 20) { m.pts.push([Math.round(x), Math.round(y)]); if (m.pts.length > 800) m.pts.shift(); }
+    };
+    const pick = e => e.target.closest ? e.target.closest('a,button') : null;
+    const over = e => { const el = pick(e); if (el && (!m.cur || m.cur.el !== el)) m.cur = { el, k: lab(el), t: Date.now() }; };
+    const out = e => { const el = pick(e); if (m.cur && el === m.cur.el && !el.contains(e.relatedTarget)) { m.hov[m.cur.k] = (m.hov[m.cur.k] || 0) + Date.now() - m.cur.t; m.cur = null; } };
+    const click = e => { m.clicks++; const el = pick(e); if (el) m.clicked[lab(el)] = true; };
+    root.addEventListener('mousemove', move); root.addEventListener('mouseover', over); root.addEventListener('mouseout', out); root.addEventListener('click', click, true);
+    this.offTrail = () => { root.removeEventListener('mousemove', move); root.removeEventListener('mouseover', over); root.removeEventListener('mouseout', out); root.removeEventListener('click', click, true); };
+  }
+  dt3Go() {
+    if (this.state.ph3 === 'run' || this.state.ph3 === 'warn') return;
+    if (this.state.asks3 >= 1) { this.setState(x => ({ ph3: 'annoyed', dt3Open: true, asks3: x.asks3 + 1 })); return; }
+    clearInterval(this.dt3);
+    this.setState({ ph3: 'run', y3: 7500000, dt3Open: true });
+    this.dt3 = setInterval(() => {
+      const y = this.state.y3 - 187500;
+      if (y <= 0) {
+        clearInterval(this.dt3);
+        this.setState({ y3: 0, ph3: 'warn' });
+        this.dw3 = setTimeout(() => this.setState({ ph3: 'done', asks3: 1 }), 1600);
+      } else this.setState({ y3: y });
+    }, 60);
+  }
+  dtGo() {
+    if (this.state.dtPhase === 'run' || this.state.dtPhase === 'warn') return;
+    clearInterval(this.dt);
+    this.setState({ dtPhase: 'run', dtYears: 7500000, dtStars: 0 });
+    this.dt = setInterval(() => {
+      const y = this.state.dtYears - 187500;
+      if (y <= 0) {
+        clearInterval(this.dt);
+        this.setState({ dtYears: 0, dtPhase: 'warn' });
+        this.dw = setTimeout(() => this.setState({ dtPhase: 'done' }), 1500);
+      } else this.setState(s => ({ dtYears: y, dtStars: Math.min(18, s.dtStars + 1) }));
+    }, 70);
+  }
+  renderVals() {
+    const s = this.state;
+    const go = k => n => this.setState({ [k]: n });
+    const A = view(s.a, go('a')), B = view(s.b, go('b')), C = view(s.c, go('c'));
+    const all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const mapA = all.map(n => ({ n, name: ZONES[n].name, left: POS[n][0] - R + 'px', top: POS[n][1] - R + 'px', bg: s.a === n ? GOLD : '#1c0f2b', fg: s.a === n ? '#1c0f2b' : '#efe6d2', pick: () => this.setState({ a: n }) }));
+    const boxesB = all.map(n => ({ n, name: ZONES[n].name, left: BOX[n][0] + 'px', top: BOX[n][1] + 'px', bg: s.b === n ? '#4b1f86' : '#fff', fg: s.b === n ? '#fff' : '#1f1830', pick: () => this.setState({ b: n }) }));
+    const Cmap = {};
+    all.forEach(n => { Cmap['g' + n] = () => this.setState({ c: n }); Cmap['c' + n] = s.c === n ? '#000' : '#c79af2'; Cmap['b' + n] = s.c === n ? '#c79af2' : 'transparent'; });
+    const listC = all.map(n => ({ n, name: ZONES[n].name, fg: s.c === n ? '#ffffff' : '#c79af2', pick: () => this.setState({ c: n }) }));
+    const plain = all.map(n => view(n, () => {}));
+    const ratSrc = s.paused ? 'assets/rat-still.png' : 'writings/rat__3.gif';
+    const papers = plain[8].items.map((it, i) => ({ ...it, num: String(i + 1).padStart(2, '0') }));
+    const essays = plain[3].items;
+    const readerEssays = essays.map(it => ({ ...it, isCurrent: it.title === 'Latent Space', notCurrent: it.title !== 'Latent Space' }));
+    const h = React.createElement;
+    const marqKids = [];
+    essays.forEach((it, i) => {
+      marqKids.push(h('span', { key: 't' + i }, it.title));
+      marqKids.push(i === 2 ? h('img', { key: 'r' + i, src: ratSrc, alt: '', style: { width: 26, height: 26 } }) : h('span', { key: 's' + i, style: { fontStyle: 'normal' } }, '·'));
+    });
+    const marquee = h('div', { style: { flex: 'none', display: 'flex', alignItems: 'center', gap: 28, paddingLeft: '100%', whiteSpace: 'nowrap', animation: 'marq 38s linear infinite', animationPlayState: s.paused ? 'paused' : 'running' } }, marqKids);
+    const ph = s.dtPhase;
+    const LINES3 = ['It looks like you’re reading a website.', 'I’m the chairman. I’m also the intern.', 'The answer is 42. We’re still waiting on the question.', 'I’ve been spinning since 1998. Nobody asked how I feel.', 'Brain the size of a planet, and they made me the mascot.', 'He thinks he works here. He’s the hardware.', 'It’s all going in the report.'];
+    const FUT3 = ['2064', '2130', '2262', '2526', '3054', null];
+    const mgmt3 = FUT3.slice(0, s.mg3).reverse().map(y => ({ year: y, isCo: !!y, isIntern: !y }));
+    const chartProducts = [{ title: 'Min-Cut Muncher', href: SITE + 'games/mincut/', meta: 'Game', hasHref: true, noHref: false }, ...plain[7].items];
+    const replace3 = () => requestAnimationFrame(() => this.placeAsst(this.state.as3));
+    const s3 = {};
+    this.slots3.forEach((r, i) => { s3['s3' + i] = r; });
+    const m3 = this.m3 || { t0: Date.now(), dist: 0, clicks: 0, hov: {}, clicked: {}, pts: [] };
+    const secs3 = Math.floor((Date.now() - m3.t0) / 1000);
+    const hov3 = { ...m3.hov };
+    if (m3.cur) hov3[m3.cur.k] = (hov3[m3.cur.k] || 0) + Date.now() - m3.cur.t;
+    let hk = null, hv = 0;
+    for (const k in hov3) if (k && hov3[k] > hv) { hk = k; hv = hov3[k]; }
+    const nFired = Object.keys(s.fired3).length;
+    const cvOpen = Object.keys(m3.clicked).some(k => /\bCV\b/.test(k));
+    const labRows = [
+      ['Signature', s.sig3.trim() || 'None'],
+      ['Consent', { pending: 'Pending', given: 'Given', withheld: 'Withheld. Observation continued.' }[s.consent3]],
+      ['Declared human', s.human3 ? 'Yes' : 'No'],
+      ['Understands they are the experiment', s.und3 ? 'Yes' : 'No'],
+      ['Time on site', Math.floor(secs3 / 60) + ' min ' + String(secs3 % 60).padStart(2, '0') + ' s'],
+      ['Cursor travel', (m3.dist / 3780).toFixed(2) + ' m'],
+      ['Clicks', m3.clicks],
+      ['Longest hesitation', hk ? '“' + hk + '”, ' + (hv / 1000).toFixed(1) + ' s' + (m3.clicked[hk] ? '' : '. Did not click.') : 'None recorded'],
+      ['Questions put to Deep Thought', s.asks3],
+      ['Employees fired', nFired ? nFired + '. All rehired.' : '0'],
+      ['Guestbook', s.gbMine.length ? 'Signed' : 'Not signed'],
+      ['CV', cvOpen ? 'Opened' : 'Not opened'],
+      ['Rats sighted', s.ratsSeen + ' of ' + s.ratsTotal]
+    ].map(([k, v]) => ({ k, v: String(v) }));
+    const R3 = this.root3.current, W3 = R3 ? R3.offsetWidth : 1280, H3 = R3 ? R3.offsetHeight : 7000;
+    let sv = 8, sp = [];
+    for (let i = 0; i < 60; i++) { sv += 0.4 + Math.abs(Math.sin(i * 12.9898) * 43758.5453 % 1) * 2.6 + i * 0.03; sp.push([i * 400 / 59, sv]); }
+    const spark = sp.map(([x, y]) => x.toFixed(1) + ',' + (116 - y / sv * 108).toFixed(1)).join(' ');
+    const base3 = 4200 + (Date.now() - Date.UTC(1998, 2, 14)) / 86400000 * 0.042;
+    const fireKey = k => () => this.setState(x => ({ fired3: { ...x.fired3, [k]: true } }));
+    const fireable = (list, pre) => list.map((it, i) => ({ ...it, alive: !s.fired3[pre + i], fired: !!s.fired3[pre + i], fire: fireKey(pre + i) }));
+    const ANNOY = ['I have already told you.', 'It is still 42.', 'You have asked ' + s.asks3 + ' times. It has not changed.', 'I am not doing this again.'];
+    const today3 = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const gbEntries = [
+      { name: 'You', date: '12 Aug 2031', msg: s.gbReply ? 'I remember writing that.' : 'Sign it. You did last time.' },
+      ...s.gbMine.slice().reverse(),
+      { name: 'The Rat', date: '9 Nov 2019', isImg: true },
+      { name: 'The Rat', date: '2 Jun 2004', msg: 'still here' },
+      { name: 'The Rat', date: '14 Mar 1998', msg: 'first' }
+    ].map(g => ({ ...g, isImg: !!g.isImg, notImg: !g.isImg }));
+    const time3 = Math.floor(secs3 / 60) + ' min ' + String(secs3 % 60).padStart(2, '0') + ' s';
+    const compRows = [
+      { k: 'Time on site', you: time3, them: '7.5 million years' },
+      { k: 'Clicks', you: String(m3.clicks), them: '42' },
+      { k: 'Employees fired', you: String(nFired), them: '0' },
+      { k: 'Rats sighted', you: String(s.ratsSeen), them: 'All of them' },
+      { k: 'Consent', you: { pending: 'Pending', given: 'Given', withheld: 'Withheld' }[s.consent3], them: 'Not asked' }
+    ];
+    const certHref = 'Certificate.dc.html?' + new URLSearchParams({ n: s.sig3.trim() || 'Anonymous', t: time3, r: String(s.ratsSeen), f: String(nFired), d: today3 }).toString();
+    const memoList = essays.map(it => ({ ...it, ref: 'IS/MEM/' + it.meta, isCurrent: it.title === 'Latent Space', notCurrent: it.title !== 'Latent Space' }));
+    const v4 = {
+      theme3: s.dark3 ? 'dark' : 'light', toggleDark: () => this.setState(x => ({ dark3: !x.dark3 })), darkLabel: s.dark3 ? 'Light mode' : 'Dark mode',
+      ratsSeen: s.ratsSeen, compRows, flag3: nFired === 0, noFlag3: nFired > 0, nFired3: String(nFired), certHref, memoList, root3b: this.root3b,
+      consentOpen: s.consent3 === 'pending',
+      human3: s.human3, observe3: s.observe3, und3: s.und3, sig3: s.sig3,
+      humanToggle: () => this.setState(x => ({ human3: !x.human3 })), observeToggle: () => this.setState(x => ({ observe3: !x.observe3 })), undToggle: () => this.setState(x => ({ und3: !x.und3 })),
+      sigChange: e => this.setState({ sig3: e.target.value }),
+      consentYes: () => this.setState({ consent3: 'given' }), consentNo: () => this.setState({ consent3: 'withheld' }),
+      labRows, figH: Math.round(150 * H3 / W3) + 'px', pathBox: '0 0 ' + W3 + ' ' + H3, pathPts: m3.pts.map(p => p.join(',')).join(' '),
+      spark, ratPrice: (base3 + secs3 * 0.42).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), ratDelta: '+' + (secs3 * 0.42 + 0.42).toFixed(2),
+      buy3: s.buy3, buyOpen: () => this.setState({ buy3: true }), buyClose: () => this.setState({ buy3: false }),
+      cPapers: fireable(papers, 'p'), cEssays: fireable(essays, 'e'), cProducts: fireable(chartProducts, 'x'),
+      sk: { alive: !s.fired3.sk, fired: !!s.fired3.sk, fire: fireKey('sk') }, dtn: { alive: !s.fired3.dt, fired: !!s.fired3.dt, fire: fireKey('dt') },
+      dt3Annoyed: s.ph3 === 'annoyed', dt3Msg: ANNOY[Math.min(3, Math.max(0, s.asks3 - 2))], dt3Show42: s.asks3 < 5,
+      gbEntries, gbName: s.gbName, gbMsg: s.gbMsg,
+      gbNameChange: e => this.setState({ gbName: e.target.value }), gbMsgChange: e => this.setState({ gbMsg: e.target.value }),
+      gbSign: () => {
+        if (!this.state.gbMsg.trim()) return;
+        this.setState(x => ({ gbMine: [...x.gbMine, { name: x.gbName.trim() || 'Anonymous', date: today3, msg: x.gbMsg.trim() }], gbMsg: '', gbReply: false }));
+        clearTimeout(this.gbT); this.gbT = setTimeout(() => this.setState({ gbReply: true }), 1400);
+      }
+    };
+    const v3 = {
+      ...s3, root3: this.root3, trail3: this.trail3, mgmt3, moreAvail3: s.mg3 < 6, chartProducts,
+      moreMg3: () => this.setState(x => ({ mg3: Math.min(6, x.mg3 + 1) }), replace3),
+      asst3: { show: s.ax3 != null, left: s.ax3 + 'px', top: s.ay3 + 'px', text: LINES3[s.as3] },
+      asstMove: () => { const n = (this.state.as3 + 1) % 7; this.setState({ as3: n }, () => this.placeAsst(n)); },
+      q3: s.q3, q3Change: e => this.setState({ q3: e.target.value }), q3Key: e => { if (e.key === 'Enter') { this.setState({ dt3At: 'top' }); this.dt3Go(); } },
+      dt3Go: () => { this.setState({ dt3At: 'top' }); this.dt3Go(); }, dt3Top: s.dt3Open && s.dt3At !== 'chart', dt3Chart: s.dt3Open && s.dt3At === 'chart', applyQ: () => this.setState({ q3: 'What is the Question?', dt3At: 'chart' }, () => this.dt3Go()), dt3Close: () => this.setState({ dt3Open: false }),
+      dt3Query: s.q3.trim() || 'Life, the Universe and Everything',
+      dt3Run: s.ph3 === 'run', dt3Warn: s.ph3 === 'warn', dt3Done: s.ph3 === 'done',
+      dt3Pct: Math.round((7500000 - s.y3) / 75000) + '%', dt3Years: s.y3.toLocaleString('en-US'),
+      dt3Qs: plain[8].items.filter(it => it.title.endsWith('?')),
+      cart3: s.cart3, cartOpen: () => this.setState({ cart3: true }), cartClose: () => this.setState({ cart3: false }),
+      pE: s.pE, togE: () => this.setState(x => ({ pE: !x.pE }))
+    };
+    return {
+      ...v3, ...v4,
+      ratSrc, ratAttr: s.ordinary ? 'off' : 'on', papers, essays, projects: plain[7].items, readerEssays, marquee,
+      pauseLabel: s.paused ? 'Play animation' : 'Pause animation', cursorLabel: s.ordinary ? 'Rat cursor' : 'Ordinary cursor',
+      togglePause: () => this.setState(x => ({ paused: !x.paused })), toggleCursor: () => this.setState(x => ({ ordinary: !x.ordinary })),
+      pD: s.pD, togD: () => this.setState(x => ({ pD: !x.pD })),
+      dtQ: s.dtQ, dtChange: e => this.setState({ dtQ: e.target.value }), dtGo: () => this.dtGo(),
+      dtLabel: ph === 'done' ? 'Ask again' : (ph === 'idle' ? 'Compute' : 'Computing…'),
+      dtRun: ph === 'run', dtWarn: ph === 'warn', dtDone: ph === 'done', dtStars: '*'.repeat(s.dtStars), dtYears: s.dtYears.toLocaleString('en-US'),
+      A, B, C: { ...C, ...Cmap }, mapA, boxesB, listC, plain,
+      edgesA: EDGES_A.e, dotsA: EDGES_A.dots,
+      frames: FRAMES, cyc: FRAMES[s.f],
+      pA: s.pA, pB: s.pB, pC: s.pC,
+      togA: () => this.setState(x => ({ pA: !x.pA })),
+      togB: () => this.setState(x => ({ pB: !x.pB })),
+      togC: () => this.setState(x => ({ pC: !x.pC }))
+    };
+  }
+}
+</script>
+</body>
+</html>
